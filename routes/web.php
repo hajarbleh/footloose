@@ -12,5 +12,33 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/browse', function () {
+    return view('browse');
+});
+
+Route::get('/checkout', function () {
+    return view('checkout');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/makeyourown', function () {
+    return view('makeyourown');
+});
+
+Route::get('/product', function () {
+    return view('product');
+});
+
+Route::get('/teaser', function () {
+    return view('teaser');
+});
+
+Route::get('/user', function () {
+    return view('user');
 });
