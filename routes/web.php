@@ -42,3 +42,7 @@ Route::get('/teaser', function () {
 Route::get('/user', function () {
     return view('user');
 });
+
+Route::get('/admin', function () {
+    return view('admin');
+});
