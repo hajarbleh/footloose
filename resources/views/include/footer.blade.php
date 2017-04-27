@@ -7,16 +7,16 @@
                     <p style="margin-bottom:2rem">check our faq or give us a shout, we're happy to help!</p>
                 </div>
                 <div class="col-sm-3 col-xs-6">
-                    <i class="fa fa-envelope fa-lg"></i><br>ask@hellofootloose.com<br>
+                    <i class="fa fa-envelope fa-2x"></i><br>ask@hellofootloose.com<br>
                 </div>    
                 <div class="col-sm-3 col-xs-6">
-                    <i class="fa fa-phone fa-lg"></i><br>0878 8810 2112
+                    <i class="fa fa-phone fa-2x"></i><br>0878 8810 2112
                 </div>
                 <div class="col-sm-3 col-xs-6">
-                    <i class="fa fa-question-circle fa-lg"></i><br>faq<br>
+                    <i class="fa fa-question-circle fa-2x"></i><br>faq<br>
                 </div>
                 <div class="col-sm-3 col-xs-6">
-                    <i class="fa fa-whatsapp fa-lg"></i><br>0878 8810 2112
+                    <i class="fa fa-whatsapp fa-2x"></i><br>0878 8810 2112
                 </div>
             </div>
         </div>
