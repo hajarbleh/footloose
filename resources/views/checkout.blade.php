@@ -16,27 +16,13 @@
     <div class="modal fade" id="profilmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+                <div class="modal-header">
+                    <h3><b>Pesanan berhasil kami terima</b></h3>
+                </div>
                 <div class="modal-body">
                     <form class="row">
-                        <div class="form-group col-sm-12">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Andi Ersaldy">
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="andi.ersaldy@gmail.com">
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label for="phone">Phone</label>
-                            <input type="number" class="form-control" id="phone" placeholder="6287888999000">
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label for="pass">New Password</label>
-                            <input type="password" class="form-control" id="pass" placeholder="******">
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label for="pass2">Retype Password</label>
-                            <input type="password" class="form-control" id="pass2" placeholder="******">
+                        <div class="col-sm-12">
+                            <p>Silahkan cek email anda untuk proses selanjutnya. Anda juga bisa mengecek status barang anda melalui link dibawah.</p>
                         </div>
                     </form>
                 </div>
@@ -46,7 +32,7 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:100%; border:none; background-color:(0,0,0,0.075)">Exit</button>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#!" class="btn btn-primary" style="width:100%" onclick="alert('New data sucessfully saved')"><i class="fa fa-shopping-cart fa-lg"></i> Save</a>
+                            <a href="user" class="btn btn-primary" style="width:100%"><i class="fa fa-truck fa-lg"></i> Cek Status</a>
                         </div>
                     </div>
                 </div>
@@ -112,7 +98,7 @@
         </div>
         <div class="row">
             <div class="col-xs-3 offset-xs-9">
-                <btn class="btn btn-secondary btn-hav-w" role="button" style="margin-top:1.3rem; background-color:#3a5bb8"><b style="color:#fff"><i class="fa fa-shopping-cart fa-lg"></i> CHECKOUT</b></btn>
+                <btn id="profiltrigger" class="btn btn-secondary btn-hav-w" role="button" style="margin-top:1.3rem; background-color:#3a5bb8"><b style="color:#fff"><i class="fa fa-shopping-cart fa-lg"></i> CHECKOUT</b></btn>
             </div>
         </div>
     </div>

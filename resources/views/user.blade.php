@@ -105,6 +105,16 @@
     <div style="width:100%; overflow:hidden; padding:3rem 0 5rem 0">
         <div class="container">
             <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-inverse" style="width:100%; background-color:#5f5f5f; margin-bottom:1.5rem">
+                        <div class="card-block">
+                            <h4 class="card-title"><b>Status Pesanan</b></h4>
+                            <div class="card-text">                                
+                                <p>Tidak ada pesanan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-sm-6">
                     <div class="card card-inverse" style="width:100%; background-color:#3a5bb8; min-height:13.5rem">
                         <div class="card-block">
