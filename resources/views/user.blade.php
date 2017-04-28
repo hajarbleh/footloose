@@ -106,7 +106,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="card card-inverse" style="width:100%; background-color:#5f5f5f; margin-bottom:1.5rem">
+                    <div class="card" style="width:100%; margin-bottom:1.5rem; border:solid 1px #ddd">
                         <div class="card-block">
                             <h4 class="card-title"><b>Status Pesanan</b></h4>
                             <div class="card-text">                                
@@ -116,9 +116,9 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="card card-inverse" style="width:100%; background-color:#3a5bb8; min-height:13.5rem">
+                    <div class="card" style="width:100%; border:solid 1px #ddd; min-height:13.5rem">
                         <div class="card-block">
-                            <h4 class="card-title"><b>Personal Data</b></h4>
+                            <h4 class="card-title"><b>Data Diri</b></h4>
                             <div class="card-text">
                                 <div class="row">
                                     <div class="col-xs-3">Nama</div>
@@ -131,17 +131,17 @@
                                     <div class="col-xs-9">6287888999000</div>
                                 </div>
                             </div>
-                            <a href="#!" id="profiltrigger" class="btn btn-hav-w pull-right" style="background-color:#fff; color:#3a5bb8">EDIT</a>
+                            <a href="#!" id="profiltrigger" class="btn btn-primary pull-right">EDIT</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="card card-inverse" style="width:100%; background-color:#ff6d6d; min-height:13.5rem">
+                    <div class="card" style="width:100%; border:solid 1px #ddd; min-height:13.5rem">
                         <div class="card-block">
-                            <h4 class="card-title"><b>Sending Address</b></h4>
+                            <h4 class="card-title"><b>Alamat Pengiriman</b></h4>
                             <p class="card-text">Jalan Teknik Komputer IV Perumahan Dosen ITS Blok U-125, Kampus ITS Sukolilo</p>
                             <p class="card-text">Kota: Surabaya, Prov: Jawa Timur, Kodepos: 60111</p>
-                            <a href="#!" id="alamattrigger" class="btn btn-hav-w pull-right" style="background-color:#fff; color:#ff6d6d">EDIT</a>
+                            <a href="#!" id="alamattrigger" class="btn btn-primary pull-right">EDIT</a>
                         </div>
                     </div>
                 </div>

@@ -17,11 +17,12 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">Cras justo odi</a>
-                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                        <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+                        <a href="#" class="list-group-item active">Categories</a>
+                        <a href="#" class="list-group-item list-group-item-action">Products</a>
+                        <a href="#" class="list-group-item list-group-item-action">Promos</a>
+                        <a href="#" class="list-group-item list-group-item-action">FAQ</a>
+                        <a href="#" class="list-group-item list-group-item-action">Web Details</a>
+                        <a href="#" class="list-group-item list-group-item-action">Sales Report</a>
                     </div>
 
                 </div>
