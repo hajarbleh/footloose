@@ -9,9 +9,9 @@
 
         input[type="radio"] + label span {
             display:inline-block;
-            width:19px;
-            height:19px;
-            margin:-1px 4px 0 0;
+            width:30px;
+            height:30px;
+            margin:-1px 0px 0 0;
             vertical-align:middle;
             cursor:pointer;
             -moz-border-radius:  50%;
@@ -24,7 +24,7 @@
         }
 
         input[type="radio"]:checked + label span{
-             border:solid 3px #f00;
+             border:solid 3px #2a2a2a;
         }
 
     </style>
@@ -72,22 +72,30 @@
                         <h6><b>Color</b></h6>
                         <span>
                             <input type="radio" id="radio01" name="radio" />
-                            <label for="radio01"><span></span></label>
+                            <label for="radio01">
+                                <span style="background-color:#dbc9c9"></span>
+                            </label>
                         </span>
 
                         <span>
                             <input type="radio" id="radio02" name="radio" />
-                            <label for="radio02"><span></span></label>
+                            <label for="radio02">
+                                <span style="background-color:#d08a8a"></span>
+                            </label>
                         </span>
 
                         <span>
                             <input type="radio" id="radio03" name="radio" />
-                            <label for="radio03"><span></span></label>
+                            <label for="radio03">
+                                <span style="background-color:#45c7a4"></span>
+                            </label>
                         </span>
 
                         <span>
                             <input type="radio" id="radio04" name="radio" />
-                            <label for="radio04"><span></span></label>
+                            <label for="radio04">
+                                <span style="background-color:#fff95e"></span>
+                            </label>
                         </span>
 
                     </div>

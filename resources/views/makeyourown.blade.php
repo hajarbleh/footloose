@@ -2,6 +2,33 @@
 @section('title', 'Make Your Own')
 @section('body')
     @include('include.navbarwhite')
+    <style>
+        input[type="radio"] {
+            display:none;
+        }
+
+        input[type="radio"] + label span {
+            display:inline-block;
+            width:30px;
+            height:30px;
+            margin:-1px 0px 0 0;
+            vertical-align:middle;
+            cursor:pointer;
+            -moz-border-radius:  50%;
+            border-radius:  50%;
+        }
+
+        input[type="radio"] + label span {
+             background-color:#0f0;
+             border:solid 3px #fff
+        }
+
+        input[type="radio"]:checked + label span{
+             border:solid 3px #2a2a2a;
+        }
+
+    </style>
+
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -79,38 +106,64 @@
 
                 <div class="col-sm-5ths col-xs-6" style="border-left:solid 1px rgba(255, 109, 109, 0.55); height:9rem">
                     <p style="color:#ff6d6d"><b>2. Select base color</b></p>
-                    <div class="form-check">                            
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                    <span>
+                        <input type="radio" id="base01" name="basecol" />
+                        <label for="base01">
+                            <span style="background-color:#dbc9c9"></span>
                         </label>
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                    </span>
+
+                    <span>
+                        <input type="radio" id="base02" name="basecol" />
+                        <label for="base02">
+                            <span style="background-color:#d08a8a"></span>
                         </label>
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                    </span>
+
+                    <span>
+                        <input type="radio" id="base03" name="basecol" />
+                        <label for="base03">
+                            <span style="background-color:#45c7a4"></span>
                         </label>
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                    </span>
+
+                    <span>
+                        <input type="radio" id="base04" name="basecol" />
+                        <label for="base04">
+                            <span style="background-color:#fff95e"></span>
                         </label>
-                    </div>
+                    </span>
                 </div>
 
                 <div class="col-sm-5ths col-xs-6" style="border-left:solid 1px rgba(255, 109, 109, 0.55); height:9rem">
                     <p style="color:#ff6d6d"><b>3. Select strap color</b></p>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                    <span>
+                        <input type="radio" id="strap01" name="strapcol" />
+                        <label for="strap01">
+                            <span style="background-color:#dbc9c9"></span>
                         </label>
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                    </span>
+
+                    <span>
+                        <input type="radio" id="strap02" name="strapcol" />
+                        <label for="strap02">
+                            <span style="background-color:#d08a8a"></span>
                         </label>
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                    </span>
+
+                    <span>
+                        <input type="radio" id="strap03" name="strapcol" />
+                        <label for="strap03">
+                            <span style="background-color:#45c7a4"></span>
                         </label>
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                    </span>
+
+                    <span>
+                        <input type="radio" id="strap04" name="strapcol" />
+                        <label for="strap04">
+                            <span style="background-color:#fff95e"></span>
                         </label>
-                    </div>
+                    </span>
                 </div>
 
                 <div class="col-sm-5ths col-xs-6" style="border-left:solid 1px rgba(255, 109, 109, 0.55); height:9rem">

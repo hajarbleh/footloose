@@ -13,32 +13,62 @@
         </div>
     </div>
 
-    <div class="modal fade" id="profilmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="alamatmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3><b>Pesanan berhasil kami terima</b></h3>
+                    <h3><b>Konfirmasi alamat pengiriman</b></h3>
                 </div>
                 <div class="modal-body">
                     <form class="row">
                         <div class="col-sm-12">
-                            <p>Silahkan cek email anda untuk proses selanjutnya. Anda juga bisa mengecek status barang anda melalui link dibawah.</p>
+                            <p><b>Pastikan bahwa alamat pengiriman dibawah sudah benar.</b></p>
+                            <p>Jalan Teknik Komputer IV Perumahan Dosen ITS Blok U-125, Kampus ITS Sukolilo</p>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-xs-6">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:100%; border:none; background-color:(0,0,0,0.075)">Exit</button>
+                            <a href="user" class="btn btn-secondary" style="width:100%; border:none"><i class="fa fa-pencil fa-lg"></i> Ganti Alamat</a>
                         </div>
                         <div class="col-xs-6">
-                            <a href="user" class="btn btn-primary" style="width:100%"><i class="fa fa-truck fa-lg"></i> Cek Status</a>
+                            <a id="finalizetrigger" href="#!" class="btn btn-primary" style="width:100%"><i class="fa fa-truck fa-lg"></i> Lanjutkan</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="finalizemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><b>Pesanan Berhasil Kami Terima</b></h3>
+                </div>
+                <div class="modal-body">
+                    <form class="row">
+                        <div class="col-sm-12">
+                            <p>Terima kasih sudah memesan barang di Footlose. Silahkan cek email anda untuk melanjutkan pembayaran, atau cek status barang di halaman profilmu.</p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <button type="button" data-dismiss="modal" class="btn btn-secondary" style="width:100%; border:none"> Exit</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <a id="finalize" href="#!" class="btn btn-primary" style="width:100%"><i class="fa fa-truck fa-lg"></i> Cek Status</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <div style="width:100%; overflow:hidden; margin-top:2rem; margin-bottom:1rem; padding:1rem 0 1rem 0;">
         <div class="container">
@@ -98,7 +128,7 @@
         </div>
         <div class="row">
             <div class="col-xs-3 offset-xs-9">
-                <btn id="profiltrigger" class="btn btn-secondary btn-hav-w" role="button" style="margin-top:1.3rem; background-color:#3a5bb8"><b style="color:#fff"><i class="fa fa-shopping-cart fa-lg"></i> CHECKOUT</b></btn>
+                <btn id="alamattrigger" class="btn btn-secondary btn-hav-w" role="button" style="margin-top:1.3rem; background-color:#3a5bb8"><b style="color:#fff"><i class="fa fa-shopping-cart fa-lg"></i> CHECKOUT</b></btn>
             </div>
         </div>
     </div>
@@ -113,11 +143,12 @@
                 $('#mobile-dropdown').fadeToggle();
             });
             $('nav').css('background','#fff');
-            $('#profiltrigger').click(function() {
-                $('#profilmodal').modal();
+            $('#finalizetrigger').click(function() {
+                $('#finalizemodal').modal('show');
+                $('#alamatmodal').modal('hide');
             });
             $('#alamattrigger').click(function() {
-                $('#alamatmodal').modal();
+                $('#alamatmodal').modal('show');
             });
         });
     </script>
