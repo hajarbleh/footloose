@@ -2,32 +2,6 @@
 @section('title', 'Product Name')
 @section('body')
     @include('include.navbarwhite')
-    <style>
-        input[type="radio"] {
-            display:none;
-        }
-
-        input[type="radio"] + label span {
-            display:inline-block;
-            width:30px;
-            height:30px;
-            margin:-1px 0px 0 0;
-            vertical-align:middle;
-            cursor:pointer;
-            -moz-border-radius:  50%;
-            border-radius:  50%;
-        }
-
-        input[type="radio"] + label span {
-             background-color:#0f0;
-             border:solid 3px #fff
-        }
-
-        input[type="radio"]:checked + label span{
-             border:solid 3px #2a2a2a;
-        }
-
-    </style>
 
     <div style="width:100%; min-height:5rem; overflow:hidden; color:#fff; background-color:#3a5bb8; padding:5rem 0 0 0">
         <div class="container">
@@ -68,39 +42,6 @@
                             <p>The Slim Crystal Poem features a floral Swarovski embellishment on a slim metallic strap for added glamour. A tonal Havaianas logo and our signature textured footbed provide style and comfort.</p>
                         </div>
                     </div>
-<!--
-                    <div class="col-sm-5">
-                        <h6><b>Color</b></h6>
-                        <span>
-                            <input type="radio" id="radio01" name="radio" />
-                            <label for="radio01">
-                                <span style="background-color:#dbc9c9"></span>
-                            </label>
-                        </span>
-
-                        <span>
-                            <input type="radio" id="radio02" name="radio" />
-                            <label for="radio02">
-                                <span style="background-color:#d08a8a"></span>
-                            </label>
-                        </span>
-
-                        <span>
-                            <input type="radio" id="radio03" name="radio" />
-                            <label for="radio03">
-                                <span style="background-color:#45c7a4"></span>
-                            </label>
-                        </span>
-
-                        <span>
-                            <input type="radio" id="radio04" name="radio" />
-                            <label for="radio04">
-                                <span style="background-color:#fff95e"></span>
-                            </label>
-                        </span>
-
-                    </div>
--->
                     <div class="col-sm-3">
                         <h6><b>Size</b></h6>
                         <select class="form-control form-control-sm" style="background-color:rgba(0, 0, 0, 0.075); border:none">
@@ -187,9 +128,9 @@
         <script src="assets/js/jquery.imgzoom.js"></script>
         <script>
             function qty(x){
-                ampas = document.getElementById("qty");
-                if (x == "+" ) ampas.value ++;
-                else if (x == "-") ampas.value --;
+                quantity = document.getElementById("qty");
+                if (x == "+" ) quantity.value ++;
+                else if (x == "-") quantity.value --;
             }
             $(document).ready(function() {
                 $('.imgBox').imgZoom();

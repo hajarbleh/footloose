@@ -15,10 +15,19 @@
         <title>Footloose | @yield('title')</title>
     </head>
     <body>
+        <div id="spinner" style="position:fixed; width:100%; z-index:30; height:100%; background-color:#fff; text-align:center; padding-top:calc(50vh - 2rem)">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+        </div>
         @yield('body')
         
         @include('include.footer')
 
         @yield('pagescript')
+        <script>
+            $(document).ready(function(){
+                $('#spinner').hide();
+            });
+        </script>
     </body>
 </html>

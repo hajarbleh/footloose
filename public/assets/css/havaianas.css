@@ -53,6 +53,7 @@ body {
 
 .list-group-item {
     text-decoration: none !important;
+    color: inherit;
 }
 
 .navbar-light .navbar-nav .nav-link {
