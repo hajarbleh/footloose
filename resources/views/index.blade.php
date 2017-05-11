@@ -33,17 +33,19 @@
         <h2><b>Flipflop of the Month</b></h2>
         <div class="container" style="margin-top:2rem">
             <div class="row">
-                <?php for ($i=0;$i<5;$i++){ ?>
-                <div class="col-sm-5ths col-xs-6">
-                    <a href="{{url('/product')}}" class="card" style="text-align:center">
-                        <img class="card-img-top img-fluid" src="assets/img/product/c1p1/col1/thumb/1.jpg" alt="Card image cap">
-                        <div class="card-block">
-                            <p style="line-height:1.2rem; margin-bottom:0.5rem">Nama Produk</p>
-                            <h5><b>Rp 150.000</b></h5>
-                        </div>
-                    </a>
+                <div class="col-sm-10 offset-sm-1">
+                    <?php for ($i=0;$i<3;$i++){ ?>
+                    <div class="col-xs-4">
+                        <a href="{{url('/product')}}" class="card" style="text-align:center">
+                            <img class="card-img-top img-fluid" src="assets/img/product/c1p1/col1/thumb/1.jpg" alt="Card image cap">
+                            <div class="card-block">
+                                <p style="line-height:1.2rem; margin-bottom:0.5rem">Nama Produk</p>
+                                <h5><b>Rp 150.000</b></h5>
+                            </div>
+                        </a>
+                    </div>
+                    <?php } ?>
                 </div>
-                <?php } ?>
             </div>
         </div>
     </div>        
