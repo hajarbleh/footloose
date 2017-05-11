@@ -203,23 +203,16 @@
 @section('pagescript')
     <script>
         function qty(x){
-            ampas = document.getElementById("qty");
-            if (x == "+" ) ampas.value ++;
-            else if (x == "-") ampas.value --;
+            quantity = document.getElementById("qty");
+            if (x == "+" ) quantity.value ++;
+            else if (x == "-") quantity.value --;
         }
 
         $(document).ready(function() {
             $('#modaltrigger').click(function() {
                 $('#modal').modal();
             });
-
-            $('#mobile-dropdown').hide();
-            $('#mobile-dropdown-toggle').click(function(){
-                $('#mobile-dropdown').fadeToggle();
-            });
-
-            $('nav').css('background','#ff6d6d');
-      
+             $('nav').css('background','#ff6d6d');
         });
     </script>
 @endsection

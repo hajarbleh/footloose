@@ -153,11 +153,6 @@
 @section('pagescript')
     <script>
         $(document).ready(function() {
-            $('#mobile-dropdown').hide();
-            $('#mobile-dropdown-toggle').click(function(){
-                $('#mobile-dropdown').fadeToggle();
-            });
-            $('nav').css('background','#fff');
             $('#profiltrigger').click(function() {
                 $('#profilmodal').modal();
             });

@@ -90,10 +90,7 @@
                 }
             });
 
-            $('#mobile-dropdown').hide();
-            $('#mobile-dropdown-toggle').click(function(){
-                $('#mobile-dropdown').fadeToggle();
-            });
+
             $(window).scroll(function() {
                 var x = $(window).scrollTop();
                 if (x <= 100) {
@@ -109,7 +106,7 @@
                     $('#mobile-dropdown-toggle').css('color','#2a2a2a');
                     $('#logo').attr('src','assets/img/ui/logoblack.png');
                 }
-            });                
+            });
         });
     </script>
 @endsection

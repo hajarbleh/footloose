@@ -54,10 +54,6 @@
 @section('pagescript')
     <script>
         $(document).ready(function() {
-            $('#mobile-dropdown').hide();
-            $('#mobile-dropdown-toggle').click(function(){
-                $('#mobile-dropdown').fadeToggle();
-            });
             $('signupform').hide();
             $('#login').click(function(){
                 $('signupform').hide();
@@ -66,14 +62,6 @@
             $('#signup').click(function(){
                 $('loginform').hide();
                 $('signupform').show();
-            });
-            $(window).scroll(function() {
-                var x = $(window).scrollTop();
-                if (x <= 0) {
-                    $('nav').css('background','transparent');
-                } else {
-                    $('nav').css('background','#fff');
-                }
             });
         });
     </script>

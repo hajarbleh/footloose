@@ -51,6 +51,10 @@ body {
     background-color: #fff;
 }
 
+.list-group-item {
+    text-decoration: none !important;
+}
+
 .navbar-light .navbar-nav .nav-link {
     color: #2a2a2a;
 }

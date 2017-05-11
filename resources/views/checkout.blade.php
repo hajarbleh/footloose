@@ -60,7 +60,7 @@
                             <button type="button" data-dismiss="modal" class="btn btn-secondary" style="width:100%; border:none"> Exit</button>
                         </div>
                         <div class="col-xs-6">
-                            <a id="finalize" href="#!" class="btn btn-primary" style="width:100%"><i class="fa fa-truck fa-lg"></i> Cek Status</a>
+                            <a id="finalize" href="user" class="btn btn-primary" style="width:100%"><i class="fa fa-truck fa-lg"></i> Cek Status</a>
                         </div>
                     </div>
                 </div>
@@ -138,11 +138,6 @@
 @section('pagescript')
     <script>
         $(document).ready(function() {
-            $('#mobile-dropdown').hide();
-            $('#mobile-dropdown-toggle').click(function(){
-                $('#mobile-dropdown').fadeToggle();
-            });
-            $('nav').css('background','#fff');
             $('#finalizetrigger').click(function() {
                 $('#finalizemodal').modal('show');
                 $('#alamatmodal').modal('hide');

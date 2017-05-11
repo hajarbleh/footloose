@@ -68,6 +68,7 @@
                             <p>The Slim Crystal Poem features a floral Swarovski embellishment on a slim metallic strap for added glamour. A tonal Havaianas logo and our signature textured footbed provide style and comfort.</p>
                         </div>
                     </div>
+<!--
                     <div class="col-sm-5">
                         <h6><b>Color</b></h6>
                         <span>
@@ -99,6 +100,7 @@
                         </span>
 
                     </div>
+-->
                     <div class="col-sm-3">
                         <h6><b>Size</b></h6>
                         <select class="form-control form-control-sm" style="background-color:rgba(0, 0, 0, 0.075); border:none">
@@ -133,8 +135,8 @@
                             </span>
                         </div>
                     </div>
-                    <div class="col-sm-12">
-                        <btn id="carttrigger" class="btn btn-secondary btn-hav-w" role="button" style="margin-top:1.3rem; background-color:#3a5bb8"><b style="color:#fff"><i class="fa fa-shopping-cart fa-lg"></i> ADD TO CART</b></btn>
+                    <div class="col-sm-6">
+                        <btn id="carttrigger" class="btn btn-secondary btn-hav-w" role="button" style="margin-top:1.3rem; background-color:#3a5bb8; width:100%"><b style="color:#fff"><i class="fa fa-shopping-cart fa-lg"></i> ADD TO CART</b></btn>
                     </div>
                 </div>
             </div>
@@ -196,10 +198,6 @@
                 });
                 $('#carttrigger').click(function() {
                     $('#cartmodal').modal();
-                });
-                $('#mobile-dropdown').hide();
-                $('#mobile-dropdown-toggle').click(function(){
-                    $('#mobile-dropdown').fadeToggle();
                 });
                 $(window).scroll(function() {
                     var x = $(window).scrollTop();

@@ -106,10 +106,7 @@
 @section('pagescript')
     <script>
         $(document).ready(function() {
-            $('#mobile-dropdown').hide();
-            $('#mobile-dropdown-toggle').click(function(){
-                $('#mobile-dropdown').fadeToggle();
-            });
+            $('nav').css('background','transparent');
             $(window).scroll(function() {
                 var x = $(window).scrollTop();
                 if (x <= 0) {
