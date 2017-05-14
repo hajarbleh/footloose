@@ -18,13 +18,13 @@ class CreateTransactionDetailsTable extends Migration
             $table->string('transaction_code');
 
             $table->integer('base_id')->unsigned();
-            $table->foreign('base_id')->references('id')->on('items');
+            $table->foreign('base_id')->references('id')->on('bases');
 
             $table->integer('strap_id')->unsigned();
-            $table->foreign('strap_id')->references('id')->on('items');
+            $table->foreign('strap_id')->references('id')->on('straps');
 
             $table->integer('tattoo_id')->unsigned();
-            $table->foreign('tattoo_id')->references('id')->on('items');
+            $table->foreign('tattoo_id')->references('id')->on('tattoos');
 
             $table->integer('transaction_id')->unsigned();
             $table->foreign('transaction_id')->references('id')->on('transactions');

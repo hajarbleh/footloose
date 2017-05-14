@@ -14,7 +14,8 @@ class FFoTMsTableSeeder extends Seeder
     {
         $FFoTM1 = new FFoTM;
         $FFoTM1->base_id = 1;
-        $FFoTM1->strap_id = 3;
+        $FFoTM1->strap_id = 1;
+        $FFoTM1->tattoo_id = 1;
         $FFoTM1->category_id = 2;
     }
 }
