@@ -19,4 +19,12 @@ class User extends Model
   public function transaction(){
     return $this->hasMany('App\Transaction');
   }
+
+  public function isUser() {
+    return $this->role == 'User';
+  }
+
+  public function isAdmin() {
+    return $this->role == 'Admin';
+  }
 }
