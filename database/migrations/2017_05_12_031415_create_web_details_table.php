@@ -15,8 +15,11 @@ class CreateWebDetailsTable extends Migration
     {
         Schema::create('web_details', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('detail_title');
-            $table->string('detail_content');
+            $table->string('email');
+            $table->string('twitter');
+            $table->string('facebook');
+            $table->string('instagram');
+            $table->string('line');
             $table->timestamps();
         });
     }

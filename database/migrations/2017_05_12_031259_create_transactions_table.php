@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('coupon_id')->unsigned();
+            $table->integer('coupon_id')->nullable()->unsigned();
             $table->foreign('coupon_id')->references('id')->on('coupons');
             $table->integer('total');
             $table->string('transaction_status');
