@@ -17,5 +17,6 @@ class TattoosTableSeeder extends Seeder
       $Tattoo1->category_id = 2;
       $Tattoo1->stock = 60;
       $Tattoo1->picture = '';
+      $Tattoo1->save();
     }
 }

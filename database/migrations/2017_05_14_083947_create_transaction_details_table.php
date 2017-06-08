@@ -15,7 +15,6 @@ class CreateTransactionDetailsTable extends Migration
     {
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('transaction_code');
 
             $table->integer('base_id')->unsigned();
             $table->foreign('base_id')->references('id')->on('bases');
@@ -23,7 +22,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->integer('strap_id')->unsigned();
             $table->foreign('strap_id')->references('id')->on('straps');
 
-            $table->integer('tattoo_id')->unsigned();
+            $table->integer('tattoo_id')->nullable()->unsigned();
             $table->foreign('tattoo_id')->references('id')->on('tattoos');
 
             $table->integer('transaction_id')->unsigned();

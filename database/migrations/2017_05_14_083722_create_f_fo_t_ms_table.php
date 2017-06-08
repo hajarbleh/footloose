@@ -22,7 +22,7 @@ class CreateFFoTMsTable extends Migration
             $table->integer('strap_id')->unsigned();
             $table->foreign('strap_id')->references('id')->on('straps');
 
-            $table->integer('tattoo_id')->unsigned();
+            $table->integer('tattoo_id')->nullable()->unsigned();
             $table->foreign('tattoo_id')->references('id')->on('tattoos');
 
             $table->integer('category_id')->unsigned();

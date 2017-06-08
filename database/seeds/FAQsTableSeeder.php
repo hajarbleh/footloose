@@ -13,5 +13,6 @@ class FAQsTableSeeder extends Seeder
     {
         $FAQ = new FAQ;
         $FAQ->body = 'Place some questions and answers here';
+        $FAQ->save();
     }
 }

@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class FFoTM extends Model
 {
   protected $primaryKey = 'id';
-
+  protected $table = 'ffotms';
+  
   protected $guarded = ['id','created_at','updated_at', ];
 
   public function category()

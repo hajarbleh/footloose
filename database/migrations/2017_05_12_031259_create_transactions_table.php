@@ -15,12 +15,13 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->string('transaction_code');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('coupon_id')->nullable()->unsigned();
             $table->foreign('coupon_id')->references('id')->on('coupons');
             $table->integer('total');
-            $table->string('transaction_status');
+            $table->string('transaction_status')->default('Menunggu konfirmasi admin');
             $table->dateTime('timestamp');
 
             $table->timestamps();

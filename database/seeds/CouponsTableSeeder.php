@@ -18,6 +18,7 @@ class CouponsTableSeeder extends Seeder
         $Coupon1->discount = 15;
         $Coupon1->start_date = Carbon::now();
         $Coupon1->expired_date = Carbon::now()->addYear();
+        $Coupon1->save();
 
         $Coupon2 = new Coupon;
         $Coupon2->name = "Bonus juara 1";
@@ -25,7 +26,6 @@ class CouponsTableSeeder extends Seeder
         $Coupon2->discount = 35;
         $Coupon2->start_date = Carbon::create(2017, 1, 15);
         $Coupon2->expired_date = Carbon::create(2017, 4,15);
-        
-        
+        $Coupon2->save();
     }
 }

@@ -13,5 +13,6 @@ class PricesTableSeeder extends Seeder
     {
         $Price = new Price;
         $Price->price = 89000;
+        $Price->save();
     }
 }

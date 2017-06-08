@@ -18,5 +18,6 @@ class StrapsTableSeeder extends Seeder
         $Strap1->category_id = 2;
         $Strap1->stock = 60;
         $Strap1->picture = '';
+        $Strap1->save();
     }
 }

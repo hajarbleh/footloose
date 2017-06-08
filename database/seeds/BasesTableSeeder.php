@@ -18,6 +18,7 @@ class BasesTableSeeder extends Seeder
         $Base1->category_id = 2;
         $Base1->stock = 60;
         $Base1->picture = '';
+        $Base1->save();
 
         $Base2 = new Base;
         $Base2->name = 'Free flop green base';
@@ -26,6 +27,7 @@ class BasesTableSeeder extends Seeder
         $Base2->category_id = 2;
         $Base2->stock = 50;
         $Base2->picture = '';
+        $Base2->save();
 
 
     }
