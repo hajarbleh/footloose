@@ -35,7 +35,19 @@ class TattooController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lastRow = Tattoo::orderBy('id', 'desc')->first();
+        $tattoo = new Tattoo();
+        $tattoo['name'] = $request->name;
+        $tattoo['color'] = $request->color;
+        $tattoo['category_id'] = $request->category;
+        $tattoo['stock'] = $request->stock;
+        $dest = 'tattoo/'.($lastRow->id+1);
+        $file = $request->file('picture');
+        $fileName = $file->getClientOriginalName();
+        $path = $file->move($dest, $fileName);
+        $tattoo->picture = $path;
+        $tattoo->save();
+        return back();
     }
 
     /**
@@ -67,9 +79,22 @@ class TattooController extends Controller
      * @param  \App\Tattoo  $tattoo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tattoo $tattoo)
+    public function update(Request $request, $id)
     {
-        //
+        $tattoo = Tattoo::findOrFail($id);
+        $tattoo->name = $request->name;
+        $tattoo->color = $request->color;
+        $tattoo->stock = $request->stock;
+        if($request->picture) {
+            $dest = 'tattoo/'.$id;
+            $file = $request->file('picture');
+            $fileName = $file->getClientOriginalName();
+            $path = $file->move($dest, $fileName);
+            $tattoo->picture = $path;
+        }
+        $tattoo->save();
+
+        return back();
     }
 
     /**
@@ -81,5 +106,17 @@ class TattooController extends Controller
     public function destroy(Tattoo $tattoo)
     {
         //
+    }
+
+    public function detail($id)
+    {
+        $tattoo = Tattoo::where('tattoos.id', '=', $id)
+            ->leftJoin('categories', 'categories.id', '=', 'tattoos.category_id')
+            ->select('tattoos.*', 'categories.name as category')
+            ->first();
+        return response()->json([
+           'success' => true,
+           'data' => $tattoo,
+        ]);
     }
 }

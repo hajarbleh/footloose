@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
@@ -44,9 +45,21 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        $category = Category::findorfail($id);
+        return response()->json([
+            'success' => true,
+            'data' => $category,
+        ]);
+    }
+
+    public function toggleStatus($id)
+    {
+        $category = Category::findorfail($id);
+        $category->is_enabled = ($category->is_enabled + 1)%2;
+        $category->save();
+        return back();
     }
 
     /**
@@ -67,9 +80,12 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $category = Category::findorfail($id);
+        $category['name'] = $request->name;
+        $category->save();
+        return back();
     }
 
     /**

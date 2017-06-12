@@ -1,39 +1,41 @@
-
+<form action="/admin/webdetail/update" method="post">
+    {{csrf_field()}}
     <div class="col-sm-6">
         <label class="sr-only" for="inlineFormInputGroup">Email Address</label>
         <div class="input-group mb-1 mr-sm-1 mb-sm-0">
             <div class="input-group-addon">@</div>
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Email Address">
+            <input name="email" type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{$webDetail->email}}">
         </div>
     </div>
     <div class="col-sm-6">
         <label class="sr-only" for="inlineFormInputGroup">Instagram Account</label>
         <div class="input-group mb-1 mr-sm-1 mb-sm-0">
             <div class="input-group-addon"><i class="fa fa-instagram"></i></div>
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Instagram Account">
+            <input name="instagram" type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{$webDetail->instagram}}">
         </div>
     </div>
     <div class="col-sm-6">
         <label class="sr-only" for="inlineFormInputGroup">Twitter Account</label>
         <div class="input-group mb-1 mr-sm-1 mb-sm-0">
             <div class="input-group-addon"><i class="fa fa-twitter"></i></div>
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Twitter Account">
+            <input name="twitter" type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{$webDetail->twitter}}">
         </div>
     </div>
     <div class="col-sm-6">
         <label class="sr-only" for="inlineFormInputGroup">LINE@ Account</label>
         <div class="input-group mb-1 mr-sm-1 mb-sm-0">
             <div class="input-group-addon">@</div>
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="LINE@ Account">
+            <input name="line" type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{$webDetail->line}}">
         </div>
     </div>
     <div class="col-sm-6">
         <label class="sr-only" for="inlineFormInputGroup">Facebook Account</label>
         <div class="input-group mb-1 mr-sm-1 mb-sm-0">
             <div class="input-group-addon"><i class="fa fa-facebook fa-lg"></i></div>
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Facebook Account">
+            <input name="facebook" type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{$webDetail->facebook}}">
         </div>
     </div>
     <div class="col-sm-12">
-        <button class="btn btn-primary" style="width:100%">Update</button>
+        <button type="submit" class="btn btn-primary" style="width:100%">Update</button>
     </div>
+</form>

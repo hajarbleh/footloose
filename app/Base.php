@@ -19,7 +19,7 @@ class Base extends Model
   {
       return $this->hasOne('App\Category');
   }
-
+    
   public function ffotm()
   {
       return $this->belongsTo('App\FFoTM');

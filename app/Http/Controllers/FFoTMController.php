@@ -67,9 +67,14 @@ class FFoTMController extends Controller
      * @param  \App\FFoTM  $fFoTM
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FFoTM $fFoTM)
+    public function update(Request $request, $id)
     {
-        //
+        $ffotm = FFoTM::findOrFail($id);
+        $ffotm['base_id'] = $request->base_id;
+        $ffotm['strap_id'] = $request->strap_id;
+        $ffotm['tattoo_id'] = $request->tattoo_id;
+        $ffotm->save();
+        return back();
     }
 
     /**

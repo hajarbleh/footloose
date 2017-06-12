@@ -2,6 +2,7 @@
 @section('title', 'Admin Page')
 @section('pagecss')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css">
+
 @endsection
 
 @section('body')

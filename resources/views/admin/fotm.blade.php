@@ -1,44 +1,23 @@
-<form>
-    <div class="row">
+<div class="row">
+    @foreach($ffotm as $john)
         <div class="col-sm-4 col-xs-6">
-            <label>Flipflop of the month #1</label>
-            <div class="input-group mb-1 mr-sm-1 mb-sm-0">
-                <div class="input-group-addon">Product ID</div>
-                <input type="text" class="form-control">
-            </div>
+            <label>Flipflop of the month #{{$john->id}}</label>
+            <form action="/admin/ffotm/update/{{$john->id}}" method="POST">
+                {{csrf_field()}}
+                <div class="input-group mb-1 mr-sm-1 mb-sm-0">
+                    <div class="input-group-addon">Base ID</div>
+                    <input name="base_id" type="text" class="form-control" placeholder="{{$john->base_id}}">
+                </div>
+                <div class="input-group mb-1 mr-sm-1 mb-sm-0">
+                    <div class="input-group-addon">Strap ID</div>
+                    <input name="strap_id" type="text" class="form-control" placeholder="{{$john->strap_id}}">
+                </div>
+                <div class="input-group mb-1 mr-sm-1 mb-sm-0">
+                    <div class="input-group-addon">Tattoo ID</div>
+                    <input name="tattoo_id" type="text" class="form-control" placeholder="{{$john->tattoo_id}}">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%">Update</button>
+            </form>
         </div>
-        <div class="col-sm-4 col-xs-6">
-            <label>Flipflop of the month #2</label>
-            <div class="input-group mb-1 mr-sm-1 mb-sm-0">
-                <div class="input-group-addon">Product ID</div>
-                <input type="text" class="form-control">
-            </div>
-        </div>
-        <div class="col-sm-4 col-xs-6">
-            <label>Flipflop of the month #3</label>
-            <div class="input-group mb-1 mr-sm-1 mb-sm-0">
-                <div class="input-group-addon">Product ID</div>
-                <input type="text" class="form-control">
-            </div>
-        </div>
-        <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary" style="width:100%">Update</button>
-        </div>
-<!--
-        <div class="col-sm-5ths col-xs-6">
-            <label>Flipflop of the month #4</label>
-            <div class="input-group mb-1 mr-sm-1 mb-sm-0">
-                <div class="input-group-addon">Product ID</div>
-                <input type="text" class="form-control">
-            </div>
-        </div>
-        <div class="col-sm-5ths col-xs-6">
-            <label>Flipflop of the month #5</label>
-            <div class="input-group mb-1 mr-sm-1 mb-sm-0">
-                <div class="input-group-addon">Product ID</div>
-                <input type="text" class="form-control">
-            </div>
-        </div>
--->
-    </div>
-</form>
+    @endforeach
+</div>

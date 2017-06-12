@@ -35,7 +35,21 @@ class BaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lastRow = Base::orderBy('id', 'desc')->first();
+        $base = new Base();
+        $base['name'] = $request->name;
+        $base['color'] = $request->color;
+        $base['size'] = $request->size;
+        $base['category_id'] = $request->category;
+        $base['stock'] = $request->stock;
+        //handle picture
+        $dest = 'base/'.($lastRow->id+1);
+        $file = $request->file('picture');
+        $fileName = $file->getClientOriginalName();
+        $path = $file->move($dest, $fileName);
+        $base->picture = $path;
+        $base->save();
+        return back();
     }
 
     /**
@@ -67,9 +81,22 @@ class BaseController extends Controller
      * @param  \App\Base  $base
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Base $base)
+    public function update(Request $request, $id)
     {
-        //
+        $base = Base::findOrFail($id);
+        $base->name = $request->name;
+        $base->color = $request->color;
+        $base->size = $request->size;
+        $base->stock = $request->stock;
+        if($request->picture) {
+            $dest = 'base/'.$id;
+            $file = $request->file('picture');
+            $fileName = $file->getClientOriginalName();
+            $path = $file->move($dest, $fileName);
+            $base->picture = $path;
+        }
+        $base->save();
+        return back();
     }
 
     /**
@@ -78,8 +105,20 @@ class BaseController extends Controller
      * @param  \App\Base  $base
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Base $base)
+    public function destroy($id)
     {
-        //
+        Base::findorfail($id)->delete();
+    }
+
+    public function detail($id)
+    {
+        $base = Base::where('bases.id', '=', $id)
+            ->leftJoin('categories', 'bases.category_id', '=', 'categories.id')
+            ->select('bases.*', 'categories.name as category')
+            ->first();
+        return response()->json([
+           'success' => true,
+           'data' => $base,
+        ]);
     }
 }

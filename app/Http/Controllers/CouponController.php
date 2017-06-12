@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Coupon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CouponController extends Controller
 {
@@ -35,7 +36,14 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $coupon = new Coupon;
+        $coupon['name'] = $request->name;
+        $coupon['code'] = $request->code;
+        $coupon['discount'] = $request->discount;
+        $coupon['start_date'] = $request->start_date;
+        $coupon['expired_date'] = $request->expired_date;
+        $coupon->save();
+        return back();
     }
 
     /**
@@ -44,9 +52,13 @@ class CouponController extends Controller
      * @param  \App\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function show(Coupon $coupon)
+    public function show($id)
     {
-        //
+        $coupon = Coupon::where('id', '=', $id)->first();
+        return response()->json([
+            'success' => true,
+            'data' => $coupon,
+        ]);
     }
 
     /**
@@ -67,9 +79,16 @@ class CouponController extends Controller
      * @param  \App\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Coupon $coupon)
+    public function update(Request $request, $id)
     {
-        //
+        $coupon = Coupon::findOrFail($id);
+        $coupon['name'] = $request->name;
+        $coupon['code'] = $request->code;
+        $coupon['discount'] = $request->discount;
+        $coupon['start_date'] = $request->start_date;
+        $coupon['expired_date'] = $request->expired_date;
+        $coupon->save();
+        return back();
     }
 
     /**
@@ -78,8 +97,9 @@ class CouponController extends Controller
      * @param  \App\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Coupon $coupon)
+    public function destroy($id)
     {
-        //
+        $coupon = Coupon::destroy($id);
+        return back();
     }
 }

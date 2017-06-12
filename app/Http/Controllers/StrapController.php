@@ -35,7 +35,20 @@ class StrapController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lastRow = Strap::orderBy('id', 'desc')->first();
+        $strap = new Strap();
+        $strap['name'] = $request->name;
+        $strap['color'] = $request->color;
+        $strap['size'] = $request->size;
+        $strap['category_id'] = $request->category;
+        $strap['stock'] = $request->stock;
+        $dest = 'strap/'.($lastRow->id+1);
+        $file = $request->file('picture');
+        $fileName = $file->getClientOriginalName();
+        $path = $file->move($dest, $fileName);
+        $strap->picture = $path;
+        $strap->save();
+        return back();
     }
 
     /**
@@ -67,9 +80,23 @@ class StrapController extends Controller
      * @param  \App\Strap  $strap
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Strap $strap)
+    public function update(Request $request, $id)
     {
-        //
+        $strap = Strap::findOrFail($id);
+        $strap->name = $request->name;
+        $strap->color = $request->color;
+        $strap->size = $request->size;
+        $strap->stock = $request->stock;
+        if($request->picture) {
+            $dest = 'strap/'.$id;
+            $file = $request->file('picture');
+            $fileName = $file->getClientOriginalName();
+            $path = $file->move($dest, $fileName);
+            $strap->picture = $path;
+        }
+        $strap->save();
+
+        return back();
     }
 
     /**
@@ -81,5 +108,17 @@ class StrapController extends Controller
     public function destroy(Strap $strap)
     {
         //
+    }
+
+    public function detail($id)
+    {
+        $strap = Strap::where('straps.id', '=', $id)
+            ->leftJoin('categories', 'categories.id', '=', 'straps.category_id')
+            ->select('straps.*', 'categories.name as category')
+            ->first();
+        return response()->json([
+           'success' => true,
+           'data' => $strap,
+        ]);
     }
 }

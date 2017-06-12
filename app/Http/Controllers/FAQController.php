@@ -67,9 +67,13 @@ class FAQController extends Controller
      * @param  \App\FAQ  $fAQ
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FAQ $fAQ)
+    public function update(Request $request)
     {
-        //
+        $FAQ = FAQ::first();
+        $FAQ['body'] = $request->faqeditor;
+        $FAQ->save();
+
+        return back();
     }
 
     /**

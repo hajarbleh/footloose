@@ -67,9 +67,17 @@ class WebDetailController extends Controller
      * @param  \App\WebDetail  $webDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WebDetail $webDetail)
+    public function update(Request $request)
     {
-        //
+        $webDetail = WebDetail::first();
+        $webDetail['email'] = $request->email;
+        $webDetail['twitter'] = $request->twitter;
+        $webDetail['facebook'] = $request->facebook;
+        $webDetail['instagram'] = $request->instagram;
+        $webDetail['line'] = $request->line;
+        $webDetail->save();
+
+        return back();
     }
 
     /**
