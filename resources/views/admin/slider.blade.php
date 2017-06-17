@@ -47,13 +47,13 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Judul</label>
-                                    <input name="title" type="text" class="form-control">
+                                    <input name="title" type="text" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Isi</label>
-                                    <input name="body" type="text" class="form-control">
+                                    <input name="body" type="text" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
@@ -65,7 +65,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-control-label">Gambar</label>
-                                    <input name="picture" type="file" class="form-control">
+                                    <input name="picture" type="file" class="form-control" required>
                                 </div>
                             </div>
                         </div>

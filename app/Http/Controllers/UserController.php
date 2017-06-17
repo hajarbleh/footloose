@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use GuzzleHttp\Client;
+use Hash;
 
 class UserController extends Controller
 {
@@ -23,6 +24,10 @@ class UserController extends Controller
     }
     
     public function store(Request $request) {
+        $this->validate($request, [
+            'email' => 'required|unique:users,email',
+            'password' => 'required|min:8|max:16|confirmed',
+        ]);
         $user = new User();
         $user['email'] = $request->email;
         $user['password'] = bcrypt($request->password);
@@ -68,10 +73,21 @@ class UserController extends Controller
     
     public function changepassword(Request $request, $id) {
         $user = User::findorfail($id);
-        $user['password'] = bcrypt($request->new_password);
-        $user->save();
+        $this->validate($request, [
+            'new_password' => 'required|min:8|max:16|confirmed',
+        ]);
+        if(Hash::check($user['password'],$request->current_password)) { 
+               $user->fill([
+                'password' => Hash::make($request->new_password)
+                ])->save();
+                return back();
 
-        return back();
+            } else {
+                $request->session()->flash('error', 'Password does not match');
+                return back();
+            }
+//        $user['password'] = bcrypt($request->new_password);
+//        $user->save();
     }
 
     public function logout() {

@@ -83,6 +83,9 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::findorfail($id);
+//        $category->validate($request, [
+//            'name' => 'required',
+//        ]);
         $category['name'] = $request->name;
         $category->save();
         return back();

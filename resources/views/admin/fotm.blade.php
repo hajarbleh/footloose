@@ -6,11 +6,11 @@
                 {{csrf_field()}}
                 <div class="input-group mb-1 mr-sm-1 mb-sm-0">
                     <div class="input-group-addon">Base ID</div>
-                    <input name="base_id" type="text" class="form-control" value="{{$john->base_id}}">
+                    <input name="base_id" type="text" class="form-control" value="{{$john->base_id}}" required>
                 </div>
                 <div class="input-group mb-1 mr-sm-1 mb-sm-0">
                     <div class="input-group-addon">Strap ID</div>
-                    <input name="strap_id" type="text" class="form-control" value="{{$john->strap_id}}">
+                    <input name="strap_id" type="text" class="form-control" value="{{$john->strap_id}}" required>
                 </div>
                 <div class="input-group mb-1 mr-sm-1 mb-sm-0">
                     <div class="input-group-addon">Tattoo ID</div>

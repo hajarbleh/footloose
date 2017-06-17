@@ -5,7 +5,7 @@
                 {{csrf_field()}}
                 <div class="input-group mb-1 mr-sm-1 mb-sm-0">
                     <div class="input-group-addon">Rp.</div>
-                    <input name="price" type="number" class="form-control" value="50000">
+                    <input name="price" type="number" class="form-control" value="50000" required>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width:100%">Update</button>
             </form>

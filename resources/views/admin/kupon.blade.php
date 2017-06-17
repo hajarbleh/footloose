@@ -30,7 +30,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="message-text" class="form-control-label">Nama Promo</label>
-                                        <input type="text" name="name" class="form-control" value="Welcoming Promo">
+                                        <input type="text" name="name" class="form-control" value="Welcoming Promo" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -42,19 +42,19 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="message-text" class="form-control-label">Potongan (%)</label>
-                                        <input type="number" name="discount" class="form-control" max="100" min="1" value="10">
+                                        <input type="number" name="discount" class="form-control" max="100" min="1" value="10" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="form-control-label">Tanggal Mulai</label>
-                                        <input type="date" name="start_date" class="form-control">
+                                        <input type="date" name="start_date" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="form-control-label">Tanggal Selesai</label>
-                                        <input type="date" name="expired_date" class="form-control">
+                                        <input type="date" name="expired_date" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -87,31 +87,31 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="message-text" class="form-control-label">Nama Promo</label>
-                                <input name="name" type="text" class="form-control">
+                                <input name="name" type="text" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="form-control-label">Kode Promo</label>
-                                <input name="code" type="text" class="form-control" maxlength="10">
+                                <input name="code" type="text" class="form-control" maxlength="10" required>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="message-text" class="form-control-label">Potongan (%)</label>
-                                <input name="discount" type="number" class="form-control" max="100" min="1">
+                                <input name="discount" type="number" class="form-control" max="100" min="1" required>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="form-control-label">Tanggal Mulai</label>
-                                <input name="start_date" type="date" class="form-control">
+                                <input name="start_date" type="date" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="form-control-label">Tanggal Selesai</label>
-                                <input name="expired_date" type="date" class="form-control">
+                                <input name="expired_date" type="date" class="form-control" required>
                             </div>
                         </div>
                     </div>

@@ -60,7 +60,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="message-text" class="form-control-label">Nama Kategori</label>
-                                <input name="name" type="text" class="form-control" value="{{$c->name}}">
+                                <input name="name" type="text" class="form-control" value="{{$c->name}}" required>
                             </div>
                         </div>
                     </div>

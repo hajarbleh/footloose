@@ -1,7 +1,7 @@
 <form action="/admin/faq/update" method="post">
     {{csrf_field()}}
     <div class="col-sm-12">
-        <textarea name="faqeditor" id="faqeditor" rows="10" cols="80">
+        <textarea name="faqeditor" id="faqeditor" rows="10" cols="80" required>
             @if($FAQ->count())
                 {{$FAQ->body}}
             @endif

@@ -7,6 +7,18 @@
             <div class="row">
                 <div class="col-xs-12">
                     <h2><i class="fa fa-user fa-lg"></i> <b>My Data</b></h2>
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if (Session::has('error'))
+                        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -23,12 +35,12 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="form-group col-sm-12">
-                                <label for="name">Name</label>
-                                <input name="name" type="text" class="form-control" id="name" value="{{$user->name}}">
+                                <label for="name">Name*</label>
+                                <input name="name" type="text" class="form-control" id="name" value="{{$user->name}}" required>
                             </div>
                             <div class="form-group col-sm-12">
-                                <label for="phone">Phone</label>
-                                <input name="phone" type="number" class="form-control" id="phone" value="{{$user->phone}}">
+                                <label for="phone">Phone*</label>
+                                <input name="phone" type="number" class="form-control" id="phone" value="{{$user->phone}}" required>
                             </div>
                         </div>
                     </div>
@@ -55,16 +67,16 @@
                     <div class="row">
                         <div class="modal-body">
                                 <div class="form-group col-sm-12">
-                                    <label for="current_password">Current Password</label>
-                                    <input name="current_password" type="password" class="form-control" id="current_password" placeholder="Current Password">
+                                    <label for="current_password">Current Password*</label>
+                                    <input name="current_password" type="password" class="form-control" id="current_password" placeholder="Current Password" required>
                                 </div>
                                 <div class="form-group col-sm-12">
-                                    <label for="new_password">New Password</label>
-                                    <input name="new_password" type="password" class="form-control" id="new_password" placeholder="New Password">
+                                    <label for="new_password">New Password*</label>
+                                    <input name="new_password" type="password" class="form-control" id="new_password" placeholder="New Password" required>
                                 </div>
                                 <div class="form-group col-sm-12">
-                                    <label for="new_password_confirmation">Re-type Password</label>
-                                    <input name="new_password_confirmation" type="password" class="form-control" id="new_password_confirmation" placeholder="Re-type Password">
+                                    <label for="new_password_confirmation">Re-type Password*</label>
+                                    <input name="new_password_confirmation" type="password" class="form-control" id="new_password_confirmation" placeholder="Re-type Password" required>
                                 </div>
                         </div>
                     </div>
@@ -91,12 +103,12 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="form-group col-sm-6">
-                                <label for="address">Address</label>
-                                <textarea name="address" class="form-control" id="address" rows="10" value="{{$user->address}}"></textarea>
+                                <label for="address">Address*</label>
+                                <textarea name="address" class="form-control" id="address" rows="10" value="{{$user->address}}" required></textarea>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label for="prov">Province</label>
-                                <select name="state" class="form-control" id="prov" onchange="selectProv(this)">
+                                <label for="prov">Province*</label>
+                                <select name="state" class="form-control" id="prov" onchange="selectProv(this)" required>
                                     <option name="0"value="0"></option>
                                     @foreach($provinces as $p)
                                         <option name="{{$p['province_id']}}" value="{{$p['province']}}">{{$p['province']}}</option>
@@ -104,12 +116,12 @@
                                 </select>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label for="kota">City</label>
-                                <select name="city" class="form-control" id="kota"></select>
+                                <label for="kota">City*</label>
+                                <select name="city" class="form-control" id="kota" required></select>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label for="kodepos">Postal Code</label>
-                                <input name="postal_code" type="number" class="form-control" id="kodepos" value="{{$user->postal_code}}">
+                                <label for="kodepos">Postal Code*</label>
+                                <input name="postal_code" type="number" class="form-control" id="kodepos" value="{{$user->postal_code}}" required>
                             </div>
                         </div>
                     </div>

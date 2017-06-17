@@ -93,7 +93,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Nama</label>
-                                    <input name="name" type="text" class="form-control">
+                                    <input name="name" type="text" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -109,14 +109,14 @@
                                     </datalist>
                                     <fieldset class="col">
                                         <label for="excolor2">Warna</label>
-                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px">
+                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px" required>
                                     </fieldset>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Size</label>
-                                    <input name="size" type="number" class="form-control">
+                                    <input name="size" type="number" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -136,13 +136,13 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-control-label">Stok</label>
-                                    <input name="stock" type="number" class="form-control">
+                                    <input name="stock" type="number" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-control-label">Gambar</label>
-                                    <input name="picture" type="file" class="form-control">
+                                    <input name="picture" type="file" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Nama</label>
-                                    <input name="name" type="text" class="form-control">
+                                    <input name="name" type="text" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -193,14 +193,14 @@
                                     </datalist>
                                     <fieldset class="col">
                                         <label for="excolor2">Warna</label>
-                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px">
+                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px" required>
                                     </fieldset>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Size</label>
-                                    <input name="size" type="number" class="form-control">
+                                    <input name="size" type="number" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -221,13 +221,13 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-control-label">Stok</label>
-                                    <input name="stock" type="number" class="form-control">
+                                    <input name="stock" type="number" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-control-label">Gambar</label>
-                                    <input name="picture" type="file" class="form-control">
+                                    <input name="picture" type="file" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +262,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Nama</label>
-                                    <input name="name" type="text" class="form-control">
+                                    <input name="name" type="text" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -278,7 +278,7 @@
                                     </datalist>
                                     <fieldset class="col">
                                         <label for="excolor2">Warna</label>
-                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px">
+                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px" required>
                                     </fieldset>
                                 </div>
                             </div>
@@ -300,13 +300,13 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form-control-label">Stok</label>
-                                    <input name="stock" type="number" class="form-control">
+                                    <input name="stock" type="number" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-control-label">Gambar</label>
-                                    <input name="picture" type="file" class="form-control">
+                                    <input name="picture" type="file" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -340,7 +340,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Nama</label>
-                                    <input name="name" type="text" class="form-control" value="Free flop green base">
+                                    <input name="name" type="text" class="form-control" value="Free flop green base" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -356,26 +356,26 @@
                                     </datalist>
                                     <fieldset class="col">
                                         <label for="excolor2">Warna</label>
-                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px" value="#00FF00">
+                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px" value="#00FF00" required>
                                     </fieldset>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Size</label>
-                                    <input name="size" type="number" class="form-control" value="36">
+                                    <input name="size" type="number" class="form-control" value="36" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-control-label">Kategori</label><br>
-                                    <input name="category" type="text" class="form-control" value="Men" disabled>
+                                    <input name="category" type="text" class="form-control" value="Men" disabled required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-control-label">Stok</label>
-                                    <input name="stock" type="number" class="form-control" value="60">
+                                    <input name="stock" type="number" class="form-control" value="60" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
@@ -413,7 +413,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Nama</label>
-                                    <input name="name" type="text" class="form-control" value="Free flop green base">
+                                    <input name="name" type="text" class="form-control" value="Free flop green base" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -429,26 +429,26 @@
                                     </datalist>
                                     <fieldset class="col">
                                         <label for="excolor2">Warna</label>
-                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px" value="#00FF00">
+                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px" value="#00FF00" required>
                                     </fieldset>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Size</label>
-                                    <input name="size" type="number" class="form-control" value="36">
+                                    <input name="size" type="number" class="form-control" value="36" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-control-label">Kategori</label><br>
-                                    <input name="category" type="text" class="form-control" value="Men" disabled>
+                                    <input name="category" type="text" class="form-control" value="Men" disabled required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-control-label">Stok</label>
-                                    <input name="stock" type="number" class="form-control" value="60">
+                                    <input name="stock" type="number" class="form-control" value="60" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
@@ -487,7 +487,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Nama</label>
-                                    <input name="name" type="text" class="form-control" value="Papa">
+                                    <input name="name" type="text" class="form-control" value="Papa" required>
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -503,20 +503,20 @@
                                     </datalist>
                                     <fieldset class="col">
                                         <label for="excolor2">Warna</label>
-                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px" value="#FFFFFF">
+                                        <input type="color" id="excolor2" name="color" list="greyscale" style="width:100%; height:37px" value="#FFFFFF" required>
                                     </fieldset>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form-control-label">Kategori</label>
-                                    <input name="category" type="text" class="form-control" value="Men" disabled>
+                                    <input name="category" type="text" class="form-control" value="Men" disabled required>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form-control-label">Stok</label>
-                                    <input name="stock" type="number" class="form-control" value="60">
+                                    <input name="stock" type="number" class="form-control" value="60" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
