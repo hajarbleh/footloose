@@ -6,6 +6,8 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use DB;
 use App\TransactionDetail;
+use App\Transaction;
+use App\BestSeller;
 use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
@@ -29,10 +31,18 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function() {
             DB::table('best_sellers')->delete();
-            $monthNow = Carbon::now()->month();
-            $bestSeller = TransactionDetail::whereMonth('created_at', '=', $monthNow)->groupBy('base_id','strap_id')
-                ->select(sum('quantity'),'base_id','strap_id')
+            $monthNow = Carbon::now()->month;
+            $transactions = Transaction::whereMonth('timestamp', '=', $monthNow)->get();
+            $bestSellerCandidate = TransactionDetail::whereIn('transaction_id', $transactions)->groupBy('base_id','strap_id')
+                ->selectRaw('sum(quantity) as quantity, base_id, strap_id')
                 ->get();
+            foreach($bestSellerCandidate as $bsc) {
+                $bestSeller = new BestSeller();
+                $bestSeller->base_id = $bsc->base_id;
+                $bestSeller->strap_id = $bsc->strap_id;
+                $bestSeller->quantity = $bsc->quantity;
+                $bestSeller->save();
+            }
         })->monthly();
         // $schedule->command('inspire')
         //          ->hourly();

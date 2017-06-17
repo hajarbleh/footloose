@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Slider;
+use App\BestSeller;
 use GuzzleHttp\Client;
 
 class HomeController extends Controller
 {
     public function index() {
         $slider = Slider::get();
-        return view('index', compact('slider'));
+        $bestSeller = BestSeller::orderBy('quantity', 'desc')
+            ->leftJoin('bases', 'bases.id', '=', 'best_sellers.base_id')
+            ->leftJoin('straps', 'straps.id', '=', 'best_sellers.strap_id')
+            ->select('best_sellers.*', 'bases.name as base_name', 'straps.name as strap_name')
+            ->get();
+        return view('index', compact('slider','bestSeller'));
     }
     
     public function getCity($id) {

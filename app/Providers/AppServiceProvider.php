@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\WebDetail;
 use Illuminate\Support\Facades\Auth;
+use App\Price;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function($view) {
             $view->with('user', Auth::user());
             $view->with('webDetail', WebDetail::first());
+            $view->with('price', Price::first());
         });
     }
 

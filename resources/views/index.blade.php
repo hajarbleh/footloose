@@ -40,7 +40,7 @@
                             <img class="card-img-top img-fluid" src="assets/img/product/c1p1/col1/thumb/1.jpg" alt="Card image cap">
                             <div class="card-block">
                                 <p style="line-height:1.2rem; margin-bottom:0.5rem">Nama Produk</p>
-                                <h5><b>Rp 150.000</b></h5>
+                                <h5><b>Rp {{$price->price}}</b></h5>
                             </div>
                         </a>
                     </div>
@@ -88,17 +88,17 @@
                 <div class="col-sm-12" style="text-align:center">
                     <h2 style="margin-bottom:2rem"><b>Best Seller</b></h2>
                 </div>
-                <?php for ($i=0;$i<5;$i++){ ?>
+                @foreach($bestSeller as $bs)
                 <div class="col-sm-5ths col-xs-6">
                     <a href="{{url('/product')}}" class="card" style="text-align:center">
                         <img class="card-img-top img-fluid" src="assets/img/product/c1p1/col1/thumb/1.jpg" alt="Card image cap">
                         <div class="card-block">
-                            <p style="line-height:1.2rem; margin-bottom:0.5rem">Nama Produk</p>
-                            <h5><b>Rp 150.000</b></h5>
+                            <p style="line-height:1.2rem; margin-bottom:0.5rem">{{$bs->base_name}} with {{$bs->strap_name}}</p>
+                            <h5><b>Rp {{$price->price}}</b></h5>
                         </div>
                     </a>
                 </div>
-                <?php } ?>
+                @endforeach
             </div>
         </div>
     </div>
