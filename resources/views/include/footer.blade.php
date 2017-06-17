@@ -7,16 +7,28 @@
                     <p style="margin-bottom:2rem">check our faq or give us a shout, we're happy to help!</p>
                 </div>
                 <div class="col-sm-3 col-xs-6">
+                    @if(!($webDetail->email))
+                    <i class="fa fa-envelope fa-2x"></i><br>-<br>
+                    @else
                     <i class="fa fa-envelope fa-2x"></i><br>{{$webDetail->email}}<br>
+                    @endif
                 </div>    
                 <div class="col-sm-3 col-xs-6">
+                    @if(!($webDetail->phone))
+                    <i class="fa fa-phone fa-2x"></i><br>-
+                    @else
                     <i class="fa fa-phone fa-2x"></i><br>{{$webDetail->phone}}
+                    @endif
                 </div>
                 <div class="col-sm-3 col-xs-6">
                     <a href="/faq"><i style="color:#2a2a2a" class="fa fa-question-circle fa-2x"></i><br><p style="color:#2a2a2a">FAQ</p><br></a>
                 </div>
                 <div class="col-sm-3 col-xs-6">
+                    @if(!($webDetail->whatsapp))
+                    <i class="fa fa-whatsapp fa-2x"></i><br>-
+                    @else
                     <i class="fa fa-whatsapp fa-2x"></i><br>{{$webDetail->whatsapp}}
+                    @endif
                 </div>
             </div>
         </div>

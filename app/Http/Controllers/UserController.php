@@ -28,8 +28,8 @@ class UserController extends Controller
         $user['password'] = bcrypt($request->password);
         $user->save();
         $userLogin = array(
-           'email' => $request['email'],
-           'password' =>$request['password']
+           'email' => $request->email,
+           'password' => $request->password
         );
         Auth::attempt($userLogin);
         return redirect()->route('myprofile');
@@ -37,8 +37,8 @@ class UserController extends Controller
     
     public function login(Request $request) {
         $userLogin = array(
-            'email' => $request['email'],
-            'password' => $request['password']
+            'email' => $request->email,
+            'password' => $request->password
         );
         if(Auth::attempt($userLogin)){
             return redirect()->route('myprofile');
