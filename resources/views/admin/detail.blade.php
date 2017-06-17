@@ -35,6 +35,20 @@
             <input name="facebook" type="text" class="form-control" id="inlineFormInputGroup" value="{{$webDetail->facebook}}">
         </div>
     </div>
+    <div class="col-sm-6">
+        <label class="sr-only" for="inlineFormInputGroup">Phone</label>
+        <div class="input-group mb-1 mr-sm-1 mb-sm-0">
+            <div class="input-group-addon"><i class="fa fa-phone fa-lg"></i></div>
+            <input name="phone" type="text" class="form-control" id="inlineFormInputGroup" value="{{$webDetail->phone}}">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <label class="sr-only" for="inlineFormInputGroup">Whatsapp</label>
+        <div class="input-group mb-1 mr-sm-1 mb-sm-0">
+            <div class="input-group-addon"><i class="fa fa-whatsapp fa-lg"></i></div>
+            <input name="whatsapp" type="text" class="form-control" id="inlineFormInputGroup" value="{{$webDetail->whatsapp}}">
+        </div>
+    </div>
     <div class="col-sm-12">
         <button type="submit" class="btn btn-primary" style="width:100%">Update</button>
     </div>

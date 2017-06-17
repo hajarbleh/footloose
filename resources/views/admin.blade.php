@@ -29,7 +29,9 @@
                         <a href="#" value='5' class="list-group-item admin active">Transaksi</a>
                         <a href="#" value='0' class="list-group-item admin">Kategori</a>
                         <a href="#" value='1' class="list-group-item admin">Produk</a>
+                        <a href="#" value='7' class="list-group-item admin">Price</a>
                         <a href="#" value='2' class="list-group-item admin">Kupon Promo</a>
+                        <a href="#" value='8' class="list-group-item admin">Slider</a>
                         <a href="#" value='6' class="list-group-item admin">FOTM</a>
                         <a href="#" value='3' class="list-group-item admin">FAQ</a>
                         <a href="#" value='4' class="list-group-item admin">Web Info</a>
@@ -52,11 +54,17 @@
                     <div class="sectionContent" id="section2" style="font-size:0.85em">
                         @include('admin.kupon')
                     </div>
+                    <div class="sectionContent" id="section8" style="font-size:0.85em">
+                        @include('admin.slider')
+                    </div>
                     <div class="sectionContent" id="section3">
                         @include('admin.faq')
                     </div>
                     <div class="sectionContent" id="section4">
                         @include('admin.detail')
+                    </div>
+                    <div class="sectionContent" id="section7">
+                        @include('admin.price')
                     </div>
                 </div>
             </div>
@@ -73,7 +81,7 @@
 <script>
     $(document).ready(function(){
         var currentSection = 5;
-        var sectionTitle = ['Kategori', 'Produk', 'Kupon Promo', 'FAQ', 'Web Info', 'Transaksi', 'Flipflop of The Month'];
+        var sectionTitle = ['Kategori', 'Produk', 'Kupon Promo', 'FAQ', 'Web Info', 'Transaksi', 'Flipflop of The Month', 'Price', 'slider'];
 
         $('.sectionContent').hide();
         $('#section5').show();

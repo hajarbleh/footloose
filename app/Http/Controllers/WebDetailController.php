@@ -75,6 +75,8 @@ class WebDetailController extends Controller
         $webDetail['facebook'] = $request->facebook;
         $webDetail['instagram'] = $request->instagram;
         $webDetail['line'] = $request->line;
+        $webDetail['phone'] = $request->phone;
+        $webDetail['whatsapp'] = $request->whatsapp;
         $webDetail->save();
 
         return back();

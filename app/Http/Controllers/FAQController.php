@@ -14,7 +14,8 @@ class FAQController extends Controller
      */
     public function index()
     {
-        //
+        $FAQ = FAQ::first();
+        return view('faq',compact('FAQ'));
     }
 
     /**

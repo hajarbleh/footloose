@@ -18,9 +18,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="makeyourown"><b>Make Your Own</b></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="user"><i class="fa fa-user fa-lg"></i></a>
-                </li>
+                @if(Auth::check())
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#!" id="nav-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="nav-2">
+                            <a class="dropdown-item" href="{{url('/myprofile')}}">Profile</a>
+                            <hr style="margin:0.5rem 0 0.5rem 0">
+                            <a class="dropdown-item" href="{{url('/logout')}}">Logout</a>
+                        </div>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/login')}}"><i class="fa fa-user fa-lg"></i></a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="checkout"><i class="fa fa-shopping-cart fa-lg"></i></a>
                 </li>

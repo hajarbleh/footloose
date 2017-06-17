@@ -6,7 +6,7 @@
     @if($base->count())
         @foreach($base as $b)
             <div class="col-sm-5ths col-xs-6">
-                <div class="card">
+                <div class="card" style="max-height:330px; min-height:330px; flex-wrap:flex">
                     <img class="card-img-top" src="{{$b->picture}}" style="width:100%" alt="Card image cap">
                     <div class="card-block" id="baseCell">
                         <b class="card-title">ID: {{$b->id}}</b>
@@ -17,7 +17,7 @@
                             Category: {{$b->category}}<br>
                             Stock: {{$b->stock}}<br>
                         </p>
-                           <a href="#!" class="btn btn-outline-primary btn-sm" id="{{$b->id}}" data-toggle="modal" data-target="#editBase">Edit</a>
+                           <a href="#!" class="btn btn-outline-primary btn-sm" id="{{$b->id}}" data-toggle="modal" data-target="#editBase" style="position: absolute; bottom: 0; margin-bottom:10px">Edit</a>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
     @if($strap->count())
         @foreach($strap as $s)
             <div class="col-sm-5ths col-xs-6">
-                <div class="card">
+                <div class="card"style="max-height:330px; min-height:330px; flex-wrap:flex">
                     <img class="card-img-top" src="{{$s->picture}}" style="width:100%" alt="Card image cap">
                     <div class="card-block" id="strapCell">
                         <b class="card-title">ID: {{$s->id}}</b>
@@ -45,7 +45,7 @@
                             Category: {{$s->category}}<br>
                             Stock: {{$s->stock}}<br>
                         </p>
-                            <a href="#!" class="btn btn-outline-primary btn-sm" id="{{$s->id}}" data-toggle="modal" data-target="#editStrap">Edit</a>
+                            <a href="#!" class="btn btn-outline-primary btn-sm" id="{{$s->id}}" data-toggle="modal" data-target="#editStrap" style="position: absolute; bottom: 0; margin-bottom:10px">Edit</a>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
     @if($tattoo->count())
         @foreach($tattoo as $t)
             <div class="col-sm-5ths col-xs-6">
-                <div class="card">
+                <div class="card" style="max-height:330px; min-height:330px; flex-wrap:flex">
                     <img class="card-img-top" src="{{$t->picture}}" style="width:100%" alt="Card image cap">
                     <div class="card-block" id="tattooCell">
                         <b class="card-title">ID: {{$t->id}}</b>
@@ -71,7 +71,7 @@
                             Category: {{$t->category}}<br>
                             Stock: {{$t->stock}}<br>
                         </p>
-                        <a href="#!" class="btn btn-outline-primary btn-sm" id="{{$t->id}}" data-toggle="modal" data-target="#editTattoo">Edit</a>
+                        <a href="#!" class="btn btn-outline-primary btn-sm" id="{{$t->id}}" data-toggle="modal" data-target="#editTattoo" style="position: absolute; bottom: 0; margin-bottom:10px">Edit</a>
                     </div>
                 </div>
             </div>

@@ -11,10 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 
+Route::get('/best', ['as' => 'best', 'uses' => 'BestSellerController@index']);
+
+Route::post('/login', ['as' => 'login', 'uses' => 'UserController@login']);
+
+Route::post('/register', ['as' => 'register', 'uses' => 'UserController@store']);
+
+Route::get('/myprofile', ['as' => 'myprofile', 'uses' => 'UserController@show']);
+
+Route::post('/editprofile/{id}', ['as' => 'editprofile', 'uses' => 'UserController@edit']);
+
+Route::post('/changepassword/{id}', ['as' => 'changepassword', 'uses' => 'UserController@changepassword']);
+
+Route::post('/editaddress/{id}', ['as' => 'editaddress', 'uses' => 'UserController@editaddress']);
+
+Route::get('/getcity/{id}', ['as' => 'getcity', 'uses' => 'HomeController@getCity']);
 Route::get('/browse', function () {
     return view('browse');
 });
@@ -39,9 +52,7 @@ Route::get('/teaser', function () {
     return view('teaser');
 });
 
-Route::get('/user', function () {
-    return view('user');
-});
+Route::get('/faq', ['uses' => 'FAQController@index']);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
 	Route::get('/', ['as' => 'index' , 'uses' => 'AdminController@index']);
@@ -58,6 +69,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
 		Route::get('/{id}', ['as' => 'show', 'uses' => 'CategoryController@show']);
         Route::post('/update/{id}', ['as' => 'update', 'uses' => 'CategoryController@update']);
         Route::post('/togglestatus/{id}', ['as' => 'togglestatus', 'uses' => 'CategoryController@toggleStatus']);
+	});
+
+    Route::group(['prefix' => 'slider', 'as' => 'slider'], function() {
+        Route::post('/add', ['as' => 'add', 'uses' => 'SliderController@store']);
+        Route::post('/update/{id}', ['as' => 'update', 'uses' => 'SliderController@update']);
+        Route::post('/delete/{id}', ['as' => 'delete', 'uses' => 'SliderController@destroy']);
 	});
 
 	Route::group(['prefix' => 'product', 'as' => 'product'], function() {
@@ -99,7 +116,4 @@ Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
 	Route::group(['prefix' => 'webdetail', 'as' => 'webdetail'], function() {
 		Route::post('/update', ['as' => 'update', 'uses' => 'WebDetailController@update']);
 	});
-
-
-
 });

@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use DB;
+use App\TransactionDetail;
+use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,6 +27,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->call(function() {
+            DB::table('best_sellers')->delete();
+            $monthNow = Carbon::now()->month();
+            $bestSeller = TransactionDetail::whereMonth('created_at', '=', $monthNow)->groupBy('base_id','strap_id')
+                ->select(sum('quantity'),'base_id','strap_id')
+                ->get();
+        })->monthly();
         // $schedule->command('inspire')
         //          ->hourly();
     }

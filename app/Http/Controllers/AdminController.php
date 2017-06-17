@@ -13,6 +13,7 @@ use App\FFoTM;
 use App\Base;
 use App\Strap;
 use App\Tattoo;
+use App\Slider;
 
 class AdminController extends Controller
 {
@@ -22,9 +23,7 @@ class AdminController extends Controller
         $FAQ = FAQ::first();
         $category = Category::get();
         $transaction = Transaction::leftJoin('users', 'transactions.user_id', '=', 'users.id')->get();
-//        $buyer = DB::table('posts')
-//             ->leftJoin(DB::raw("(SELECT count(user_id) as likers, post_id from likes GROUP BY post_id) hehe"), 'posts.id', '=', 'hehe.post_id')
-//             ->select('posts.*', 'likes.user_id as liker', 'hehe.likers as count');
+        $slider = Slider::get();
         $transactionDetail = TransactionDetail::get();
         $coupon = Coupon::get();
         $ffotm = FFoTM::get();
@@ -40,7 +39,7 @@ class AdminController extends Controller
             ->select('tattoos.*', 'categories.name as category')
             ->get();
 
-        return view('admin',compact('webDetail','FAQ','category','transaction','transactionDetail','coupon','ffotm','base','strap','tattoo'));
+        return view('admin',compact('webDetail','FAQ','category','transaction','slider','transactionDetail','coupon','ffotm','base','strap','tattoo'));
     }
 
 }

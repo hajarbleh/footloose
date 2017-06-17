@@ -12,9 +12,10 @@
                                 <h4 class="card-title" style="margin:0"><b><center>Login</center></b></h4>
                                 <div class="card-text">
                                     <p style="margin:0.5rem"><center>Welcome to Footloose!</center></p>
-                                    <form>
+                                    <form action="/login" method="POST">
+                                        {{csrf_field()}}
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Username/Email">
+                                            <input type="text" class="form-control" placeholder="Email">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="Password">
@@ -28,15 +29,16 @@
                                 <h4 class="card-title" style="margin:0"><b><center>Sign Up</center></b></h4>
                                 <div class="card-text">
                                     <p style="margin:0.5rem"><center>Welcome to Footloose!</center></p>
-                                    <form>
+                                    <form action="/register" method="POST">
+                                        {{csrf_field()}}
                                         <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email">
+                                            <input type="email" name="email" class="form-control" placeholder="Email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Username">
+                                            <input type="password" name="password" class="form-control" placeholder="Password">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password">
+                                            <input type="password" name="password_confirmation" class="form-control" placeholder="Re-enter password">
                                         </div>
                                         <button class="btn btn-secondary btn-hav-w" type="submit" style="width:100%">SIGN UP</button>
                                         <p style="text-align:center; margin-top:2rem; margin-bottom:0">Sudah punya akun? <a id="login" href="#!" style="color:white">Login</a></p>
