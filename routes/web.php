@@ -17,6 +17,8 @@ Route::get('/best', ['as' => 'best', 'uses' => 'BestSellerController@index']);
 
 Route::post('/login', ['as' => 'login', 'uses' => 'UserController@login']);
 
+Route::post('/logout', ['as' => 'logout', 'uses' => 'UserController@logout']);
+
 Route::post('/register', ['as' => 'register', 'uses' => 'UserController@store']);
 
 Route::get('/myprofile', ['as' => 'myprofile', 'uses' => 'UserController@show']);

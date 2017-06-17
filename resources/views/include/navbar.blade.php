@@ -23,7 +23,10 @@
                             <div class="dropdown-menu" aria-labelledby="nav-2">
                                 <a class="dropdown-item" href="{{url('/myprofile')}}">Profile</a>
                                 <hr style="margin:0.5rem 0 0.5rem 0">
-                                <a class="dropdown-item" href="{{url('/logout')}}">Logout</a>
+                                <form action="/logout" method="POST">
+                                    {{csrf_field()}}
+                                    <button type="submit" class="dropdown-item">Logout</a>
+                                </form>
                             </div>
                         </li>
                     @else
