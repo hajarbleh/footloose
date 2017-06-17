@@ -15,10 +15,10 @@
                                     <form action="/login" method="POST">
                                         {{csrf_field()}}
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Email">
+                                            <input name="email" type="text" class="form-control" placeholder="Email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password">
+                                            <input name="password" type="password" class="form-control" placeholder="Password">
                                         </div>
                                         <button class="btn btn-secondary btn-hav-w" type="submit" style="width:100%">LOGIN</button>
                                         <p style="text-align:center; margin-top:2rem; margin-bottom:0">baru disini? <a id="signup" href="#!" style="color:white">Sign up</a></p>
