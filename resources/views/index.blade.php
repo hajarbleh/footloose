@@ -7,23 +7,24 @@
         <div class="banner-container">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="max-height:100vh;">
                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    @foreach($slider as $s)
+                    <li data-target="#carousel-example-generic" data-slide-to="{{$loop->index}}" class="{{$loop->first ? 'active' : ''}}"></li>
+                    @endforeach
                 </ol>
                 <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
-                        <div class="slider-helper" style="height:100vh"></div>
-                        <div class="slider-bg" style="background:url(assets/img/promo/promobanner1.jpg) no-repeat center center;"></div>
+                    @foreach($slider as $s)
+                    <div class="carousel-item {{$loop->first ? 'active' : ''}}">
+                        <a href="{{$s->link}}"><div class="slider-helper" style="height:100vh"></div></a>
+                        <div class="slider-bg" style="background:url({{$s->photo}}) no-repeat center center;">
+                            <div style="position:absolute; height:100%; width:100%; display:table;">
+                                <b><p style="margin-top:100px; vertical-align:middle; text-align:center; font-size:80px">{{$s->title}}</p></b>
+                            </div>
+                            <div style="position:absolute; height:100%; width:100%; display:table;">
+                                <p style="margin-top:200px; vertical-align:middle; text-align:center; font-size:50px">{{$s->body}}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="carousel-item">
-                        <div class="slider-helper" style="height:100vh"></div>
-                        <div class="slider-bg" style="background:url(assets/img/promo/promobanner2.jpg) no-repeat center center;"></div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="slider-helper" style="height:100vh"></div>
-                        <div class="slider-bg" style="background:url(assets/img/promo/promobanner1.jpg) no-repeat center center;"></div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

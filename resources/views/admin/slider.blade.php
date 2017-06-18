@@ -1,9 +1,10 @@
 <a href="#newSlider" id="addSlider" class="btn btn-primary btn-bg" style="margin-bottom:1rem" data-toggle="modal">+ Tambahkan Slider</a>
 @if($slider->count())
-    <div class="row">
+    <div class="row">    
+        <?php $x=1; ?>
         @foreach($slider as $s)
         <div class="col-sm-4 col-xs-6">
-            <h5><label>Slider ID: {{$s->id}}</label></h5>
+            <h5><label>Slider ID: <?php echo $x++ ?></label></h5>
             <form action="/admin/slider/update/{{$s->id}}" method="POST">
                 {{csrf_field()}}
                 <div class="input-group mb-1 mr-sm-1 mb-sm-0">
@@ -11,9 +12,9 @@
                         <img src="{{$s->photo}}" style="width:100%"/>
                     </div>
                     <label>Title :</label> <br>
-                    <input name="title" type="text" class="form-control" value="{{$s->title}}"><br>
+                    <input name="title" type="text" class="form-control" value="{{$s->title}}" required><br>
                     <label>Body :</label> <br>
-                    <input name="body" type="text" class="form-control" value="{{$s->body}}"><br>
+                    <input name="body" type="text" class="form-control" value="{{$s->body}}" required><br>
                     <label>Link :</label><br>
                     <input name="link" type="text" class="form-control" value="{{$s->link}}">  <br>               <label>Photo :</label><br>
                     <input name="photo" type="file" class="form-control">

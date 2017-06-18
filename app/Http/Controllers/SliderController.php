@@ -9,8 +9,8 @@ class SliderController extends Controller
 {
     public function store(Request $request) {
         $lastRow = Slider::orderBy('id', 'desc')->first();
-        if(!$lastRow)
-            $lastRow->id = 0;
+        if(!$lastRow) $id = 0;
+        else $id = $lastRow->id;
 
         $slider = new Slider();
         $slider['title'] = $request->title;
@@ -18,10 +18,11 @@ class SliderController extends Controller
         if($request->link)
             $slider['link'] = $request->link;
         if($request->picture) {
-            $dest = 'slider/'.($lastRow->id+1);
+            $dest = 'slider/'.($id+1);
             $file = $request->file('picture');
             $fileName = $file->getClientOriginalName();
             $path = $file->move($dest, $fileName);
+            $path = str_replace('\\', '/', $path);
             $slider->photo = $path;
         }
         $slider->save();
