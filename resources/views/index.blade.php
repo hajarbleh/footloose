@@ -15,7 +15,7 @@
                     @foreach($slider as $s)
                     <div class="carousel-item {{$loop->first ? 'active' : ''}}">
                         <a href="{{$s->link}}"><div class="slider-helper" style="height:100vh"></div></a>
-                        <div class="slider-bg" style="background:url({{$s->photo}}) no-repeat center center;">
+                        <div class="slider-bg" style="background:url({{$s->photo}}) no-repeat center center; background-size: 100%;">
                             <div style="position:absolute; height:100%; width:100%; display:table;">
                                 <b><p style="margin-top:100px; vertical-align:middle; text-align:center; font-size:80px">{{$s->title}}</p></b>
                             </div>
@@ -35,17 +35,25 @@
         <div class="container" style="margin-top:2rem">
             <div class="row">
                 <div class="col-sm-10 offset-sm-1">
-                    <?php for ($i=0;$i<3;$i++){ ?>
-                    <div class="col-xs-4">
-                        <a href="{{url('/product')}}" class="card" style="text-align:center">
-                            <img class="card-img-top img-fluid" src="assets/img/product/c1p1/col1/thumb/1.jpg" alt="Card image cap">
-                            <div class="card-block">
-                                <p style="line-height:1.2rem; margin-bottom:0.5rem">Nama Produk</p>
-                                <h5><b>Rp {{$price->price}}</b></h5>
-                            </div>
-                        </a>
-                    </div>
-                    <?php } ?>
+                    @foreach($ffotm as $f)
+                        <div class="col-xs-4">
+                            <a href="#ffotm" class="card" style="text-align:center" data-toggle="modal">
+                                <img class="card-img-top img-fluid" style="position:absolute" src="{{$f->base_picture}}" alt="Card image cap">
+                                <img class="card-img-top img-fluid" style="z-index:10; position:relative" src="{{$f->strap_picture}}" alt="Card image cap">
+                                @if($f->tattoo_id)
+                                <img class="card-img-top img-fluid" style="z-index:15; position:absolute; left: 0px; top: 0px;" src="{{$f->tattoo_picture}}" alt="Card image cap">
+                                @endif
+                                <div class="card-block">
+                                    @if(!($f->tattoo_id))
+                                    <p style="line-height:1.2rem; margin-bottom:0.5rem">{{$f->base_name}} with {{$f->strap_name}}</p>
+                                    @else
+                                    <p style="line-height:1.2rem; margin-bottom:0.5rem">{{$f->base_name}} with {{$f->strap_name}} and {{$f->tattoo_name}}</p>
+                                    @endif
+                                    <h5><b>Rp {{$price->price}}</b></h5>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -91,8 +99,9 @@
                 </div>
                 @foreach($bestSeller as $bs)
                 <div class="col-sm-5ths col-xs-6">
-                    <a href="{{url('/product')}}" class="card" style="text-align:center">
-                        <img class="card-img-top img-fluid" src="assets/img/product/c1p1/col1/thumb/1.jpg" alt="Card image cap">
+                    <a href="#bestseller" class="card" style="text-align:center" data-toggle="modal">
+                        <img class="card-img-top img-fluid" style="position:absolute" src="{{$bs->base_picture}}" alt="Card image cap">
+                        <img class="card-img-top img-fluid" style="z-index:10; position:relative" src="{{$bs->strap_picture}}" alt="Card image cap">
                         <div class="card-block">
                             <p style="line-height:1.2rem; margin-bottom:0.5rem">{{$bs->base_name}} with {{$bs->strap_name}}</p>
                             <h5><b>Rp {{$price->price}}</b></h5>
@@ -105,6 +114,111 @@
     </div>
 
 @endsection
+
+<div class="modal fade" id="ffotm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align:center">
+                <h4 class="modal-title"><center><b>BUY OUR FLIP FLOP OF THE MONTH</b></center></h4>
+            </div>
+            <form>
+                {{csrf_field()}}
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="message-text" class="form-control-label">Size</label>
+                                <input name="size" type="number" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:100%; border:none; background-color:(0,0,0,0.075)">Cancel</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="#addtocart" data-toggle="modal" class="btn btn-primary" style="width:100%"><i class="fa fa-shopping-cart fa-md" style="margin-right:5px"></i>ADD TO CART</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bestseller" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align:center">
+                <h4 class="modal-title"><center><b>BUY OUR BEST SELLER</b></center></h4>
+            </div>
+            <form>
+                {{csrf_field()}}
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="message-text" class="form-control-label">Size</label>
+                                <input name="size" type="number" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:100%; border:none; background-color:(0,0,0,0.075)">Cancel</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="#addtocart" data-toggle="modal" class="btn btn-primary" style="width:100%"><i class="fa fa-shopping-cart fa-md" style="margin-right:5px"></i>ADD TO CART</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addtocart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align:center">
+                <h3><b>Item added to your shopping cart!</b></h3>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <img src="assets/img/custom/base/cblue.png" style="width:100%">
+                        </div>
+                        <div class="col-xs-7">
+                            <h5 style="margin-top:2rem"><b>Blue Havaianas</b></h5>
+                            <ul>
+                                <li>Size: 9</li>
+                                <li>Base: Blue</li>
+                                <li>Strap: Black</li>
+                                <li>Acc: None</li>
+                            </ul>
+                            <p>Quantity: 2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:100%; border:none; background-color:(0,0,0,0.075)"><i class="fa fa-arrow-circle-left fa-lg"></i> Continue shoping</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="checkout" class="btn btn-primary" style="width:100%"><i class="fa fa-shopping-cart fa-lg"></i> Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         
 @section('pagescript')
     <script>

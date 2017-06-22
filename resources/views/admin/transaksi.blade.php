@@ -49,7 +49,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="categoryEditModalTitle"><center><b>Detail Pesanan</b></center></h4>
+                <h4 class="modal-title" id="EditModalTitle"><center><b>Detail Pesanan</b></center></h4>
             </div>
             <form method="POST" id="form-update-coupon">
                 {{csrf_field()}}
@@ -59,9 +59,9 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Base ID</th>
-                                    <th>Strap_ID</th>
-                                    <th>Tattoo_ID</th>
+                                    <th>Base</th>
+                                    <th>Strap</th>
+                                    <th>Tattoo</th>
                                     <th>Qty</th>
                                 </tr>
                             </thead>

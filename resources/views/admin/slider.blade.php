@@ -5,7 +5,7 @@
         @foreach($slider as $s)
         <div class="col-sm-4 col-xs-6">
             <h5><label>Slider ID: <?php echo $x++ ?></label></h5>
-            <form action="/admin/slider/update/{{$s->id}}" method="POST">
+            <form action="/admin/slider/update/{{$s->id}}" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="input-group mb-1 mr-sm-1 mb-sm-0">
                     <div style="overflow:hidden; height:200px">
@@ -16,8 +16,13 @@
                     <label>Body :</label> <br>
                     <input name="body" type="text" class="form-control" value="{{$s->body}}" required><br>
                     <label>Link :</label><br>
-                    <input name="link" type="text" class="form-control" value="{{$s->link}}">  <br>               <label>Photo :</label><br>
-                    <input name="photo" type="file" class="form-control">
+                    @if(!($s->link))
+                    <input name="link" type="text" class="form-control" value="https://"><br>
+                    @else
+                    <input name="link" type="text" class="form-control" value="{{$s->link}}"><br>
+                    @endif
+                    <label>Photo :</label><br>
+                    <input name="picture" type="file" class="form-control">
                 </div>
                 <div class="col-sm-6">
                     <button type="submit" class="btn btn-outline-primary" style="width:100%">Update</button>
@@ -26,7 +31,7 @@
             <form action="/admin/slider/delete/{{$s->id}}" method="POST">
                 {{csrf_field()}}
                 <div class="col-sm-6">
-                    <button type="" class="btn btn-outline-danger" style="width:100%">Delete</button>
+                    <button type="submit" class="btn btn-outline-danger" style="width:100%">Delete</button>
                 </div>
             </form>
         </div>
@@ -60,7 +65,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-control-label">Link</label>
-                                    <input name="link" type="text" class="form-control">
+                                    <input name="link" type="text" class="form-control" value="https://">
                                 </div>
                             </div>
                             <div class="col-sm-12">

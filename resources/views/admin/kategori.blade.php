@@ -51,7 +51,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="categoryEditModalTitle"><center><b>Edit Kategori - {{ $c->name }}</b></center></h4>
+                <h4 class="modal-title" id="categoryEditModalTitle"><center><b>Edit Kategori - </b></center></h4>
             </div>
             <form method="POST" id="form-update-category">
                 {{csrf_field()}}
@@ -95,7 +95,6 @@
                         url: '/admin/category/' + this.id,
                         dataType: 'JSON',
                         success: function(message){
-                            console.log(message.data);
                             $("#form-update-category").attr('action',"/admin/category/update/" + message.data.id);
                             $("input[name*='name']").val(message.data.name);
                             document.getElementById("categoryEditModalTitle").innerHTML = "<center><b>Edit Kategori - " + message.data.name + "</b></center>";
@@ -115,6 +114,7 @@
                             $("input[name*='discount']").val(message.data.discount);
                             $("input[name*='start_date']").val(message.data.start_date.split(' ')[0]);
                             $("input[name*='expired_date']").val(message.data.expired_date.split(' ')[0]);
+                            document.getElementById("couponEditModalTitle").innerHTML = "<center><b>Edit Informasi Promo - " + message.data.name + "</b></center>";
                         }
                     });
                     break;

@@ -21,7 +21,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title"><center><b>Edit Informasi Promo - WELC50</b></center></h4>
+                    <h4 class="modal-title" id="couponEditModalTitle"><center><b>Edit Informasi Promo - WELC50</b></center></h4>
                 </div>
                 <form method="POST" id="form-update-coupon">
                     {{csrf_field()}}

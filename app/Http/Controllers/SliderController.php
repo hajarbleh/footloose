@@ -40,6 +40,7 @@ class SliderController extends Controller
             $file = $request->file('picture');
             $fileName = $file->getClientOriginalName();
             $path = $file->move($dest, $fileName);
+            $path = str_replace('\\', '/', $path);
             $slider->photo = $path;
         }
         $slider->save();

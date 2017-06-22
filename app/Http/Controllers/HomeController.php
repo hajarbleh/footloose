@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Slider;
 use App\BestSeller;
+use App\FFoTM;
 use GuzzleHttp\Client;
 
 class HomeController extends Controller
@@ -14,9 +15,14 @@ class HomeController extends Controller
         $bestSeller = BestSeller::orderBy('quantity', 'desc')
             ->leftJoin('bases', 'bases.id', '=', 'best_sellers.base_id')
             ->leftJoin('straps', 'straps.id', '=', 'best_sellers.strap_id')
-            ->select('best_sellers.*', 'bases.name as base_name', 'straps.name as strap_name')
+            ->select('best_sellers.*', 'bases.name as base_name', 'bases.picture as base_picture', 'straps.name as strap_name', 'straps.picture as strap_picture')
             ->get();
-        return view('index', compact('slider','bestSeller'));
+        $ffotm = FFoTM::leftJoin('bases', 'bases.id', '=', 'ffotms.base_id')
+            ->leftJoin('straps', 'straps.id', '=', 'ffotms.strap_id')
+            ->leftJoin('tattoos', 'tattoos.id', '=', 'ffotms.tattoo_id')
+            ->select('ffotms.*', 'bases.name as base_name', 'bases.picture as base_picture', 'straps.picture as strap_picture', 'tattoos.picture as tattoo_picture', 'straps.name as strap_name','tattoos.name as tattoo_name')
+            ->get();
+        return view('index', compact('slider','bestSeller','ffotm'));
     }
     
     public function getCity($id) {

@@ -73,6 +73,7 @@ class FFoTMController extends Controller
         $ffotm['base_id'] = $request->base_id;
         $ffotm['strap_id'] = $request->strap_id;
         $ffotm['tattoo_id'] = $request->tattoo_id;
+        $ffotm['category_id'] = $request->category_id;
         $ffotm->save();
         return back();
     }

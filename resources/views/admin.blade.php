@@ -29,7 +29,7 @@
                         <a href="#" value='5' class="list-group-item admin active">Transaksi</a>
                         <a href="#" value='0' class="list-group-item admin">Kategori</a>
                         <a href="#" value='1' class="list-group-item admin">Produk</a>
-                        <a href="#" value='7' class="list-group-item admin">Price</a>
+                        <a href="#" value='7' class="list-group-item admin">Harga</a>
                         <a href="#" value='2' class="list-group-item admin">Kupon Promo</a>
                         <a href="#" value='8' class="list-group-item admin">Slider</a>
                         <a href="#" value='6' class="list-group-item admin">FOTM</a>

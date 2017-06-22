@@ -28,7 +28,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="categoryEditModalTitle"><center><b>Edit Profile</b></center></h4>
+                    <h4 class="modal-title" id="EditModalTitle"><center><b>Edit Profile</b></center></h4>
                 </div>
                 <form action="/editprofile/{{$user->id}}" method="POST">
                     {{csrf_field()}}
