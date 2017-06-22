@@ -7,11 +7,14 @@
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/font-awesome.min.css">
         <link rel="stylesheet" href="assets/css/havaianas.css">
-        <link rel="icon" href="assets/img/ui/favicon.png">
         @yield('pagecss')
         <script src="assets/js/jquery-3.1.1.min.js"></script>
         <script src="assets/js/tether.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="assets/slick/slick.min.js"></script>
         <title>Footloose | @yield('title')</title>
     </head>
     <body>
