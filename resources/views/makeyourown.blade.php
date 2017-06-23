@@ -72,8 +72,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 offset-md-2">
-                    <img id="basePreview" style="position:absolute" />
-                    <img id="strapPreview" style="z-index: 10; position:relative" />
+                    <img id="basePreview" style="width:120%; position:absolute" />
+                    <img id="strapPreview" style="width:130%; z-index: 10; position:relative" />
                 </div>
                 <div class="col-md-4">
                     <h3 style="margin-top:4rem"><b>Make Your Own</b></h3>
@@ -210,17 +210,17 @@
 
         function selectSize(size) {
             var categoryID = $('#listCategory').val();
+            console.log("cat: " + categoryID + " size: " + size.value);
             $.ajax({
                 type: 'GET',
                 url: '/base/category/' + categoryID + '/size/' + size.value,
                 dataType: 'JSON',
                 success: function(message) {
                     console.log(message.data);
-                    $('#baseColor').removeAttr('disabled');
                     $('#baseColor').empty();
                     var appendOption =  "";
                     for(var i = 0; i < message.data.length; i++) {
-                        appendOption += "<span><input type='radio' data-name='" + message.data[i].name + "' id='" + message.data[i].id + "' name='basecol' onclick='selectBase(this, " + message.data[i].picture + ")'/><label for='" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
+                        appendOption += "<span><input type='radio' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' id='" + message.data[i].id + "' name='basecol' onclick='selectBase(this)'/><label for='" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
                     }
                     $('#baseColor').append(appendOption);
                 }
@@ -232,11 +232,11 @@
             nextBase.removeAttribute('href');
         }
 
-        function selectBase(base, pic) {
+        function selectBase(base) {
             var categoryID = $('#listCategory').val();
             var size = $('#listSize').val();
             var basePreview = document.getElementById("basePreview");
-            basePreview.src= pic;
+            basePreview.src= base.getAttribute('data-picture');
             var selectedName = base.getAttribute('data-name');
             var selectedID = base.id;
             document.getElementsByName("basecol")[0].dataset.name = selectedName;
@@ -250,7 +250,7 @@
                     $('#strapColor').empty();
                     var appendOption =  "";
                     for(var i = 0; i < message.data.length; i++) {
-                        appendOption += "<span><input type='radio' data-name='" + message.data[i].name + "' id='strap" + message.data[i].id + "' name='strapcol' onclick='selectStrap(this, " + message.data[i].picture + ")'/><label for='strap" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
+                        appendOption += "<span><input type='radio' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' id='strap" + message.data[i].id + "' name='strapcol' onclick='selectStrap(this)'/><label for='strap" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
                     }
                     $('#strapColor').append(appendOption);
                 }
@@ -262,10 +262,10 @@
             nextStrap.removeAttribute('href');
         }
 
-        function selectStrap(strap, pic) {
+        function selectStrap(strap) {
             console.log("senangnya hatiku");
             var strapPreview = document.getElementById("strapPreview");
-            strapPreview.src= pic;
+            strapPreview.src= strap.getAttribute('data-picture');
             var selectedName = strap.getAttribute('data-name');
             document.getElementsByName("strapcol")[0].dataset.name = selectedName;
             var nextStrap = document.getElementById("nextStrap");
@@ -279,8 +279,8 @@
                 document.getElementById("strapModal").innerHTML = "Strap : " + document.getElementsByName('strapcol')[0].getAttribute('data-name');
                 document.getElementById("tattooModal").innerHTML = "Tattoo : -";
                 document.getElementById("quantityModal").innerHTML = "Quantity : " + document.getElementById('qty').value;
-
-                $('#modal').modal();
+                jQuery.noConflict(); 
+                $('#modal').modal('show');
             });
             $('nav').css('background','#ff6d6d');
 
