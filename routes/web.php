@@ -45,9 +45,12 @@ Route::group(['middleware' => ['auth']], function() {
     });
 });
 
-Route::get('/makeyourown', function () {
-    return view('makeyourown');
-});
+Route::get('/makeyourown', ['as' => 'makeyourown', 'uses' => 'HomeController@makeyourown']);
+
+Route::get('/base/category/{catID}/size/{size}', ['as' => 'getBaseWithSize', 'uses' => 'HomeController@getBaseWithSize']);
+
+Route::get('/strap/category/{catID}/size/{size}', ['as' => 'getStrapWithSize', 'uses' => 'HomeController@getStrapWithSize']);
+
 
 Route::get('/product', function () {
     return view('product');
