@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Slider;
 use App\BestSeller;
 use App\FFoTM;
+use App\Category;
+use App\Base;
+use App\Strap;
 use GuzzleHttp\Client;
 
 class HomeController extends Controller
@@ -38,6 +41,34 @@ class HomeController extends Controller
         return response()->json([
             'success' => true,
             'data' => $cities,
+        ]);
+    }
+    public function makeYourOwn() {
+        $category = Category::where('is_enabled','=', 1)->get();
+        return view('makeyourown', compact('category'));
+    }
+
+    public function getBaseWithSize($catID, $size) {
+        $base = Base::where([
+            ['category_id', '=', $catID],
+            ['size', '=', $size]
+            ]
+            )->get();
+        return response()->json([
+            'success' => true,
+            'data' => $base
+        ]);
+    }
+
+    public function getStrapWithSize($catID, $size) {
+        $strap = Strap::where([
+            ['category_id', '=', $catID],
+            ['size', '=', $size]
+            ]
+            )->get();
+        return response()->json([
+            'success' => true,
+            'data' => $strap
         ]);
     }
 }
