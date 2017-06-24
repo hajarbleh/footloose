@@ -2,7 +2,7 @@
     <div class="container">
         <button id="mobile-dropdown-toggle" class="hidden-lg-up pull-right" type="button" style="border:none; background:transparent; color:#fff"> <i class="fa fa-bars fa-2x"></i></button>        
         <a class="navbar-brand" href="{{url('/')}}">
-            <img id="logo" src="assets/img/ui/logowhite.png" style="height:2rem; margin-right:0.5rem"> <b>Footloose</b>
+            <img id="logo" src="assets/img/ui/logowhite.png" style="height:2rem; margin-right:0.5rem"> <b>FootLoose</b>
         </a><br id="navbarHack">
         <div class="collapse navbar-toggleable-md" id="navbarResponsive">
             <ul class="nav navbar-nav float-sm-right">

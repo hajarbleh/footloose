@@ -81,7 +81,7 @@
 <script>
     $(document).ready(function(){
         var currentSection = 5;
-        var sectionTitle = ['Kategori', 'Produk', 'Kupon Promo', 'FAQ', 'Web Info', 'Transaksi', 'Flipflop of The Month', 'Price', 'slider'];
+        var sectionTitle = ['Kategori', 'Produk', 'Kupon Promo', 'FAQ', 'Web Info', 'Transaksi', 'Freeflop of The Month', 'Price', 'slider'];
 
         $('.sectionContent').hide();
         $('#section5').show();

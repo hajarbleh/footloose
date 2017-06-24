@@ -31,7 +31,7 @@
     </div>
 
     <div style="width:100%; min-height:20rem; overflow:hidden; color:white; background-color:#3a5bb8; text-align:center; padding:3rem 0 3rem 0">
-        <h2><b>Flipflop of the Month</b></h2>
+        <h2><b>Freeflop of the Month</b></h2>
         <div class="container" style="margin-top:2rem">
             <div class="row">
                 <div class="col-sm-10 offset-sm-1">
@@ -91,6 +91,7 @@
     </div>
 
 
+<!--
     <div style="width:100%; overflow:hidden; padding-top:3rem; padding-bottom:3rem">
         <div class="container">
             <div class="row">
@@ -112,6 +113,7 @@
             </div>
         </div>
     </div>
+-->
 
 @endsection
 
@@ -119,7 +121,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align:center">
-                <h4 class="modal-title"><center><b>BUY OUR FLIP FLOP OF THE MONTH</b></center></h4>
+                <h4 class="modal-title"><center><b>BUY OUR FREEFLOP OF THE MONTH</b></center></h4>
             </div>
             <form>
                 {{csrf_field()}}
