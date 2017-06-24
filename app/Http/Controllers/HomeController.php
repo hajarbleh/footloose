@@ -53,7 +53,8 @@ class HomeController extends Controller
     public function getBaseWithSize($catID, $size) {
         $base = Base::where([
             ['category_id', '=', $catID],
-            ['size', '=', $size]
+            ['size', '=', $size],
+            ['stock', '>', 0]
             ]
             )->get();
         return response()->json([
@@ -65,7 +66,8 @@ class HomeController extends Controller
     public function getStrapWithSize($catID, $size) {
         $strap = Strap::where([
             ['category_id', '=', $catID],
-            ['size', '=', $size]
+            ['size', '=', $size],
+            ['stock', '>', 0]
             ]
             )->get();
         return response()->json([

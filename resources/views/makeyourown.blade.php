@@ -185,7 +185,9 @@
     <script>
         function updqty(x){
             quantity = document.getElementById("qty");
-            if (x == "+" ) {
+            var baseStock = document.getElementsByName("basecol")[0].getAttribute('data-stock');
+            var strapStock = document.getElementsByName("strapcol")[0].getAttribute('data-stock');
+            if (x == "+" && quantity.value < Math.min(baseStock, strapStock)) {
                 quantity.value ++;
                 document.getElementById("quantityPreview").innerHTML = "Quantity: " + quantity.value;
             }
@@ -219,8 +221,13 @@
                 success: function(message) {
                     $('#baseColor').empty();
                     var appendOption =  "";
-                    for(var i = 0; i < message.data.length; i++) {
-                        appendOption += "<span><input type='radio' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' id='" + message.data[i].id + "' name='basecol' onclick='selectBase(this)'/><label for='" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
+                    if(message.data.length) {
+                        for(var i = 0; i < message.data.length; i++) {
+                            appendOption += "<span><input type='radio' data-stock='" + message.data[i].stock + "' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' id='" + message.data[i].id + "' name='basecol' onclick='selectBase(this)'/><label for='" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
+                        }
+                    }
+                    else {
+                        appendOption += "<i>Mohon maaf, stok base untuk ukuran ini sedang habis</i>"
                     }
                     $('#baseColor').append(appendOption);
                 }
@@ -248,9 +255,15 @@
                     $('#strapColor').removeAttr('disabled');
                     $('#strapColor').empty();
                     var appendOption =  "";
-                    for(var i = 0; i < message.data.length; i++) {
-                        appendOption += "<span><input type='radio' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' data-id='" + message.data[i].id + "' id='strap" + message.data[i].id + "' name='strapcol' onclick='selectStrap(this)'/><label for='strap" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
+                    if(message.data.length) {
+                        for(var i = 0; i < message.data.length; i++) {
+                            appendOption += "<span><input type='radio' data-stock='" + message.data[i].stock + "' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' data-id='" + message.data[i].id + "' id='strap" + message.data[i].id + "' name='strapcol' onclick='selectStrap(this)'/><label for='strap" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
+                        }
                     }
+                    else {
+                        appendOption += "<i>Mohon maaf, stok strap untuk ukuran ini sedang habis</i>"
+                    }
+
                     $('#strapColor').append(appendOption);
                 }
             });
@@ -272,7 +285,6 @@
 
         $(document).ready(function() {
             $('#addtocart').on('submit', function(e) {
-                console.log($('meta[name="_token"]').attr('content'));
                 $.ajaxSetup({
                     headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
                 })
@@ -289,7 +301,6 @@
                     data : {size: size, categoryID: categoryID, baseID: baseID, strapID: strapID, quantity: quantity},
                     dataType: 'json',
                     success: function(message) {
-                        console.log(message.data);
                         document.getElementById("sizeModal").innerHTML = "Size : " + $('#listSize').val();
                         document.getElementById("baseModal").innerHTML = "Base : " + document.getElementsByName('basecol')[0].getAttribute('data-name');
                         document.getElementById("strapModal").innerHTML = "Strap : " + document.getElementsByName('strapcol')[0].getAttribute('data-name');
