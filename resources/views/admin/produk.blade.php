@@ -200,7 +200,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Size</label>
-                                    <input name="size" type="number" class="form-control" required>
+                                    <input name="size" type="text" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -436,7 +436,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="message-text" class="form-control-label">Size</label>
-                                    <input name="size" type="number" class="form-control" value="36" required>
+                                    <input name="size" type="text" class="form-control" value="36" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
