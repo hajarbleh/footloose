@@ -1,7 +1,7 @@
 <div class="row">
     @foreach($ffotm as $john)
         <div class="col-sm-4 col-xs-6">
-            <label>Flipflop of the month #{{$john->id}}</label>
+            <label>Freeflop of the month #{{$john->id}}</label>
             <form action="/admin/ffotm/update/{{$john->id}}" method="POST">
                 {{csrf_field()}}
                 <div class="input-group mb-1 mr-sm-1 mb-sm-0">

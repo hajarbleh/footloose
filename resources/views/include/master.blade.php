@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="_token" content="{{ csrf_token() }}">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">        
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -14,7 +15,7 @@
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <title>Footloose | @yield('title')</title>
+        <title>FootLoose | @yield('title')</title>
     </head>
     <body>
         <div id="spinner" style="position:fixed; width:100%; z-index:30; height:100%; background-color:#fff; text-align:center; padding-top:calc(50vh - 2rem)">
