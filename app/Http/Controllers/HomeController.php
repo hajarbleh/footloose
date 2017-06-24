@@ -10,6 +10,8 @@ use App\Category;
 use App\Base;
 use App\Strap;
 use GuzzleHttp\Client;
+use Dvlpp\Merx\Facade\Merx;
+use App\Price;
 
 class HomeController extends Controller
 {
@@ -70,5 +72,41 @@ class HomeController extends Controller
             'success' => true,
             'data' => $strap
         ]);
+    }
+
+    public function checkout() {
+        $cart = Merx::cart()->items;
+        $total = Merx::cart()->total();
+        return view('checkout', compact('cart', 'total'));
+    }
+
+    public function addtocart(Request $request) {
+        $price = Price::first();
+        $size = $request->size;
+        $categoryID = $request->categoryID;
+        $categoryName = Category::where('id', '=', $categoryID)->first()->name;
+        $baseID = $request->baseID;
+        $baseName = Base::where('id', '=', $baseID)->first()->name;
+        $strapID = $request->strapID;
+        $strapName = Strap::where('id', '=', $strapID)->first()->name;
+        $quantity = $request->quantity;
+        Merx::cart()->addItem([
+            "article_id" => $baseID,
+            "article_type" => \App\Base::class,
+            "name" => $baseName,
+            "details" => 'the blue one',
+            "price" => $price->price,
+            "quantity" => $quantity,
+            "attributes" => [
+                "category_id" => $categoryID,
+                "category_name" => $categoryName,
+                "size" => $size,
+                "strap_id" => $strapID,
+                "strap_name" => $strapName
+            ]
+        ]);
+        return response()->json([
+            'success' => true
+            ]);
     }
 }

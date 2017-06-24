@@ -87,30 +87,34 @@
                 </div>
             </div>
             <hr>
-            <?php for ($i=1;$i<=2;$i++){ ?>
+            @foreach($cart as $c)
             <div class="row" style="margin-bottom:1rem">
                 <div class="col-xs-2">
                     <img src="assets/img/product/c1p1/col1/thumb/1.jpg" style="width:100%">
                 </div>
                 <div class="col-xs-3">
-                    <b>Nama Produk</b><br>
-                    <b>Warna</b>
-                    <p>Detil</p>
+                    <b>Product: </b><br>
+                    {{$c['name']}} with {{$c['custom_attributes']['strap_name']}} <br/>
+                    <b>Size: </b><br/>
+                    {{$c['custom_attributes']['size']}} <br/>
+                    <b>Category: </b><br/>
+                    {{$c['custom_attributes']['category_name']}}
+
                 </div>
                 <div class="col-xs-2">
-                    Rp 120.000
+                    {{$c['price']}}
                 </div>
                 <div class="col-xs-2">
-                    QTY
+                    {{$c['quantity']}}
                 </div>
                 <div class="col-xs-2">
-                    Rp 240.000
+                    Rp {{$c['quantity'] * $c['price']}}
                 </div>
                 <div class="col-xs-1">
                     <a href="#!" style="color:inherit"><i class="fa fa-times fa-lg"></i></a>
                 </div>
             </div>
-            <?php } ?>
+            @endforeach
 
         </div>
     </div>
@@ -123,7 +127,7 @@
             </div>
             <div class="col-xs-3">
                 <b>Rp 40.000</b><br>
-                <b>Rp 480.000</b>
+                <b>Rp {{$total}}</b>
             </div>
         </div>
         <div class="row">

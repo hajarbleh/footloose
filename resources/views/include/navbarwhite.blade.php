@@ -6,15 +6,6 @@
         </a><br id="navbarHack">
         <div class="collapse navbar-toggleable-md" id="navbarResponsive">
             <ul class="nav navbar-nav float-sm-right">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#!" id="nav-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>Categories</b></a>
-                    <div class="dropdown-menu" aria-labelledby="nav-1">
-                        <a class="dropdown-item" href="browse">Flipflops of the Month</a>
-                        <hr style="margin:0.5rem 0 0.5rem 0">
-                        <a class="dropdown-item" href="browse"><b>View All</b></a>
-                    </div>
-                </li>
-            
                 <li class="nav-item">
                     <a class="nav-link" href="makeyourown"><b>Make Your Own</b></a>
                 </li>

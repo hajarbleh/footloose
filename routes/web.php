@@ -40,12 +40,12 @@ Route::group(['middleware' => ['auth']], function() {
         return view('browse');
     });
 
-    Route::get('/checkout', function () {
-        return view('checkout');
-    });
+    Route::get('/checkout', ['as' => 'checkout', 'uses' => 'HomeController@checkout']);
 });
 
 Route::get('/makeyourown', ['as' => 'makeyourown', 'uses' => 'HomeController@makeyourown']);
+
+Route::post('/addtocart', ['as' => 'addtocart', 'uses' => 'HomeController@addtocart']);
 
 Route::get('/base/category/{catID}/size/{size}', ['as' => 'getBaseWithSize', 'uses' => 'HomeController@getBaseWithSize']);
 

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "129f1265e2fd56348aca9a8ac2f0589d",
-    "content-hash": "aacda39e85d3fa49a91939161ccb7d3e",
+    "hash": "a1a1ccc3fb5dce66f27064d369b56d1d",
+    "content-hash": "8f4aa9cf3736eb64418914d59a926e14",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -106,6 +106,56 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "dvlpp/merx",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dvlpp/merx.git",
+                "reference": "0647b1f0d839f5c1dde77035994414acde726b59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dvlpp/merx/zipball/0647b1f0d839f5c1dde77035994414acde726b59",
+                "reference": "0647b1f0d839f5c1dde77035994414acde726b59",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.2.*|5.3.*|5.4.*",
+                "illuminate/support": "5.2.*|5.3.*|5.4.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "~1.4",
+                "laravel/browser-kit-testing": "^1.0",
+                "laravel/laravel": "5.4.*",
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "~4.0",
+                "symfony/css-selector": "2.8.*|3.0.*",
+                "symfony/dom-crawler": "2.8.*|3.0.*"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Dvlpp\\Merx\\": "src/Dvlpp/Merx/"
+                },
+                "files": [
+                    "src/helper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philippe Lonchampt",
+                    "email": "philippelonchampt@gmail.com"
+                }
+            ],
+            "description": "E-commerce toolbox for Laravel.",
+            "time": "2017-04-13 09:24:08"
         },
         {
             "name": "erusev/parsedown",

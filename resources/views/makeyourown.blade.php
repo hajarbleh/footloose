@@ -88,92 +88,95 @@
 
     <div class="banner-container">
         <div id="carousel-example-generic" data-interval="false" class="carousel slide" data-ride="carousel" style="max-height:100vh;">
-            <div class="carousel-inner" role="listbox">
-                <div id="category" class="carousel-item active" style=>
-                    <div class="slider-helper" style="height:10vh"></div>
-                    <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
-                        <p style="color:#ff6d6d;"><b>1. Choose Category</b></p>
-                        <select id="listCategory" class="form-control form-control-sm" onchange="selectCategory(this)" style="margin: 0 auto; display: block; width: 15%; background-color:rgba(0, 0, 0, 0.075); border:none; margin-top:0.3rem">
-                            <option selected disabled>Category</option>
-                            @foreach($category as $c)
-                                <option value="{{$c->id}}">{{$c->name}}</option>
-                            @endforeach
-                        </select>
-                        <a class="btn btn-secondary btn-hav-w" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="next" id="nextCategory">Next</a>
-                    </div>
-                </div>
-                <div id="size" class="carousel-item">
-                    <div class="slider-helper" style="height:10vh"></div>
-                     <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
-                        <p style="color:#ff6d6d"><b>2. Choose your size</b></p>
-                        <select id="listSize" class="form-control form-control-sm" onchange="selectSize(this)" style="margin: 0 auto; display: block; width: 15%; background-color:rgba(0, 0, 0, 0.075); border:none; margin-top:0.3rem" disabled>
-                            <option selected disabled>Size</option>
-                        </select>
-                        <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="prev" id="prevSize">Prev</a>
-                        <a class="btn btn-secondary btn-hav-w" style="color:#ff6d6d; margin-left: 5px; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="next" id="nextSize">Next</a>
-                    </div>
-                </div>
-                <div id="colorbase" class="carousel-item">
-                    <div class="slider-helper" style="height:10vh"></div>
-                    <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
-                        <p style="color:#ff6d6d"><b>3. Select base color</b></p>
-                        <div id="baseColor">
-                            <span>
-                                <input type="radio" id="base04" name="basecol" />
-                                <label for="base04">
-                                    <span style="background-color:#fff95e"></span>
-                                </label>
-                            </span>
+            <form action="/addtocart" method="POST" id="addtocart">
+                {{csrf_field()}}
+                <div class="carousel-inner" role="listbox">
+                    <div id="category" class="carousel-item active">
+                        <div class="slider-helper" style="height:10vh"></div>
+                        <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
+                            <p style="color:#ff6d6d;"><b>1. Choose Category</b></p>
+                            <select id="listCategory" class="form-control form-control-sm" onchange="selectCategory(this)" style="margin: 0 auto; display: block; width: 15%; background-color:rgba(0, 0, 0, 0.075); border:none; margin-top:0.3rem">
+                                <option selected disabled>Category</option>
+                                @foreach($category as $c)
+                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                @endforeach
+                            </select>
+                            <a class="btn btn-secondary btn-hav-w" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="next" id="nextCategory">Next</a>
                         </div>
-                        <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="prev" id="prevBase">Prev</a>
-                        <a class="btn btn-secondary btn-hav-w" style="color:#ff6d6d; margin-left: 5px; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="next" id="nextBase">Next</a>
                     </div>
-                </div>
-                <div id="colorstrap" class="carousel-item">
-                    <div class="slider-helper" style="height:10vh"></div>
-                    <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
-                        <p style="color:#ff6d6d"><b>4. Select strap color</b></p>
-                        <div id="strapColor">
-                            <span>
-                                <input type="radio" id="strap04" name="strapcol" />
-                                <label for="strap04">
-                                    <span style="background-color:#fff95e"></span>
-                                </label>
-                            </span>
+                    <div id="size" class="carousel-item">
+                        <div class="slider-helper" style="height:10vh"></div>
+                         <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
+                            <p style="color:#ff6d6d"><b>2. Choose your size</b></p>
+                            <select id="listSize" class="form-control form-control-sm" onchange="selectSize(this)" style="margin: 0 auto; display: block; width: 15%; background-color:rgba(0, 0, 0, 0.075); border:none; margin-top:0.3rem" disabled>
+                                <option selected disabled>Size</option>
+                            </select>
+                            <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="prev" id="prevSize">Prev</a>
+                            <a class="btn btn-secondary btn-hav-w" style="color:#ff6d6d; margin-left: 5px; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="next" id="nextSize">Next</a>
                         </div>
-                        <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="prev" id="prevStrap">Prev</a>
-                        <a class="btn btn-secondary btn-hav-w" style="color:#ff6d6d; margin-left: 5px; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="next" id="nextStrap">Next</a>
                     </div>
-                </div>
-                <div id="tattoo" class="carousel-item">
-                    <div class="slider-helper" style="height:10vh"></div>
-                    <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
-                        <p style="color:#ff6d6d"><b>5. Add Tattoo</b></p>
-                        <p><i>Coming soon</i></p>
-                        <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="prev" id="prevTattoo">Prev</a>
-                        <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-left: 5px; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="next" id="nextTattoo">Next</a>
-                    </div>
-                </div>
-                <div id="quantity" class="carousel-item">
-                    <div class="slider-helper" style="height:10vh"></div>
-                    <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
-                        <p style="color:#ff6d6d"><b>6. Quantity</b></p>
-                        <div class="input-group input-group-sm" style="width:5rem; margin: 0 auto;">
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button" style="background-color:rgba(0, 0, 0, 0.1); border:none; height:2rem" onclick="qty('-')">-</button>
-                            </span>
-                            <span class="input-group">
-                                <input type="text" class="form-control" id="qty" value="1" style="background-color:rgba(0, 0, 0, 0.075); border:none; width:5rem; height:2rem" disabled>
-                            </span>
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button" style="background-color:rgba(0, 0, 0, 0.1); border:none; height:2rem" onclick="qty('+')">+</button>
-                            </span>
+                    <div id="colorbase" class="carousel-item">
+                        <div class="slider-helper" style="height:10vh"></div>
+                        <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
+                            <p style="color:#ff6d6d"><b>3. Select base color</b></p>
+                            <div id="baseColor">
+                                <span>
+                                    <input type="radio" id="base04" name="basecol" />
+                                    <label for="base04">
+                                        <span style="background-color:#fff95e"></span>
+                                    </label>
+                                </span>
+                            </div>
+                            <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="prev" id="prevBase">Prev</a>
+                            <a class="btn btn-secondary btn-hav-w" style="color:#ff6d6d; margin-left: 5px; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="next" id="nextBase">Next</a>
                         </div>
-                        <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="prev" id="prevQuantity">Prev</a>
-                        <button class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-left: 5px; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" type="submit" id="modaltrigger">Add to Cart</button>
+                    </div>
+                    <div id="colorstrap" class="carousel-item">
+                        <div class="slider-helper" style="height:10vh"></div>
+                        <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
+                            <p style="color:#ff6d6d"><b>4. Select strap color</b></p>
+                            <div id="strapColor">
+                                <span>
+                                    <input type="radio" id="strap04" name="strapcol" />
+                                    <label for="strap04">
+                                        <span style="background-color:#fff95e"></span>
+                                    </label>
+                                </span>
+                            </div>
+                            <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="prev" id="prevStrap">Prev</a>
+                            <a class="btn btn-secondary btn-hav-w" style="color:#ff6d6d; margin-left: 5px; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="next" id="nextStrap">Next</a>
+                        </div>
+                    </div>
+                    <div id="tattoo" class="carousel-item">
+                        <div class="slider-helper" style="height:10vh"></div>
+                        <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
+                            <p style="color:#ff6d6d"><b>5. Add Tattoo</b></p>
+                            <p><i>Coming soon</i></p>
+                            <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="prev" id="prevTattoo">Prev</a>
+                            <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-left: 5px; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="next" id="nextTattoo">Next</a>
+                        </div>
+                    </div>
+                    <div id="quantity" class="carousel-item">
+                        <div class="slider-helper" style="height:10vh"></div>
+                        <div class="col-sm-12" style="min-height:12rem; display: table; vertical-align: middle; text-align: center">
+                            <p style="color:#ff6d6d"><b>6. Quantity</b></p>
+                            <div class="input-group input-group-sm" style="width:5rem; margin: 0 auto;">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary" type="button" style="background-color:rgba(0, 0, 0, 0.1); border:none; height:2rem" onclick="qty('-')">-</button>
+                                </span>
+                                <span class="input-group">
+                                    <input type="text" class="form-control" id="qty" value="1" style="background-color:rgba(0, 0, 0, 0.075); border:none; width:5rem; height:2rem" disabled>
+                                </span>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary" type="button" style="background-color:rgba(0, 0, 0, 0.1); border:none; height:2rem" onclick="qty('+')">+</button>
+                                </span>
+                            </div>
+                            <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="prev" id="prevQuantity">Prev</a>
+                            <button class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-left: 5px; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" type="submit" id="modaltrigger">Add to Cart</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 @endsection
@@ -193,7 +196,6 @@
         }
 
         function selectCategory(category) {
-            console.log($('#listSize').val());
             $('#listSize').removeAttr('disabled');
             $("#listSize").empty();
             var appendOption = "";
@@ -210,13 +212,11 @@
 
         function selectSize(size) {
             var categoryID = $('#listCategory').val();
-            console.log("cat: " + categoryID + " size: " + size.value);
             $.ajax({
                 type: 'GET',
                 url: '/base/category/' + categoryID + '/size/' + size.value,
                 dataType: 'JSON',
                 success: function(message) {
-                    console.log(message.data);
                     $('#baseColor').empty();
                     var appendOption =  "";
                     for(var i = 0; i < message.data.length; i++) {
@@ -245,12 +245,11 @@
                 url: '/strap/category/' + categoryID + '/size/' + size,
                 dataType: 'JSON',
                 success: function(message) {
-                    console.log(message.data);
                     $('#strapColor').removeAttr('disabled');
                     $('#strapColor').empty();
                     var appendOption =  "";
                     for(var i = 0; i < message.data.length; i++) {
-                        appendOption += "<span><input type='radio' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' id='strap" + message.data[i].id + "' name='strapcol' onclick='selectStrap(this)'/><label for='strap" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
+                        appendOption += "<span><input type='radio' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' data-id='" + message.data[i].id + "' id='strap" + message.data[i].id + "' name='strapcol' onclick='selectStrap(this)'/><label for='strap" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
                     }
                     $('#strapColor').append(appendOption);
                 }
@@ -263,7 +262,6 @@
         }
 
         function selectStrap(strap) {
-            console.log("senangnya hatiku");
             var strapPreview = document.getElementById("strapPreview");
             strapPreview.src= strap.getAttribute('data-picture');
             var selectedName = strap.getAttribute('data-name');
@@ -273,14 +271,34 @@
         }
 
         $(document).ready(function() {
-            $('#modaltrigger').click(function() {
-                document.getElementById("sizeModal").innerHTML = "Size : " + $('#listSize').val();
-                document.getElementById("baseModal").innerHTML = "Base : " + document.getElementsByName('basecol')[0].getAttribute('data-name');
-                document.getElementById("strapModal").innerHTML = "Strap : " + document.getElementsByName('strapcol')[0].getAttribute('data-name');
-                document.getElementById("tattooModal").innerHTML = "Tattoo : -";
-                document.getElementById("quantityModal").innerHTML = "Quantity : " + document.getElementById('qty').value;
-                jQuery.noConflict(); 
-                $('#modal').modal('show');
+            $('#addtocart').on('submit', function(e) {
+                console.log($('meta[name="_token"]').attr('content'));
+                $.ajaxSetup({
+                    headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+                })
+                e.preventDefault(e);
+
+                var size = $('#listSize').val();
+                var categoryID = document.getElementById('listCategory').value;
+                var baseID = document.getElementsByName('basecol')[0].id;
+                var strapID = document.getElementsByName('strapcol')[0].getAttribute('data-id');
+                var quantity = document.getElementById('qty').value;
+                $.ajax({
+                    type: 'POST',
+                    url: '/addtocart',
+                    data : {size: size, categoryID: categoryID, baseID: baseID, strapID: strapID, quantity: quantity},
+                    dataType: 'json',
+                    success: function(message) {
+                        console.log(message.data);
+                        document.getElementById("sizeModal").innerHTML = "Size : " + $('#listSize').val();
+                        document.getElementById("baseModal").innerHTML = "Base : " + document.getElementsByName('basecol')[0].getAttribute('data-name');
+                        document.getElementById("strapModal").innerHTML = "Strap : " + document.getElementsByName('strapcol')[0].getAttribute('data-name');
+                        document.getElementById("tattooModal").innerHTML = "Tattoo : -";
+                        document.getElementById("quantityModal").innerHTML = "Quantity : " + document.getElementById('qty').value;
+                        jQuery.noConflict();
+                        $('#modal').modal('show');
+                    }
+                });
             });
             $('nav').css('background','#ff6d6d');
 
