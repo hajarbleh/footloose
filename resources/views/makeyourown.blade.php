@@ -185,7 +185,9 @@
     <script>
         function updqty(x){
             quantity = document.getElementById("qty");
-            if (x == "+" ) {
+            var baseStock = document.getElementsByName("basecol")[0].getAttribute('data-stock');
+            var strapStock = document.getElementsByName("strapcol")[0].getAttribute('data-stock');
+            if (x == "+" && quantity.value < Math.min(baseStock, strapStock)) {
                 quantity.value ++;
                 document.getElementById("quantityPreview").innerHTML = "Quantity: " + quantity.value;
             }
@@ -221,7 +223,7 @@
                     var appendOption =  "";
                     if(message.data.length) {
                         for(var i = 0; i < message.data.length; i++) {
-                            appendOption += "<span><input type='radio' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' id='" + message.data[i].id + "' name='basecol' onclick='selectBase(this)'/><label for='" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
+                            appendOption += "<span><input type='radio' data-stock='" + message.data[i].stock + "' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' id='" + message.data[i].id + "' name='basecol' onclick='selectBase(this)'/><label for='" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
                         }
                     }
                     else {
@@ -255,7 +257,7 @@
                     var appendOption =  "";
                     if(message.data.length) {
                         for(var i = 0; i < message.data.length; i++) {
-                            appendOption += "<span><input type='radio' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' data-id='" + message.data[i].id + "' id='strap" + message.data[i].id + "' name='strapcol' onclick='selectStrap(this)'/><label for='strap" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
+                            appendOption += "<span><input type='radio' data-stock='" + message.data[i].stock + "' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' data-id='" + message.data[i].id + "' id='strap" + message.data[i].id + "' name='strapcol' onclick='selectStrap(this)'/><label for='strap" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
                         }
                     }
                     else {
