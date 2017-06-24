@@ -162,13 +162,13 @@
                             <p style="color:#ff6d6d"><b>6. Quantity</b></p>
                             <div class="input-group input-group-sm" style="width:5rem; margin: 0 auto;">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="button" style="background-color:rgba(0, 0, 0, 0.1); border:none; height:2rem" onclick="qty('-')">-</button>
+                                    <button class="btn btn-secondary" type="button" style="background-color:rgba(0, 0, 0, 0.1); border:none; height:2rem" onclick="updqty('-')">-</button>
                                 </span>
                                 <span class="input-group">
                                     <input type="text" class="form-control" id="qty" value="1" style="background-color:rgba(0, 0, 0, 0.075); border:none; width:5rem; height:2rem" disabled>
                                 </span>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="button" style="background-color:rgba(0, 0, 0, 0.1); border:none; height:2rem" onclick="qty('+')">+</button>
+                                    <button class="btn btn-secondary" type="button" style="background-color:rgba(0, 0, 0, 0.1); border:none; height:2rem" onclick="updqty('+')">+</button>
                                 </span>
                             </div>
                             <a class="btn btn-secondary btn-hav-w" href="#carousel-example-generic" style="color:#ff6d6d; margin-top: 20px; border-style:solid; border-width:1px 1px 1px 1px; border-color:#d8d6d6" data-slide="prev" id="prevQuantity">Prev</a>
@@ -183,7 +183,7 @@
 
 @section('pagescript')
     <script>
-        function qty(x){
+        function updqty(x){
             quantity = document.getElementById("qty");
             if (x == "+" ) {
                 quantity.value ++;
