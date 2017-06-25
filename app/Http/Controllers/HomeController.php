@@ -151,4 +151,9 @@ class HomeController extends Controller
             'success' => true
             ]);
     }
+
+    public function removeCart($id) {
+        Merx::cart()->removeItem($id);
+        return back();
+    }
 }

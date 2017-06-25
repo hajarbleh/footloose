@@ -53,6 +53,7 @@ Route::get('/base/{baseID}/strap/{strapID}/size/{size}', ['as' => 'getStock', 'u
 
 Route::get('/strap/category/{catID}/size/{size}', ['as' => 'getStrapWithSize', 'uses' => 'HomeController@getStrapWithSize']);
 
+Route::post('/cart/remove/{id}', ['as' => 'removeCart', 'uses' => 'HomeController@removeCart']);
 
 Route::get('/product', function () {
     return view('product');

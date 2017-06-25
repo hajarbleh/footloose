@@ -111,7 +111,10 @@
                     Rp {{$c['quantity'] * $c['price']}}
                 </div>
                 <div class="col-xs-1">
-                    <a href="#!" style="color:inherit"><i class="fa fa-times fa-lg"></i></a>
+                    <form action="/cart/remove/{{$c->id}}" method="POST">
+                        {{csrf_field()}}
+                        <button type="submit" style="outline:none; border-color:transparent; background-color:transparent"><i class="fa fa-times fa-lg"></i></a>
+                    </form>
                 </div>
             </div>
             @endforeach
@@ -142,6 +145,7 @@
 @section('pagescript')
     <script>
         $(document).ready(function() {
+            jQuery.noConflict();
             $('#finalizetrigger').click(function() {
                 $('#finalizemodal').modal('show');
                 $('#alamatmodal').modal('hide');
