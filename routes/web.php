@@ -20,9 +20,9 @@ Route::get('/login', function () {
     return view('login');
 })->middleware('guest');
 
-    Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
+Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 
-    Route::get('/best', ['as' => 'best', 'uses' => 'BestSellerController@index']);
+Route::get('/best', ['as' => 'best', 'uses' => 'BestSellerController@index']);
 
 Route::group(['middleware' => ['auth']], function() {
     Route::post('/logout', ['as' => 'logout', 'uses' => 'UserController@logout']);
@@ -36,11 +36,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/editaddress/{id}', ['as' => 'editaddress', 'uses' => 'UserController@editaddress']);
 
     Route::get('/getcity/{id}', ['as' => 'getcity', 'uses' => 'HomeController@getCity']);
+
     Route::get('/browse', function () {
         return view('browse');
     });
 
-    Route::get('/checkout', ['as' => 'checkout', 'uses' => 'HomeController@checkout']);
+    Route::get('/checkout', ['as' => 'checkout', 'uses' => 'HomeController@checkout'])->middleware('UserDataComplete');
 });
 
 Route::get('/makeyourown', ['as' => 'makeyourown', 'uses' => 'HomeController@makeyourown']);

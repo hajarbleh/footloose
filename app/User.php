@@ -31,4 +31,12 @@ class User extends Authenticatable
   public function isAdmin() {
     return $this->role == 'Admin';
   }
+
+  public function isComplete() {
+    if($this->address == null || $this->city_id == null || $this->city == null
+        || $this->state == null || $this->postal_code == null || $this->phone == null) {
+        return false;
+    }
+    return true;
+  }
 }

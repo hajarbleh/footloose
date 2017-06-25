@@ -100,6 +100,7 @@
             <div class="modal-content">
                 <form action="/editaddress/{{$user->id}}" method="POST">
                     {{csrf_field()}}
+	                {{ Form::hidden('cityID', '0', array('id' => 'cityID')) }}
                     <div class="modal-body">
                         <div class="row">
                             <div class="form-group col-sm-6">
@@ -117,7 +118,7 @@
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="kota">City*</label>
-                                <select name="city" class="form-control" id="kota" required></select>
+                                <select name="city" class="form-control" id="kota" onchange="selectCity(this)" required></select>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="kodepos">Postal Code*</label>
@@ -232,6 +233,7 @@
 @section('pagescript')
     <script>
         $(document).ready(function() {
+            jQuery.noConflict();
             $('#profiltrigger').click(function() {
                 $('#profilmodal').modal();
             });
@@ -253,11 +255,15 @@
                     $("#kota").empty();
                     var optionAppend = '';
                     for(var i = 0; i < message.data.length; i++){
-                        optionAppend += '<option value=' + message.data[i].city_name +'>' + message.data[i].city_name + '</option>';
+                        optionAppend += '<option data-id=' + message.data[i].city_id + ' value=' + message.data[i].city_name +'>' + message.data[i].city_name + '</option>';
                     }
                     $('#kota').append(optionAppend);
                 }
             });
+        }
+
+        function selectCity(city) {
+            document.getElementById('cityID').value = $('#kota').find(':selected').data('id');
         }
     </script>
 @endsection

@@ -63,6 +63,7 @@ class UserController extends Controller
     public function editaddress(Request $request, $id){
         $user = User::findOrFail($id);
         $user['address'] = $request->address;
+        $user['city_id'] = $request->cityID;
         $user['city'] = $request->city;
         $user['state'] = $request->state;
         $user['postal_code'] = $request->postal_code;
