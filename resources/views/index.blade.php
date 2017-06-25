@@ -37,7 +37,7 @@
                 <div class="col-sm-10 offset-sm-1">
                     @foreach($ffotm as $f)
                         <div class="col-xs-4">
-                            <a href="#ffotm" class="card" style="text-align:center" data-toggle="modal">
+                            <a data-baseid="{{$f->base_id}}" data-strapid="{{$f->strap_id}}" data-categoryid="{{$f->category_id}}" href="#ffotm" class="card" style="text-align:center" onclick="selectffotm(this)" data-toggle="modal">
                                 <img class="card-img-top img-fluid" style="position:absolute" src="{{$f->base_picture}}" alt="Card image cap">
                                 <img class="card-img-top img-fluid" style="z-index:10; position:relative" src="{{$f->strap_picture}}" alt="Card image cap">
                                 @if($f->tattoo_id)
@@ -123,14 +123,29 @@
             <div class="modal-header" style="text-align:center">
                 <h4 class="modal-title"><center><b>BUY OUR FREEFLOP OF THE MONTH</b></center></h4>
             </div>
-            <form>
+            <form action="/addtocart" method="POST" id="addtocart">
                 {{csrf_field()}}
+                {{ Form::hidden('categoryID', 'secret', array('id' => 'categoryID')) }}
+                {{ Form::hidden('baseID', 'secret', array('id' => 'baseID')) }}
+                {{ Form::hidden('strapID', 'secret', array('id' => 'strapID')) }}
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="message-text" class="form-control-label">Size</label>
-                                <input name="size" type="number" class="form-control" required>
+                                <label for="size" class="form-control-label">Size</label>
+                                <select id="size" class="form-control" onchange="getffotmstock(this)">
+                                    <option selected disabled>Size</option>
+                                    <?php for($i = 36; $i < 41; $i++) {
+                                        echo "<option value='" . $i . "'>" . $i . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+							<div class="form-group">
+                                <label for="quantity" class="form-control-label">Quantity</label>
+                                <input id="quantity" name="quantity" type="number" class="form-control" min="1" max="10000" disabled required>
                             </div>
                         </div>
                     </div>
@@ -141,7 +156,7 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:100%; border:none; background-color:(0,0,0,0.075)">Cancel</button>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addtocart" data-toggle="modal" class="btn btn-primary" style="width:100%"><i class="fa fa-shopping-cart fa-md" style="margin-right:5px"></i>ADD TO CART</a>
+                            <button type="submit" data-toggle="modal" class="btn btn-primary" style="width:100%"><i class="fa fa-shopping-cart fa-md" style="margin-right:5px"></i>ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -243,6 +258,60 @@
             parallax();
             $(window).scroll(function(e){
                 parallax();
+            });
+        });
+
+        function getffotmstock(selector) {
+            document.getElementById("quantity").disabled =  'disabled';
+            document.getElementById("quantity").removeAttribute('value');
+            var baseID = document.getElementById("baseID").value;
+            var strapID = document.getElementById("strapID").value;
+            $.ajax({
+                type: 'GET',
+                url: '/base/' + baseID + '/strap/' + strapID + '/size/' + selector.value,
+                dataType: 'JSON',
+                success: function(message) {
+                    if(message.data == 0) {
+                        console.log("Stok habis");
+                    }
+                    else {
+                        document.getElementById("quantity").removeAttribute('disabled');
+                        document.getElementById("quantity").setAttribute("max", message.data.stock);
+                        document.getElementById("quantity").setAttribute("value", 1);
+                    }
+                }
+            });
+        }
+
+        function selectffotm(ffotm) {
+            console.log("lala");
+            document.getElementById("categoryID").value = ffotm.getAttribute("data-categoryid");
+            document.getElementById("baseID").value = ffotm.getAttribute("data-baseid");
+            document.getElementById("strapID").value = ffotm.getAttribute("data-strapid");
+        }
+
+        $(document).ready(function() {
+            $('#addtocart').on('submit', function(e) {
+                $.ajaxSetup({
+                    headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+                })
+                e.preventDefault(e);
+
+                var categoryID = document.getElementById("categoryID").value;
+                var baseID = document.getElementById("baseID").value;
+                var strapID = document.getElementById("strapID").value;
+                var quantity = document.getElementById('quantity').value;
+                var size = document.getElementById("size").value;
+                $.ajax({
+                    type: 'POST',
+                    url: '/addtocart',
+                    data : {size: size, categoryID: categoryID, baseID: baseID, strapID: strapID, quantity: quantity},
+                    dataType: 'json',
+                    success: function(message) {
+                        console.log("Added ^^");
+                        jQuery.noConflict();
+                    }
+                });
             });
         });
     </script>

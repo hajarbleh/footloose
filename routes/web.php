@@ -49,6 +49,8 @@ Route::post('/addtocart', ['as' => 'addtocart', 'uses' => 'HomeController@addtoc
 
 Route::get('/base/category/{catID}/size/{size}', ['as' => 'getBaseWithSize', 'uses' => 'HomeController@getBaseWithSize']);
 
+Route::get('/base/{baseID}/strap/{strapID}/size/{size}', ['as' => 'getStock', 'uses' => 'HomeController@getStock']);
+
 Route::get('/strap/category/{catID}/size/{size}', ['as' => 'getStrapWithSize', 'uses' => 'HomeController@getStrapWithSize']);
 
 

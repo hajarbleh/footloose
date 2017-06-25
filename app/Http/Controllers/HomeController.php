@@ -45,11 +45,44 @@ class HomeController extends Controller
             'data' => $cities,
         ]);
     }
+
     public function makeYourOwn() {
         $category = Category::where('is_enabled','=', 1)->get();
         return view('makeyourown', compact('category'));
     }
 
+    public function getStock($baseID, $strapID, $size) {
+        $stock = 0;
+        $dummyBaseName = Base::find($baseID)->name;
+        $baseWithSize = Base::where([
+            ['name', '=', $dummyBaseName],
+            ['size', '=', $size]
+            ])->first();
+        if($baseWithSize) {
+            $stock = $baseWithSize->stock;
+        }
+
+        $dummyStrapName = Strap::find($strapID)->name;
+        $convertedSize = 'S';
+        if($size == 37 || $size == 38) {
+            $convertedSize = 'M';
+        }
+        else if($size == 39 || $size == 40) {
+            $convertedSize = 'L';
+        }
+        $strapWithSize = Strap::where([
+            ['name', '=', $dummyStrapName],
+            ['size', '=', $convertedSize]
+            ])->first();
+        if($strapWithSize) {
+            $stock = min($stock, $strapWithSize->stock);
+        }
+        else $stock = 0;
+        return response()->json([
+                "success" => true,
+                "data" => $stock
+            ]);
+    }
     public function getBaseWithSize($catID, $size) {
         $base = Base::where([
             ['category_id', '=', $catID],
@@ -64,9 +97,16 @@ class HomeController extends Controller
     }
 
     public function getStrapWithSize($catID, $size) {
+        $convertedSize = 'S';
+        if($size == 37 || $size == 38) {
+            $convertedSize = 'M';
+        }
+        else if($size == 39 || $size == 40) {
+            $convertedSize = 'L';
+        }
         $strap = Strap::where([
             ['category_id', '=', $catID],
-            ['size', '=', $size],
+            ['size', '=', $convertedSize],
             ['stock', '>', 0]
             ]
             )->get();
