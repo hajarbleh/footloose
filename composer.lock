@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d9aa83080a1e629a248c90b798b6544d",
-    "content-hash": "8ff08ee47df1f9cf6c2d7201a8d9b8e2",
+    "hash": "f94ab01da114888e8b2184c8dd1d4f97",
+    "content-hash": "6e755aaffec75757c44df24baa6c4fc4",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1321,6 +1321,50 @@
                 "uuid"
             ],
             "time": "2017-03-26 20:37:53"
+        },
+        {
+            "name": "sineld/bladeset",
+            "version": "v5.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sineld/bladeset.git",
+                "reference": "0441b546483126d0f4aec10719abdab85bd6d998"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sineld/bladeset/zipball/0441b546483126d0f4aec10719abdab85bd6d998",
+                "reference": "0441b546483126d0f4aec10719abdab85bd6d998",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.3",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sinan Eldem",
+                    "email": "sineld@gmail.com"
+                }
+            ],
+            "description": "A very simple blade extension which allows variables to be set within blade templates.",
+            "homepage": "https://github.com/sineld/bladeset",
+            "keywords": [
+                "blade",
+                "bladeset",
+                "laravel",
+                "template"
+            ],
+            "time": "2016-09-08 15:02:13"
         },
         {
             "name": "swiftmailer/swiftmailer",

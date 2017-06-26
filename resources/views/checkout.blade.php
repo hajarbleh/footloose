@@ -23,7 +23,7 @@
                     <form class="row">
                         <div class="col-sm-12">
                             <p><b>Pastikan bahwa alamat pengiriman dibawah sudah benar.</b></p>
-                            <p>Jalan Teknik Komputer IV Perumahan Dosen ITS Blok U-125, Kampus ITS Sukolilo</p>
+                            <p id="address">{{Auth::user()->address}}, Kode pos {{Auth::user()->postal_code}}, Kota {{Auth::user()->city}}, Provinsi {{Auth::user()->state}}</p>
                         </div>
                     </form>
                 </div>
@@ -121,15 +121,39 @@
 
         </div>
     </div>
-
     <div class="container" style="margin-bottom:3rem">
         <div class="row">
             <div class="col-xs-2 offset-xs-7">
-                Ongkos Kirim<br>
-                Subtotal
+                Select Courier
             </div>
-            <div class="col-xs-3">
-                <b>Rp 40.000</b><br>
+            <select id="selectCourier" onchange="selectCour(this)">
+                <option selected disabled>Select Courier</option>
+                <option value="jne">JNE</option>
+                <option value="pos">Pos Indonesia</option>
+                <option value="tiki">TIKI</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 offset-xs-7">
+                Select Service
+            </div>
+            <select id="selectService" onchange='selectServ()' disabled>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 offset-xs-7">
+                Delivery Cost
+            </div>
+            <div id="deliveryCost" class="col-xs-3">
+                <b>Rp -</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 offset-xs-7">
+                Total
+            </div>
+            <div id="total" class="col-xs-3">
                 <b>Rp {{$total}}</b>
             </div>
         </div>
@@ -146,13 +170,70 @@
     <script>
         $(document).ready(function() {
             jQuery.noConflict();
-            $('#finalizetrigger').click(function() {
-                $('#finalizemodal').modal('show');
-                $('#alamatmodal').modal('hide');
+            $('#finalizetrigger').click(function(e) {
+                $.ajaxSetup({
+                    headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+                })
+                e.preventDefault(e);
+                var address = document.getElementById('address').textContent;
+                var service = document.getElementById('selectService').value;
+                var deliveryCost = $('#selectService').find('option:selected').attr('data-value');
+                console.log(deliveryCost);
+                $.ajax({
+                    method: 'POST',
+                    url: '/finalizeorder',
+                    data: {address:address, service:service, deliveryCost:deliveryCost},
+                    success: function(message) {
+                        console.log(message.data);
+                        location.href = "/";
+                    }
+                });
             });
             $('#alamattrigger').click(function() {
-                $('#alamatmodal').modal('show');
+                var courier = document.getElementById('selectCourier').value;
+                var service = document.getElementById('selectService').value;
+                if(courier && service)
+                    $('#alamatmodal').modal('show');
+                else alert('Isi kurir sama layanannya mas');
             });
         });
+        function selectCour(selector) {
+            var courier = document.getElementById('selectCourier').value;
+            if(courier == "other") {
+                document.getElementById('selectService').innerHTML = '';
+                document.getElementById('selectService').removeAttribute('disabled');
+                $('#selectService').append("<option selected disabled></option>");
+                $('#selectService').append("<option data-value='0' value='By contact'>Contact administrator</option>");
+            }
+            else {
+                var destination = {!! json_encode(Auth::user()->city_id) !!};
+                $.ajax({
+                    method: 'GET',
+                    url: '/getservice/' + courier + '/to/' + destination,
+                    dataType: 'JSON',
+                    success: function(message){
+                        document.getElementById('selectService').innerHTML = '';
+                        var appendOption = "<option selected disabled></option>";
+                        for(var i = 0 ; i < message.data.length ; i++) {
+                            if(message.data[i]['cost'][0]['etd']) {
+                                appendOption += "<option data-value=" + message.data[i]['cost'][0]['value'] + " value='" + message.data[i].service + "' title='Perkiraan sampai " + message.data[i]['cost'][0]['etd'] + " hari'>" + message.data[i].service + "- Rp. " + message.data[i]['cost'][0]['value'] + "</option>";
+                                console.log(message.data[i]['cost'][0]['value']);
+                            }
+                            else console.log('lala');
+                        }
+                        console.log(appendOption);
+                        document.getElementById('selectService').removeAttribute('disabled');
+                        $('#selectService').append(appendOption);
+                    }
+                });
+            }
+        }
+
+        function selectServ() {
+            var deliveryCost = Number($('#selectService').find('option:selected').attr('data-value'));
+            var total = {!! json_encode($total) !!};
+            document.getElementById('deliveryCost').innerHTML = "<b>Rp "+ deliveryCost +  "</b>";
+            document.getElementById('total').innerHTML = "<b>Rp "+ (total+deliveryCost) +  "</b>";
+        }
     </script>
 @endsection

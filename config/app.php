@@ -142,6 +142,7 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         \Dvlpp\Merx\MerxServiceProvider::class,
+        Sineld\BladeSet\BladeSetServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,

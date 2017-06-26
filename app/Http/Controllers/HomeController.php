@@ -156,4 +156,36 @@ class HomeController extends Controller
         Merx::cart()->removeItem($id);
         return back();
     }
+
+    public function getService($cour, $dest) {
+        $client = new Client();
+        $costRequest = $client->request('POST', 'http://api.rajaongkir.com/starter/cost', [
+            'headers' => [
+                'key' => ['63eca030a065eac7a31580c94ff5c07e']
+            ],
+            'form_params' => [
+                'origin' => "444",
+                'destination' => $dest,
+                'weight' => 1000,
+                'courier' => $cour,
+
+            ]
+        ]);
+        $responseBody = json_decode($costRequest->getBody()->getContents(), true);
+        $costs = $responseBody['rajaongkir']['results'][0]['costs'];
+        return response()->json([
+            'success' => true,
+            'data' => $costs
+        ]);
+    }
+
+    public function finalizeOrder(Request $request) {
+        Merx::cart()->setCustomAttribute("address", $request->address);
+        Merx::order()->setCustomAttribute("service", $request->service);
+        Merx::order()->setCustomAttribute("delivery_cost", $request->deliveryCost);
+        Merx::order()->complete();
+        return response()->json([
+                'success' => true,
+            ]);
+    }
 }
