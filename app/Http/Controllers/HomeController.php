@@ -184,16 +184,20 @@ class HomeController extends Controller
     }
 
     public function finalizeOrder(Request $request) {
-        Merx::newOrderFromCart();
-
-        Merx::order()->setMultipleCustomAttributes([
-                "address" => $request->address,
-                "service" => $request->service,
-                "delivery_cost" => $request->deliveryCost
-            ]);
-        Merx::completeOrder();
-        return response()->json([
-                'success' => true
-            ]);
+        if(Merx::cart()->itemsCount()) {
+            Merx::newOrderFromCart();
+            Merx::order()->setMultipleCustomAttributes([
+                    "address" => $request->address,
+                    "service" => $request->service,
+                    "delivery_cost" => $request->deliveryCost
+                ]);
+            Merx::completeOrder();
+            return response()->json([
+                    'success' => true
+                ]);
+        }
+        else {
+            return response()->json(['error' => "Cart is empty"], 400);
+        }
     }
 }

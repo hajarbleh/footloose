@@ -210,6 +210,7 @@
                     url: '/finalizeorder',
                     data: {address:address, service:service, deliveryCost:deliveryCost},
                     success: function(message) {
+                        console.log("bagus");
                         console.log(message.data);
 //                        $('#successalert').slideDown(function() {
 //                            setTimeout(function() {
@@ -225,6 +226,10 @@
 //                        if(confirm(data.data.message)) {
 //                            window.location = '/' + data.data.redirecturl;
 //                        }
+                    },
+                    error: function(message) {
+                        console.log("jelek");
+                        console.log(message.responseJSON.error);
                     }
                 });
             });
