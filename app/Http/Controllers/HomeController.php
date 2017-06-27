@@ -184,13 +184,16 @@ class HomeController extends Controller
     }
 
     public function finalizeOrder(Request $request) {
-        Merx::order()->setCustomAttribute("address", $request->address);
-        Merx::order()->setCustomAttribute("service", $request->service);
-        Merx::order()->setCustomAttribute("delivery_cost", $request->deliveryCost);
-        Merx::order()->complete();
+        Merx::newOrderFromCart();
+
+        Merx::order()->setMultipleCustomAttributes([
+                "address" => $request->address,
+                "service" => $request->service,
+                "delivery_cost" => $request->deliveryCost
+            ]);
+        Merx::completeOrder();
         return response()->json([
-                'success' => true,
-//                'data' => array('message' => 'Pesanan Anda sudah kami terima, terima kasih.', 'redirecturl' => '/')
+                'success' => true
             ]);
     }
 }
