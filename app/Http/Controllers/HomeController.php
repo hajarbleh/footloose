@@ -129,8 +129,10 @@ class HomeController extends Controller
         $categoryName = Category::where('id', '=', $categoryID)->first()->name;
         $baseID = $request->baseID;
         $baseName = Base::where('id', '=', $baseID)->first()->name;
+        $basePicture = Base::where('id', '=', $baseID)->first()->picture;
         $strapID = $request->strapID;
         $strapName = Strap::where('id', '=', $strapID)->first()->name;
+        $strapPicture = Strap::where('id', '=', $strapID)->first()->picture;
         $quantity = $request->quantity;
         Merx::cart()->addItem([
             "article_id" => $baseID,
@@ -143,8 +145,10 @@ class HomeController extends Controller
                 "category_id" => $categoryID,
                 "category_name" => $categoryName,
                 "size" => $size,
+                "base_picture" => $basePicture,
                 "strap_id" => $strapID,
-                "strap_name" => $strapName
+                "strap_name" => $strapName,
+                "strap_picture" => $strapPicture
             ]
         ]);
         return response()->json([
@@ -180,12 +184,13 @@ class HomeController extends Controller
     }
 
     public function finalizeOrder(Request $request) {
-        Merx::cart()->setCustomAttribute("address", $request->address);
+        Merx::order()->setCustomAttribute("address", $request->address);
         Merx::order()->setCustomAttribute("service", $request->service);
         Merx::order()->setCustomAttribute("delivery_cost", $request->deliveryCost);
         Merx::order()->complete();
         return response()->json([
                 'success' => true,
+//                'data' => array('message' => 'Pesanan Anda sudah kami terima, terima kasih.', 'redirecturl' => '/')
             ]);
     }
 }

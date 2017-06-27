@@ -22,6 +22,12 @@
                 <div class="modal-body">
                     <form class="row">
                         <div class="col-sm-12">
+                            <div id="erroralert2"></div>
+                        </div>
+                        <div id="successalert" class="alert alert-warning" style="padding-bottom:0px; display:none">
+                            <center><p><i>Pesanan Berhasil Kami Terima, Terima kasih.</i></p></center>
+                        </div>
+                        <div class="col-sm-12">
                             <p><b>Pastikan bahwa alamat pengiriman dibawah sudah benar.</b></p>
                             <p id="address">{{Auth::user()->address}}, Kode pos {{Auth::user()->postal_code}}, Kota {{Auth::user()->city}}, Provinsi {{Auth::user()->state}}</p>
                         </div>
@@ -30,10 +36,10 @@
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-xs-6">
-                            <a href="user" class="btn btn-secondary" style="width:100%; border:none"><i class="fa fa-pencil fa-lg"></i> Ganti Alamat</a>
+                            <a href="/myprofile" class="btn btn-secondary" style="width:100%; border:none"><i class="fa fa-pencil fa-lg"></i> Ganti Alamat</a>
                         </div>
                         <div class="col-xs-6">
-                            <a id="finalizetrigger" href="#!" class="btn btn-primary" style="width:100%"><i class="fa fa-truck fa-lg"></i> Lanjutkan</a>
+                            <button id="finalizetrigger" data-toggle="modal" class="btn btn-primary" style="width:100%"><i class="fa fa-truck fa-lg"></i> Lanjutkan</button>
                         </div>
                     </div>
                 </div>
@@ -60,7 +66,7 @@
                             <button type="button" data-dismiss="modal" class="btn btn-secondary" style="width:100%; border:none"> Exit</button>
                         </div>
                         <div class="col-xs-6">
-                            <a id="finalize" href="user" class="btn btn-primary" style="width:100%"><i class="fa fa-truck fa-lg"></i> Cek Status</a>
+                            <a id="finalize" href="myprofile" class="btn btn-primary" style="width:100%"><i class="fa fa-truck fa-lg"></i> Cek Status</a>
                         </div>
                     </div>
                 </div>
@@ -90,9 +96,10 @@
             @foreach($cart as $c)
             <div class="row" style="margin-bottom:1rem">
                 <div class="col-xs-2">
-                    <img src="assets/img/product/c1p1/col1/thumb/1.jpg" style="width:100%">
+                    <img id="basepic" src="{{$c['custom_attributes']['base_picture']}}" style="position:absolute; width:170%; margin-left:-80px; margin-top:-15px">
+                    <img id="strappic" src="{{$c['custom_attributes']['strap_picture']}}" style="z-index:10; position:relative; width:203%; margin-left:-80px; margin-top:-15px">
                 </div>
-                <div class="col-xs-3">
+                <div id="products" class="col-xs-3">
                     <b>Product: </b><br>
                     {{$c['name']}} with {{$c['custom_attributes']['strap_name']}} <br/>
                     <b>Size: </b><br/>
@@ -126,7 +133,7 @@
             <div class="col-xs-2 offset-xs-7">
                 Select Courier
             </div>
-            <select id="selectCourier" onchange="selectCour(this)">
+            <select id="selectCourier" class="form-control form-control-sm" style="display: block; width: 15%; background-color:rgba(0, 0, 0, 0.075); border:none; margin-top:0.3rem" onchange="selectCour(this)">
                 <option selected disabled>Select Courier</option>
                 <option value="jne">JNE</option>
                 <option value="pos">Pos Indonesia</option>
@@ -138,14 +145,14 @@
             <div class="col-xs-2 offset-xs-7">
                 Select Service
             </div>
-            <select id="selectService" onchange='selectServ()' disabled>
+            <select id="selectService" class="form-control form-control-sm" style="display: block; width: 15%; background-color:rgba(0, 0, 0, 0.075); border:none; margin-top:0.3rem" onchange='selectServ()' disabled>
             </select>
         </div>
         <div class="row">
             <div class="col-xs-2 offset-xs-7">
                 Delivery Cost
             </div>
-            <div id="deliveryCost" class="col-xs-3">
+            <div id="deliveryCost" class="col-xs-3" style="padding-left:0px">
                 <b>Rp -</b>
             </div>
         </div>
@@ -153,8 +160,13 @@
             <div class="col-xs-2 offset-xs-7">
                 Total
             </div>
-            <div id="total" class="col-xs-3">
+            <div id="total" class="col-xs-3" style="padding-left:0px">
                 <b>Rp {{$total}}</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 offset-xs-7">
+                <div id="erroralert"></div>
             </div>
         </div>
         <div class="row">
@@ -179,22 +191,58 @@
                 var service = document.getElementById('selectService').value;
                 var deliveryCost = $('#selectService').find('option:selected').attr('data-value');
                 console.log(deliveryCost);
+                if($('#products').is(':empty')) {
+                    var tableAppend = '<div id="bodyalert3" class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Pastikan Anda sudah memesan </div>';
+                    $('#erroralert2').append(tableAppend);
+                }
+                else{
+                    if(!($('#erroralert2').is(':empty'))) {
+                        document.getElementById("bodyalert3").remove();                        
+                    }
+                }
+                $('#successalert').slideDown(function() {
+                    setTimeout(function() {
+                        $('#successalert').slideUp();
+                    }, 4000);
+                });
                 $.ajax({
                     method: 'POST',
                     url: '/finalizeorder',
                     data: {address:address, service:service, deliveryCost:deliveryCost},
                     success: function(message) {
                         console.log(message.data);
-                        location.href = "/";
+//                        $('#successalert').slideDown(function() {
+//                            setTimeout(function() {
+//                                $('#successalert').slideUp();
+//                            }, 5000);
+//                        });
+//                        if(data.status == 'success') {
+//                            setInterval(function () {
+//                                alert("Hello");
+//                            }, 3000);
+//                            location.href('/');
+//                        }
+//                        if(confirm(data.data.message)) {
+//                            window.location = '/' + data.data.redirecturl;
+//                        }
                     }
                 });
             });
             $('#alamattrigger').click(function() {
                 var courier = document.getElementById('selectCourier').value;
                 var service = document.getElementById('selectService').value;
-                if(courier && service)
+                if(courier && service) {
+                    if( !($('#erroralert').is(':empty')) ) {
+                        document.getElementById("bodyalert2").remove();
+                    }
                     $('#alamatmodal').modal('show');
-                else alert('Isi kurir sama layanannya mas');
+                }
+                else {
+                    if( ($('#erroralert').is(':empty')) ) {
+                        var tableAppend = '<div id="bodyalert2" class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Mohon isi kurir dan layanan di atas </div>';
+                        $('#erroralert').append(tableAppend);
+                    }
+                }
             });
         });
         function selectCour(selector) {

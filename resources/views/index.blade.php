@@ -37,7 +37,7 @@
                 <div class="col-sm-10 offset-sm-1">
                     @foreach($ffotm as $f)
                         <div class="col-xs-4">
-                            <a data-baseid="{{$f->base_id}}" data-strapid="{{$f->strap_id}}" data-categoryid="{{$f->category_id}}" href="#ffotm" class="card" style="text-align:center" onclick="selectffotm(this)" data-toggle="modal">
+                            <a data-baseid="{{$f->base_id}}" data-basename="{{$f->base_name}}" data-basepic="{{$f->base_picture}}" data-strapid="{{$f->strap_id}}" data-strapname="{{$f->strap_name}}" data-strappic="{{$f->strap_picture}}" data-categoryid="{{$f->category_id}}" href="#ffotm" class="card" style="text-align:center" onclick="selectffotm(this)" data-toggle="modal">
                                 <img class="card-img-top img-fluid" style="position:absolute" src="{{$f->base_picture}}" alt="Card image cap">
                                 <img class="card-img-top img-fluid" style="z-index:10; position:relative" src="{{$f->strap_picture}}" alt="Card image cap">
                                 @if($f->tattoo_id)
@@ -132,6 +132,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
+                                <div id="outofstockalert"></div>
                                 <label for="size" class="form-control-label">Size</label>
                                 <select id="size" class="form-control" onchange="getffotmstock(this)">
                                     <option selected disabled>Size</option>
@@ -165,6 +166,7 @@
     </div>
 </div>
 
+<!--
 <div class="modal fade" id="bestseller" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -197,6 +199,7 @@
         </div>
     </div>
 </div>
+-->
 
 <div class="modal fade" id="addtocart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -208,17 +211,18 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-5">
-                            <img src="assets/img/custom/base/cblue.png" style="width:100%">
+                            <img id="basepic" src="" style="position:absolute; width:170%; margin-left:-80px">
+                            <img id="strappic" src="" style="z-index:10; position:relative; width:196%; margin-left:-80px">
                         </div>
                         <div class="col-xs-7">
                             <h5 style="margin-top:2rem"><b>Blue Havaianas</b></h5>
                             <ul>
-                                <li>Size: 9</li>
-                                <li>Base: Blue</li>
-                                <li>Strap: Black</li>
-                                <li>Acc: None</li>
+                                <li id="sizeModal">Size: 9</li>
+                                <li id="baseModal">Base: Blue</li>
+                                <li id="strapModal">Strap: Black</li>
+                                <li id="tattooModal">Tattoo: None</li>
                             </ul>
-                            <p>Quantity: 2</p>
+                            <p id="quantityModal">Quantity: 2</p>
                         </div>
                     </div>
                 </div>
@@ -271,8 +275,14 @@
                 url: '/base/' + baseID + '/strap/' + strapID + '/size/' + selector.value,
                 dataType: 'JSON',
                 success: function(message) {
+                    if( !($('#outofstockalert').is(':empty')) ) {
+                        document.getElementById("bodyalert").remove();
+                    }
                     if(message.data == 0) {
-                        console.log("Stok habis");
+//                        console.log("Stok habis");
+//                        alert("HABIS WOI");
+                        var tableAppend = '<div id="bodyalert" class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Mohon maaf, FreeFlop of the Month ukuran ' + selector.value + ' sedang habis</div>';
+                        $('#outofstockalert').append(tableAppend);
                     }
                     else {
                         document.getElementById("quantity").removeAttribute('disabled');
@@ -286,8 +296,12 @@
         function selectffotm(ffotm) {
             console.log("lala");
             document.getElementById("categoryID").value = ffotm.getAttribute("data-categoryid");
+            document.getElementById('baseID').dataset.name = ffotm.getAttribute("data-basename");
+            document.getElementById('strapID').dataset.name = ffotm.getAttribute("data-strapname");
             document.getElementById("baseID").value = ffotm.getAttribute("data-baseid");
             document.getElementById("strapID").value = ffotm.getAttribute("data-strapid");
+            document.getElementById("baseID").dataset.picture = ffotm.getAttribute("data-basepic");
+            document.getElementById("strapID").dataset.picture = ffotm.getAttribute("data-strappic");
         }
 
         $(document).ready(function() {
@@ -308,8 +322,17 @@
                     data : {size: size, categoryID: categoryID, baseID: baseID, strapID: strapID, quantity: quantity},
                     dataType: 'json',
                     success: function(message) {
-                        console.log("Added ^^");
+//                        console.log("Added ^^");
                         jQuery.noConflict();
+                        $('.modal').modal('toggle');
+                        $("#basepic").attr("src",document.getElementById('baseID').getAttribute('data-picture'));
+                        $("#strappic").attr("src",document.getElementById('strapID').getAttribute('data-picture'));
+                        document.getElementById("sizeModal").innerHTML = "Size : " + $('#size').val();
+                        document.getElementById("baseModal").innerHTML = "Base : " + document.getElementById('baseID').getAttribute('data-name');
+                        document.getElementById("strapModal").innerHTML = "Strap : " + document.getElementById('strapID').getAttribute('data-name');
+                        document.getElementById("tattooModal").innerHTML = "Tattoo : -";
+                        document.getElementById("quantityModal").innerHTML = "Quantity : " + document.getElementById('quantity').value;
+//                        $('#addtocart').modal('show');
                     }
                 });
             });
