@@ -146,6 +146,51 @@
         </div>
     </div>
 
+    <div class="modal fade" id="lihatPesanan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="EditModalTitle"><center><b>Detail Pesanan</b></center></h4>
+                </div>
+                <form method="POST" id="form-update-coupon">
+                    {{csrf_field()}}
+                    <div class="modal-body">
+                        <div class="row">
+                            <table cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Base</th>
+                                        <th>Strap</th>
+                                        <th>Tattoo</th>
+                                        <th>Qty</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="transactionDetailBody">
+                                    <tr>
+                                        <th>1</th>
+                                        <th>Pink</th>
+                                        <th>Ping</th>
+                                        <th>-</th>
+                                        <th>100</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-sm-10"></div>
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-primary" style="width:100%;" data-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div style="width:100%; overflow:hidden; padding:3rem 0 5rem 0">
         <div class="container">
             <div class="row">
@@ -154,7 +199,23 @@
                         <div class="card-block">
                             <h4 class="card-title"><b>Status Pesanan</b></h4>
                             <div class="card-text">                                
-                                <p>Tidak ada pesanan</p>
+                                
+                                <table id="transaksiTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead><tr><th>No.</th><th>Waktu</th><th>Pesanan</th><th>Jumlah</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        @php $count = 1; @endphp
+                                        <tr>
+                                            <td>@php echo $count++ @endphp</td>
+                                            <td>2017-06-27 01:42:11</td>
+                                            <td id="transactionDetailCell">
+                                                <button class="btn btn-outline-primary btn-sm" id="" data-toggle="modal" data-target="#lihatPesanan">lihat pesanan</button>
+                                            </td>
+                                            <td>267000</td>
+                                            <td class="text-info"><b>Menunggu konfirmasi admin</b><br></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
                             </div>
                         </div>
                     </div>
