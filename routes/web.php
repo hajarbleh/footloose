@@ -90,6 +90,10 @@ Route::group(['middleware' => ['admin']], function() {
             Route::post('/togglestatus/{id}', ['as' => 'togglestatus', 'uses' => 'CategoryController@toggleStatus']);
         });
 
+        Route::group(['prefix' => 'price', 'as' => 'price'], function() {
+            Route::post('/update', ['as' => 'update', 'uses' => 'PriceController@update']);
+        });
+
         Route::group(['prefix' => 'slider', 'as' => 'slider'], function() {
             Route::post('/add', ['as' => 'add', 'uses' => 'SliderController@store']);
             Route::post('/update/{id}', ['as' => 'update', 'uses' => 'SliderController@update']);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\WebDetail;
 use App\FAQ;
 use App\Category;
+use App\Price;
 use App\Transaction;
 use App\TransactionDetail;
 use App\Coupon;
@@ -31,6 +32,7 @@ class AdminController extends Controller
         $transactionDetail = TransactionDetail::get();
         $coupon = Coupon::get();
         $ffotm = FFoTM::get();
+        $price = Price::first();
         $base = Base::leftJoin('categories', 'categories.id', '=', 'bases.category_id')
             ->select('bases.*', 'categories.name as category')
             ->get();
@@ -43,6 +45,6 @@ class AdminController extends Controller
             ->select('tattoos.*', 'categories.name as category')
             ->get();
 
-        return view('admin',compact('webDetail','FAQ','category','transaction','slider','transactionDetail','coupon','ffotm','base','strap','tattoo', 'orders'));
+        return view('admin',compact('webDetail','FAQ','category','transaction','slider','transactionDetail','coupon','ffotm','base','strap','tattoo', 'orders', 'price'));
     }
 }

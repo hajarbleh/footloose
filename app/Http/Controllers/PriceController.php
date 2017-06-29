@@ -67,9 +67,12 @@ class PriceController extends Controller
      * @param  \App\Price  $price
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Price $price)
+    public function update(Request $request)
     {
-        //
+        $price = Price::first();
+        $price->price = $request->price;
+        $price->save();
+        return back();
     }
 
     /**
