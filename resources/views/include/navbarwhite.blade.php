@@ -38,10 +38,6 @@
 <div id="mobile-dropdown" class="hidden-lg-up">
     <div style="height:3.3rem; background-color:transparent; width:100%; margin-bottom:1rem"></div>
     <div class="container">
-        <a style="color:#fff" href="browse"><b>Flipflop of the Month</b></a><br>
-        <hr style="border-color:grey">
-        <a style="color:#fff" href="browse"><b>View All Products</b></a><br>
-        <hr style="border-color:grey">
         <a style="color:#fff" href="makeyourown"><b>Make Your Own</b></a><br>
         <hr style="border-color:grey">
         <a style="color:#fff" href="user"><b>My Account</b></a>

@@ -39,10 +39,6 @@
     <div style="height:3.3rem; background-color:#fff; width:100%; margin-bottom:1rem">
     </div>
     <div class="container">
-        <a style="color:#fff" href="{{url('/browse')}}"><b>Flipflop of the Month</b></a><br>
-        <hr style="border-color:grey">
-        <a style="color:#fff" href="{{url('/browse')}}"><b>View All Products</b></a><br>
-        <hr style="border-color:grey">
         <a style="color:#fff" href="{{url('/mskeyourown')}}"><b>Make Your Own</b></a><br>
         <hr style="border-color:grey">
         <a style="color:#fff" href="{{url('/myprofile')}}"><b>My Account</b></a>
