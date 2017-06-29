@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Dvlpp\Merx\Models\Order;
 use GuzzleHttp\Client;
 use Hash;
 
 class UserController extends Controller
 {
     public function show(){
+        $orders = Order::where('client_id', '=', Auth::user()->id)
+            ->leftJoin('users', 'merx_orders.client_id', '=', 'users.id')
+            ->select('merx_orders.*', 'users.name as user_name', 'users.phone as user_phone', 'users.email as user_email')
+            ->get();
         $client = new Client();
         $province = $client->request('GET', 'http://api.rajaongkir.com/starter/province', [
             'headers' => [
@@ -20,7 +25,7 @@ class UserController extends Controller
         $responseBody = json_decode($province->getBody()->getContents(), true);
         $provinces = $responseBody['rajaongkir']['results'];
         
-        return view('myprofile', compact('provinces'));
+        return view('myprofile', compact('provinces', 'orders'));
     }
     
     public function store(Request $request) {

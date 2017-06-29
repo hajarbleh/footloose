@@ -91,12 +91,6 @@ class TransactionController extends Controller
     public function detail($id)
     {
         $cartItems = Order::find($id)->cart->items;
-        $transactionDetail = TransactionDetail::where('transaction_id', '=', $id)
-                            ->leftJoin('bases', 'transaction_details.base_id', '=', 'bases.id')
-                            ->leftJoin('straps', 'transaction_details.strap_id', '=', 'straps.id')
-                            ->leftJoin('tattoos', 'transaction_details.tattoo_id', '=', 'tattoos.id')
-                            ->select('bases.name as base_name', 'straps.name as strap_name', 'tattoos.name as tattoo_name', 'transaction_details.quantity')
-                            ->get();
         return response()->json([
            'success' => true,
            'data' => $cartItems

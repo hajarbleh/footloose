@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/getcity/{id}', ['as' => 'getcity', 'uses' => 'HomeController@getCity']);
 
+    Route::get('/user/transaction/detail/{id}', ['as' => 'gettransactiondetail', 'uses' => 'TransactionController@detail']);
+
     Route::post('/finalizeorder', ['as' => 'finalizeorder', 'uses' => 'HomeController@finalizeOrder']);
 
     Route::get('/browse', function () {

@@ -152,41 +152,38 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="EditModalTitle"><center><b>Detail Pesanan</b></center></h4>
                 </div>
-                <form method="POST" id="form-update-coupon">
-                    {{csrf_field()}}
-                    <div class="modal-body">
-                        <div class="row">
-                            <table cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Base</th>
-                                        <th>Strap</th>
-                                        <th>Tattoo</th>
-                                        <th>Qty</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="transactionDetailBody">
-                                    <tr>
-                                        <th>1</th>
-                                        <th>Pink</th>
-                                        <th>Ping</th>
-                                        <th>-</th>
-                                        <th>100</th>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <div class="modal-body">
+                    <div class="row">
+                        <table cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Base</th>
+                                    <th>Strap</th>
+                                    <th>Tattoo</th>
+                                    <th>Qty</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionDetailBody">
+                                <tr>
+                                    <th>1</th>
+                                    <th>Pink</th>
+                                    <th>Ping</th>
+                                    <th>-</th>
+                                    <th>100</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-10"></div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary" style="width:100%;" data-dismiss="modal">OK</button>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <div class="row">
-                            <div class="col-sm-10"></div>
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-primary" style="width:100%;" data-dismiss="modal">OK</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -201,18 +198,25 @@
                             <div class="card-text">                                
                                 
                                 <table id="transaksiTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                    <thead><tr><th>No.</th><th>Waktu</th><th>Pesanan</th><th>Jumlah</th><th>Status</th></tr></thead>
+                                    <thead><tr><th>No.</th><th>Waktu</th><th>Pesanan</th><th>Jumlah</th><th>Courier Service</th><th>Status</th></tr></thead>
                                     <tbody>
                                         @php $count = 1; @endphp
+                                        @foreach($orders as $order)
                                         <tr>
                                             <td>@php echo $count++ @endphp</td>
-                                            <td>2017-06-27 01:42:11</td>
+                                            <td>{{$order->created_at}}</td>
                                             <td id="transactionDetailCell">
-                                                <button class="btn btn-outline-primary btn-sm" id="" data-toggle="modal" data-target="#lihatPesanan">lihat pesanan</button>
+                                                <button class="btn btn-outline-primary btn-sm" id="{{$order->id}}" data-toggle="modal" onclick="seedetails(this)" data-target="#lihatPesanan">lihat pesanan</button>
                                             </td>
-                                            <td>267000</td>
+                                            <td>{{$order->custom_attributes['total'] + $order->custom_attributes['delivery_cost']}}</td>
+                                            <td>{{$order->custom_attributes['service']}}</td>
+                                            @if($order->state == "completed")
                                             <td class="text-info"><b>Menunggu konfirmasi admin</b><br></td>
+                                            @else
+                                            <td class="text-info"><b>{{$order->state}}</b><br></td>
+                                            @endif
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 
@@ -311,6 +315,27 @@
             });
         });
         
+        function seedetails(order) {
+            $.ajax({
+                type: 'GET',
+                url: '/user/transaction/detail/' + order.id,
+                dataType: 'JSON',
+                success: function(message) {
+                    console.log(message.data);
+                    document.getElementById('transactionDetailBody').innerHTML = '';
+                    var tableAppend = '';
+                    for(var i = 0; i < message.data.length; i++) {
+                        tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i].name + '</td><td>' + message.data[i]['custom_attributes']['strap_name'] + '</td><td>';
+                        tableAppend += '-';
+                        tableAppend += '</td><td>' + message.data[i].quantity + '</td></tr>';
+                    }
+                    $('#transactionDetailBody').append(tableAppend);
+                },
+                error: function(xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
         function selectProv(opt) {
             var provinceID = $('option:selected', opt).attr('name');
             $.ajax({
