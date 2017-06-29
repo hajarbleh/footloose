@@ -22,7 +22,7 @@
                 <div class="modal-body">
                     <form class="row">
                         <div class="col-sm-12">
-                            <div id="erroralert2"></div>
+                            <center><div id="erroralert2"></div></center>
                         </div>
                         <div id="successalert" class="alert alert-warning" style="padding-bottom:0px; display:none">
                             <center><p><i>Pesanan Berhasil Kami Terima, Terima kasih.</i></p></center>
@@ -120,7 +120,7 @@
                 <div class="col-xs-1">
                     <form action="/cart/remove/{{$c->id}}" method="POST">
                         {{csrf_field()}}
-                        <button type="submit" style="outline:none; border-color:transparent; background-color:transparent"><i class="fa fa-times fa-lg"></i></a>
+                        <button type="submit" style="outline:none; border-color:transparent; background-color:transparent"><i class="fa fa-times fa-lg"></i></button>
                     </form>
                 </div>
             </div>
@@ -191,47 +191,34 @@
                 var service = document.getElementById('selectService').value;
                 var deliveryCost = $('#selectService').find('option:selected').attr('data-value');
                 console.log(deliveryCost);
-                if($('#products').is(':empty')) {
-                    var tableAppend = '<div id="bodyalert3" class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Pastikan Anda sudah memesan </div>';
-                    $('#erroralert2').append(tableAppend);
-                }
-                else{
-                    if(!($('#erroralert2').is(':empty'))) {
-                        document.getElementById("bodyalert3").remove();                        
-                    }
-                }
-                $('#successalert').slideDown(function() {
-                    setTimeout(function() {
-                        $('#successalert').slideUp();
-                    }, 4000);
-                });
+                var $erroralert2 = $('#erroralert2');
                 $.ajax({
                     method: 'POST',
                     url: '/finalizeorder',
                     data: {address:address, service:service, deliveryCost:deliveryCost},
-                    success: function(message) {
-                        console.log("bagus");
-                        console.log(message.data);
-//                        $('#successalert').slideDown(function() {
-//                            setTimeout(function() {
-//                                $('#successalert').slideUp();
-//                            }, 5000);
-//                        });
-//                        if(data.status == 'success') {
-//                            setInterval(function () {
-//                                alert("Hello");
-//                            }, 3000);
-//                            location.href('/');
-//                        }
-//                        if(confirm(data.data.message)) {
-//                            window.location = '/' + data.data.redirecturl;
-//                        }
+                    success: function(){
+                        success();
                     },
                     error: function(message) {
-                        console.log("jelek");
                         console.log(message.responseJSON.error);
+                        cartkosong();
                     }
                 });
+                function success() {
+                    $('#successalert').slideDown(function() {
+                        setTimeout(function() {
+                            $('#successalert').slideUp();
+                        }, 3000);
+                    });
+                    e.preventDefault();
+                    setTimeout(function () {
+                        window.location.href = "/checkout";
+                    }, 4000); 
+                }
+                function cartkosong() {
+                     var tableAppend = '<div id="bodyalert3" class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Pastikan Anda sudah memesan.</div>';
+                    $('#erroralert2').append(tableAppend);
+                }
             });
             $('#alamattrigger').click(function() {
                 var courier = document.getElementById('selectCourier').value;

@@ -19,7 +19,8 @@ class UserDataComplete
         if(	Auth::user()->isComplete() )
             return $next($request);
         else {
-            return redirect()->route('myprofile');
+            return redirect()->route('myprofile')
+                             ->with('msg', 'Lengkapi data Anda.');
         }
     }
 }
