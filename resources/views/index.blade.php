@@ -215,7 +215,7 @@
                             <img id="strappic" src="" style="z-index:10; position:relative; width:196%; margin-left:-80px">
                         </div>
                         <div class="col-xs-7">
-                            <h5 style="margin-top:2rem"><b>Blue Havaianas</b></h5>
+                            <b><h5 id="flopname" style="margin-top:2rem">Blue Havaianas</h5></b>
                             <ul>
                                 <li id="sizeModal">Size: 9</li>
                                 <li id="baseModal">Base: Blue</li>
@@ -327,6 +327,7 @@
                         $('.modal').modal('toggle');
                         $("#basepic").attr("src",document.getElementById('baseID').getAttribute('data-picture'));
                         $("#strappic").attr("src",document.getElementById('strapID').getAttribute('data-picture'));
+                        document.getElementById("flopname").innerHTML = document.getElementById('baseID').getAttribute('data-name') + " with " + document.getElementById('strapID').getAttribute('data-name');
                         document.getElementById("sizeModal").innerHTML = "Size : " + $('#size').val();
                         document.getElementById("baseModal").innerHTML = "Base : " + document.getElementById('baseID').getAttribute('data-name');
                         document.getElementById("strapModal").innerHTML = "Strap : " + document.getElementById('strapID').getAttribute('data-name');

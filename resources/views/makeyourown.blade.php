@@ -39,10 +39,11 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-5">
-                                <img src="assets/img/custom/base/cblue.png" style="width:100%;">
+                                <img id="basepic" src="" style="position:absolute; width:170%; margin-left:-80px">
+                                <img id="strappic" src="" style="z-index:10; position:relative; width:196%; margin-left:-80px">
                             </div>
                             <div class="col-xs-7">
-                                <h5 style="margin-top:2rem"><b>Blue Havaianas</b></h5>
+                                <b><h5 id="flopname" style="margin-top:2rem">Blue Havaianas</h5></b>
                                 <ul>
                                     <li id="sizeModal">Size: 9</li>
                                     <li id="baseModal">Base: Blue</li>
@@ -223,7 +224,7 @@
                     var appendOption =  "";
                     if(message.data.length) {
                         for(var i = 0; i < message.data.length; i++) {
-                            appendOption += "<span><input type='radio' data-stock='" + message.data[i].stock + "' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' id='" + message.data[i].id + "' name='basecol' onclick='selectBase(this)'/><label for='" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
+                            appendOption += "<span><input type='radio' data-stock='" + message.data[i].stock + "' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' value='" + message.data[i].id + "' id='base" + message.data[i].id + "' name='basecol' onclick='selectBase(this)'/><label for='base" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
                         }
                     }
                     else {
@@ -247,6 +248,7 @@
             var selectedName = base.getAttribute('data-name');
             var selectedID = base.id;
             document.getElementsByName("basecol")[0].dataset.name = selectedName;
+            document.getElementsByName("basecol")[0].dataset.picture = base.getAttribute('data-picture');
             $.ajax({
                 type: 'GET',
                 url: '/strap/category/' + categoryID + '/size/' + size,
@@ -257,7 +259,7 @@
                     var appendOption =  "";
                     if(message.data.length) {
                         for(var i = 0; i < message.data.length; i++) {
-                            appendOption += "<span><input type='radio' data-stock='" + message.data[i].stock + "' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' data-id='" + message.data[i].id + "' id='strap" + message.data[i].id + "' name='strapcol' onclick='selectStrap(this)'/><label for='strap" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
+                            appendOption += "<span><input type='radio' data-stock='" + message.data[i].stock + "' data-picture='" + message.data[i].picture + "' data-name='" + message.data[i].name + "' value='" + message.data[i].id + "' id='strap" + message.data[i].id + "' name='strapcol' onclick='selectStrap(this)'/><label for='strap" + message.data[i].id + "'><span style='background-color:" + message.data[i].color + "'></span></label></span>"
                         }
                     }
                     else {
@@ -279,6 +281,7 @@
             strapPreview.src= strap.getAttribute('data-picture');
             var selectedName = strap.getAttribute('data-name');
             document.getElementsByName("strapcol")[0].dataset.name = selectedName;
+            document.getElementsByName("strapcol")[0].dataset.picture = strap.getAttribute('data-picture');
             var nextStrap = document.getElementById("nextStrap");
             nextStrap.href="#carousel-example-generic";
         }
@@ -292,20 +295,24 @@
 
                 var size = $('#listSize').val();
                 var categoryID = document.getElementById('listCategory').value;
-                var baseID = document.getElementsByName('basecol')[0].id;
-                var strapID = document.getElementsByName('strapcol')[0].getAttribute('data-id');
+                var baseID = $("input[name='basecol']:checked").val();
+                var strapID = $("input[name='strapcol']:checked").val();
                 var quantity = document.getElementById('qty').value;
+                console.log(size + " " + categoryID + " " + baseID + " " + strapID + " " + quantity);
                 $.ajax({
                     type: 'POST',
                     url: '/addtocart',
                     data : {size: size, categoryID: categoryID, baseID: baseID, strapID: strapID, quantity: quantity},
                     dataType: 'json',
                     success: function(message) {
+                        document.getElementById("flopname").innerHTML = document.getElementsByName('basecol')[0].getAttribute('data-name') + " with " + document.getElementsByName('strapcol')[0].getAttribute('data-name');
                         document.getElementById("sizeModal").innerHTML = "Size : " + $('#listSize').val();
                         document.getElementById("baseModal").innerHTML = "Base : " + document.getElementsByName('basecol')[0].getAttribute('data-name');
                         document.getElementById("strapModal").innerHTML = "Strap : " + document.getElementsByName('strapcol')[0].getAttribute('data-name');
                         document.getElementById("tattooModal").innerHTML = "Tattoo : -";
                         document.getElementById("quantityModal").innerHTML = "Quantity : " + document.getElementById('qty').value;
+                        $("#basepic").attr("src",document.getElementsByName('basecol')[0].getAttribute('data-picture'));
+                        $("#strappic").attr("src",document.getElementsByName('strapcol')[0].getAttribute('data-picture'));
                         jQuery.noConflict();
                         $('#modal').modal('show');
                     }
