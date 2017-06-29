@@ -95,6 +95,7 @@
         });
         $('#sectionTitle').html(sectionTitle[currentSection]);
         $('.collape-trigger').click(function(){
+            jQuery.noConflict();
             $(this).parent().children('.collapse').collapse('toggle');
         });
         

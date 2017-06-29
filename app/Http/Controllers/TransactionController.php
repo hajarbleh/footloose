@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use App\TransactionDetail;
+use Dvlpp\Merx\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -89,6 +90,7 @@ class TransactionController extends Controller
 
     public function detail($id)
     {
+        $cartItems = Order::find($id)->cart->items;
         $transactionDetail = TransactionDetail::where('transaction_id', '=', $id)
                             ->leftJoin('bases', 'transaction_details.base_id', '=', 'bases.id')
                             ->leftJoin('straps', 'transaction_details.strap_id', '=', 'straps.id')
@@ -97,15 +99,15 @@ class TransactionController extends Controller
                             ->get();
         return response()->json([
            'success' => true,
-           'data' => $transactionDetail,
+           'data' => $cartItems
         ]);
     }
 
     public function changestatus(Request $request, $id)
     {
-        $transaction = Transaction::findOrFail($id);
-        $transaction->transaction_status = $request->status;
-        $transaction->save();
+        $Order = Order::findOrFail($id);
+        $Order->state = $request->status;
+        $Order->save();
         return back();
     }
 }

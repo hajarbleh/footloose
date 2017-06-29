@@ -1,32 +1,34 @@
 @if($transaction->count())
 <table id="transaksiTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-    <thead><tr><th>No.</th><th>Waktu</th><th>Pembeli</th><th>Pesanan</th><th>Jumlah</th><th>Status</th><th style="min-width:11.5rem">Action</th></tr></thead>
+    <thead><tr><th>No.</th><th>Waktu</th><th>Pembeli</th><th>Pesanan</th><th>Jumlah</th><th>Courier Service</th><th>Status</th><th style="min-width:11.5rem">Action</th></tr></thead>
     <tbody>
         @php $count = 1; @endphp
-        @foreach($transaction as $t)
+        @foreach($orders as $order)
         <tr>
             <td>@php echo $count++ @endphp</td>
-            <td>{{$t->timestamp}}</td>
+            <td>{{$order->created_at}}</td>
             <td>
-                {{$t->name}}<br>
-                ({{$t->email}})<br>
-                ({{$t->phone}})<br>
+                {{$order->user_name}}<br>
+                ({{$order->user_email}})<br>
+                ({{$order->user_phone}})<br>
                 <button class="btn btn-sm collape-trigger" data-toggle="collapse" style="margin-top:0.3rem; padding-top:0; padding-bottom:0"><small>lihat alamat</small></button>
                 <div class="collapse">
-                    <div style="margin-top:0.3rem">{{$t->address}}</div>
-                    <hr style="margin:0.3rem 0">
-                    <b>Kota: {{$t->city}}, Prov: {{$t->state}}, Kodepos: {{$t->postal_code}}</b>
+                    <div style="margin-top:0.3rem">{{$order->custom_attributes['address']}}</div>
                 </div>
-
             </td>
             <td id="transactionDetailCell">
-                <button class="btn btn-outline-primary btn-sm" id="{{$t->id}}" data-toggle="modal" data-target="#lihatPesanan">lihat pesanan</button>
+                <button class="btn btn-outline-primary btn-sm" id="{{$order->id}}" data-toggle="modal" data-target="#lihatPesanan">lihat pesanan</button>
             </td>
-            <td>{{$t->total}}</td>
-            <td class="text-info"><b>{{$t->transaction_status}}</b><br></td>
+            <td>Rp. {{$order->custom_attributes['total'] + $order->custom_attributes['delivery_cost']}}</td>
+            <td>{{$order->custom_attributes['service']}}</td>
+            @if($order->state == 'completed')
+            <td class="text-info"><b>Menunggu konfirmasi admin</b><br></td>
+            @else
+            <td class="text-info"><b>{{$order->state}}</b><br></td>
+            @endif
             <td>
                 <span class="dropdown">
-                    <form action="/admin/transaction/changestatus/{{$t->id}}" method="POST">
+                    <form action="/admin/transaction/changestatus/{{$order->id}}" method="POST">
                         {{csrf_field()}}
                         <select class="btn btn-sm dropdown-toggle transaksi" name="status" id="dropdownMenuButton" onchange="this.form.submit()">
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -34,7 +36,7 @@
                                 <option class="dropdown-item" value="Pembayaran Diterima">Pembayaran Diterima</option>
                                 <option class="dropdown-item" value="Barang Dikirim">Barang Dikirim</option>
                                 <option class="dropdown-item" value="Transaksi Dibatalkan">Transaksi Dibatalkan</option>
-                                <option class="dropdown-item" value="Transaksi Selesain">Transaksi Selesain</option>
+                                <option class="dropdown-item" value="Transaksi Selesai">Transaksi Selesai</option>
                             </div>
                         </select>
                     </form>

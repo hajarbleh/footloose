@@ -13,12 +13,16 @@ use App\FFoTM;
 use App\Base;
 use App\Strap;
 use App\Tattoo;
+use Dvlpp\Merx\Models\Order;
 use App\Slider;
 
 class AdminController extends Controller
 {
     public function index()
     {
+        $orders = Order::leftJoin('users', 'merx_orders.client_id', '=', 'users.id')
+            ->select('merx_orders.*', 'users.name as user_name', 'users.phone as user_phone', 'users.email as user_email')
+            ->get();
         $webDetail = WebDetail::first();
         $FAQ = FAQ::first();
         $category = Category::get();
@@ -39,7 +43,6 @@ class AdminController extends Controller
             ->select('tattoos.*', 'categories.name as category')
             ->get();
 
-        return view('admin',compact('webDetail','FAQ','category','transaction','slider','transactionDetail','coupon','ffotm','base','strap','tattoo'));
+        return view('admin',compact('webDetail','FAQ','category','transaction','slider','transactionDetail','coupon','ffotm','base','strap','tattoo', 'orders'));
     }
-
 }

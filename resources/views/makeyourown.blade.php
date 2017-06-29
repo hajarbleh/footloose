@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <div style="width:100%; min-height:20rem; overflow:hidden; color:#fff; background-color:#ff6d6d; padding:4rem 0 2rem 0">
+    <div style="width:100%; min-height:20rem; overflow:hidden; color:#fff; background-color:#94d6de; padding:4rem 0 2rem 0">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 offset-md-2">
@@ -318,7 +318,7 @@
                     }
                 });
             });
-            $('nav').css('background','#ff6d6d');
+            $('nav').css('background','#94d6de');
 
         });
     </script>

@@ -1,20 +1,3 @@
-<!--
-<a href="#!" class="btn btn-primary btn-bg" style="margin-bottom:1rem">+ Tambahkan Kategori</a>
-<div class="card kategori">
-        <h4>Category 1</h4>
-        <div class="card kategori">
-                <b>Subcategory 1.1</b>
-        </div>
-        <div class="card kategori">
-                <b>Subcategory 1.2</b>
-        </div>
-</div>
-<div class="card kategori">
-        <h4>Category 2</h4>
-</div>
--->
-
-
 @if($category->count())
 <table id="categoryTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead><tr><th>Nama Kategori</th><th>Status</th><th>Action</th></tr></thead>
@@ -128,11 +111,8 @@
                             document.getElementById('transactionDetailBody').innerHTML = '';
                             var tableAppend = '';
                             for(var i = 0; i < message.data.length; i++) {
-                                tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i].base_name + '</td><td>' + message.data[i].strap_name + '</td><td>';
-                                if(message.data[i].tattoo_name != null)
-                                    tableAppend += message.data[i].tattoo_name;
-                                else
-                                    tableAppend += '-';
+                                tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i].name + '</td><td>' + message.data[i]['custom_attributes']['strap_name'] + '</td><td>';
+                                tableAppend += '-';
                                 tableAppend += '</td><td>' + message.data[i].quantity + '</td></tr>';
                             }
                             $('#transactionDetailBody').append(tableAppend);

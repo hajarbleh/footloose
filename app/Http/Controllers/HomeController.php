@@ -11,6 +11,7 @@ use App\Base;
 use App\Strap;
 use GuzzleHttp\Client;
 use Dvlpp\Merx\Facade\Merx;
+use Dvlpp\Merx\Models\Order;
 use App\Price;
 
 class HomeController extends Controller
@@ -189,7 +190,8 @@ class HomeController extends Controller
             Merx::order()->setMultipleCustomAttributes([
                     "address" => $request->address,
                     "service" => $request->service,
-                    "delivery_cost" => $request->deliveryCost
+                    "delivery_cost" => $request->deliveryCost,
+                    "total" => Merx::cart()->total()
                 ]);
             Merx::completeOrder();
             return response()->json([

@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/getcity/{id}', ['as' => 'getcity', 'uses' => 'HomeController@getCity']);
 
+    Route::post('/finalizeorder', ['as' => 'finalizeorder', 'uses' => 'HomeController@finalizeOrder']);
 
     Route::get('/browse', function () {
         return view('browse');
@@ -46,7 +47,6 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/checkout', ['as' => 'checkout', 'uses' => 'HomeController@checkout'])->middleware('UserDataComplete');
 });
-    Route::post('/finalizeorder', ['as' => 'finalizeorder', 'uses' => 'HomeController@finalizeOrder']);
 
 Route::get('/makeyourown', ['as' => 'makeyourown', 'uses' => 'HomeController@makeyourown']);
 
