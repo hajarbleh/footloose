@@ -302,6 +302,7 @@
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('#transaksiTable').DataTable();
             jQuery.noConflict();
             $('#profiltrigger').click(function() {
                 $('#profilmodal').modal();
@@ -312,7 +313,6 @@
             $('#passwordtrigger').click(function() {
                 $('#passwordmodal').modal();
             });
-            $('#transaksiTable').DataTable();
         });
         
         function seedetails(order) {
