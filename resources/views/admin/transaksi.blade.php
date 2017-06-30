@@ -1,5 +1,5 @@
 @if($transaction->count())
-<table id="transaksiTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table id="transaksiTable" class="table table-striped table-bordered display" cellspacing="0" width="100%">
     <thead><tr><th>No.</th><th>Waktu</th><th>Pembeli</th><th>Pesanan</th><th>Jumlah</th><th>Courier Service</th><th>Status</th><th style="min-width:11.5rem">Action</th></tr></thead>
     <tbody>
         @php $count = 1; @endphp
@@ -64,6 +64,7 @@
                                     <th>Base</th>
                                     <th>Strap</th>
                                     <th>Tattoo</th>
+                                    <th>Category</th>
                                     <th>Qty</th>
                                 </tr>
                             </thead>

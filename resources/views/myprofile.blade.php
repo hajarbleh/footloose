@@ -161,16 +161,13 @@
                                     <th>Base</th>
                                     <th>Strap</th>
                                     <th>Tattoo</th>
+                                    <th>Category</th>
                                     <th>Qty</th>
                                 </tr>
                             </thead>
                             <tbody id="transactionDetailBody">
                                 <tr>
-                                    <th>1</th>
-                                    <th>Pink</th>
-                                    <th>Ping</th>
-                                    <th>-</th>
-                                    <th>100</th>
+                                    
                                 </tr>
                             </tbody>
                         </table>
@@ -196,8 +193,8 @@
                         <div class="card-block">
                             <h4 class="card-title"><b>Status Pesanan</b></h4>
                             <div class="card-text">                                
-                                
-                                <table id="transaksiTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                <div class="table-responsive">
+                                <table id="transaksiTable" class="table table-striped table-bordered display" cellspacing="0" width="100%">
                                     <thead><tr><th>No.</th><th>Waktu</th><th>Pesanan</th><th>Jumlah</th><th>Courier Service</th><th>Status</th></tr></thead>
                                     <tbody>
                                         @php $count = 1; @endphp
@@ -219,7 +216,6 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                
                             </div>
                         </div>
                     </div>
@@ -301,6 +297,9 @@
 @endsection
 
 @section('pagescript')
+    <script src="assets/js/ckeditor.js"></script>
+    <script src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
             jQuery.noConflict();
@@ -313,6 +312,7 @@
             $('#passwordtrigger').click(function() {
                 $('#passwordmodal').modal();
             });
+            $('#transaksiTable').DataTable();
         });
         
         function seedetails(order) {
@@ -327,6 +327,7 @@
                     for(var i = 0; i < message.data.length; i++) {
                         tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i].name + '</td><td>' + message.data[i]['custom_attributes']['strap_name'] + '</td><td>';
                         tableAppend += '-';
+                        tableAppend += '</td><td>' + message.data[i]['custom_attributes']['category_name'] + '</td></td>';
                         tableAppend += '</td><td>' + message.data[i].quantity + '</td></tr>';
                     }
                     $('#transactionDetailBody').append(tableAppend);

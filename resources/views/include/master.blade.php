@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/font-awesome.min.css">
         <link rel="stylesheet" href="assets/css/havaianas.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css">
         @yield('pagecss')
         <script src="assets/js/jquery-3.1.1.min.js"></script>
         <script src="assets/js/tether.min.js"></script>

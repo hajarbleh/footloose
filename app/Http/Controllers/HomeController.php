@@ -26,7 +26,8 @@ class HomeController extends Controller
         $ffotm = FFoTM::leftJoin('bases', 'bases.id', '=', 'ffotms.base_id')
             ->leftJoin('straps', 'straps.id', '=', 'ffotms.strap_id')
             ->leftJoin('tattoos', 'tattoos.id', '=', 'ffotms.tattoo_id')
-            ->select('ffotms.*', 'bases.name as base_name', 'bases.picture as base_picture', 'straps.picture as strap_picture', 'tattoos.picture as tattoo_picture', 'straps.name as strap_name','tattoos.name as tattoo_name')
+            ->leftJoin('categories', 'categories.id', '=', 'ffotms.category_id')
+            ->select('ffotms.*', 'categories.name as category_name','bases.name as base_name', 'bases.picture as base_picture', 'straps.picture as strap_picture', 'tattoos.picture as tattoo_picture', 'straps.name as strap_name','tattoos.name as tattoo_name')
             ->get();
         return view('index', compact('slider','bestSeller','ffotm'));
     }

@@ -45,10 +45,11 @@
                                 @endif
                                 <div class="card-block">
                                     @if(!($f->tattoo_id))
-                                    <p style="line-height:1.2rem; margin-bottom:0.5rem">{{$f->base_name}} with {{$f->strap_name}}</p>
+                                    <p style="line-height:1.2rem; margin-bottom:0.5rem"><b>{{$f->base_name}} with {{$f->strap_name}}</b></p>
                                     @else
-                                    <p style="line-height:1.2rem; margin-bottom:0.5rem">{{$f->base_name}} with {{$f->strap_name}} and {{$f->tattoo_name}}</p>
+                                    <p style="line-height:1.2rem; margin-bottom:0.5rem"><b>{{$f->base_name}} with {{$f->strap_name}} and {{$f->tattoo_name}}</b></p>
                                     @endif
+                                    <p style="line-height:1.2rem; margin-bottom:0.5rem">{{$f->category_name}}</p>
                                     <h5><b>Rp {{$price->price}}</b></h5>
                                 </div>
                             </a>
