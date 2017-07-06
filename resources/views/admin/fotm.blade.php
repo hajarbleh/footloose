@@ -22,7 +22,11 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             @if($category->count())
                                 @foreach($category as $c)
-                                    <option class="dropdown-item" value="{{$c->id}}">{{$c->name}}</option>
+                                    @if($c->id == $john->category_id)
+                                        <option class="dropdown-item" value="{{$c->id}}" selected>{{$c->name}}</option>
+                                    @else
+                                        <option class="dropdown-item" value="{{$c->id}}">{{$c->name}}</option>
+                                    @endif
                                 @endforeach
                             @endif
                         </div>

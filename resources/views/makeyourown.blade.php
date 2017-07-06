@@ -202,7 +202,7 @@
             $('#listSize').removeAttr('disabled');
             $("#listSize").empty();
             var appendOption = "";
-            for(var i = 35; i < 41; i++) {
+            for(var i = 36; i < 41; i++) {
                 appendOption += "<option value=" + i + ">" + i + "</option>";
             }
             $('#listSize').append(appendOption);

@@ -15,7 +15,7 @@
                     @foreach($slider as $s)
                     <div class="carousel-item {{$loop->first ? 'active' : ''}}">
                         <a href="{{$s->link}}"><div class="slider-helper" style="height:100vh"></div></a>
-                        <div class="slider-bg" style="background:url({{$s->photo}}) no-repeat center center; background-size: 100%;">
+                        <div class="slider-bg" style="background:url({{$s->photo}}) no-repeat center center; background-size: cover;">
                             <div style="position:absolute; height:100%; width:100%; display:table;">
                                 <b><p style="margin-top:100px; vertical-align:middle; text-align:center; font-size:80px">{{$s->title}}</p></b>
                             </div>

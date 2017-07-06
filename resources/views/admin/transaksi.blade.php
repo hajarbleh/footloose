@@ -65,6 +65,7 @@
                                     <th>Strap</th>
                                     <th>Tattoo</th>
                                     <th>Category</th>
+                                    <th>Size</th>
                                     <th>Qty</th>
                                 </tr>
                             </thead>

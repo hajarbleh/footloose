@@ -114,6 +114,7 @@
                                 tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i].name + '</td><td>' + message.data[i]['custom_attributes']['strap_name'] + '</td><td>';
                                 tableAppend += '-';
                                 tableAppend += '</td><td>' + message.data[i]['custom_attributes']['category_name'] + '</td></td>';
+                                tableAppend += '</td><td>' + message.data[i]['custom_attributes']['size'] + '</td></td>';
                                 tableAppend += '</td><td>' + message.data[i].quantity + '</td></tr>';
                             }
                             $('#transactionDetailBody').append(tableAppend);
