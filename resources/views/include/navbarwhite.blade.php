@@ -7,7 +7,7 @@
         <div class="collapse navbar-toggleable-md" id="navbarResponsive">
             <ul class="nav navbar-nav float-sm-right">
                 <li class="nav-item">
-                    <a class="nav-link" href="makeyourown"><b>Make Your Own</b></a>
+                    <a class="nav-link" href="{{url('/makeyourown')}}"><b>Make Your Own</b></a>
                 </li>
                 @if(Auth::check())
                     <li class="nav-item dropdown">
@@ -15,7 +15,7 @@
                         <div class="dropdown-menu" aria-labelledby="nav-2">
                             <a class="dropdown-item" href="{{url('/myprofile')}}">Profile</a>
                             <hr style="margin:0.5rem 0 0.5rem 0">
-                             <form action="/logout" method="POST">
+                            <form action="/logout" method="POST">
                                 {{csrf_field()}}
                                 <button type="submit" class="dropdown-item">Logout</a>
                             </form>
@@ -40,7 +40,14 @@
     <div class="container">
         <a style="color:#fff" href="makeyourown"><b>Make Your Own</b></a><br>
         <hr style="border-color:grey">
-        <a style="color:#fff" href="user"><b>My Account</b></a>
+        <a style="color:#fff" href="myprofile"><b>My Account</b></a>
+        @if(Auth::check())
+            <hr style="border-color:grey">
+            <form action="/logout" method="POST">
+                {{csrf_field()}}
+                <button id="keluar" style="color:#fff" type="submit" class="dropdown-item">Logout</button>
+            </form>
+        @endif
         <hr style="border-color:grey">
         <a style="color:#fff" href="checkout"><b>Checkout</b></a>
     </div>
@@ -54,3 +61,11 @@
             });
         });
 </script>
+
+<style>
+    #keluar:hover{
+        text-decoration: underline;
+        background-color: transparent;
+        border: none;
+    }
+</style>

@@ -39,9 +39,16 @@
     <div style="height:3.3rem; background-color:#fff; width:100%; margin-bottom:1rem">
     </div>
     <div class="container">
-        <a style="color:#fff" href="{{url('/mskeyourown')}}"><b>Make Your Own</b></a><br>
+        <a style="color:#fff" href="{{url('/makeyourown')}}"><b>Make Your Own</b></a><br>
         <hr style="border-color:grey">
         <a style="color:#fff" href="{{url('/myprofile')}}"><b>My Account</b></a>
+        @if(Auth::check())
+            <hr style="border-color:grey">
+            <form action="/logout" method="POST">
+                {{csrf_field()}}
+                <button id="keluar" style="color:#fff; pointer-events: auto;" type="submit" class="dropdown-item">Logout</button>
+            </form>
+        @endif
         <hr style="border-color:grey">
         <a style="color:#fff" href="{{url('/checkout')}}"><b>Checkout</b></a>
     </div>
@@ -58,3 +65,11 @@
 
     });
 </script>
+
+<style>
+    #keluar:hover{
+        text-decoration: underline;
+        background-color: transparent;
+        border: none;
+    }
+</style>
