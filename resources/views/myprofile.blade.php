@@ -196,13 +196,14 @@
                             <div class="card-text">                                
                                 <div class="table-responsive">
                                 <table id="transaksiTable" class="table table-striped table-bordered display" cellspacing="0" width="100%">
-                                    <thead><tr><th>No.</th><th>Waktu</th><th>Pesanan</th><th>Jumlah</th><th>Courier Service</th><th>Status</th></tr></thead>
+                                    <thead><tr><th>No.</th><th>Waktu</th><th>Order ID</th><th>Pesanan</th><th>Jumlah</th><th>Courier Service</th><th>Status</th></tr></thead>
                                     <tbody>
                                         @php $count = 1; @endphp
                                         @foreach($orders as $order)
                                         <tr>
                                             <td>@php echo $count++ @endphp</td>
                                             <td>{{$order->created_at}}</td>
+                                            <td>#{{$order->id}}</td>
                                             <td id="transactionDetailCell">
                                                 <button class="btn btn-outline-primary btn-sm" id="{{$order->id}}" data-toggle="modal" onclick="seedetails(this)" data-target="#lihatPesanan">lihat pesanan</button>
                                             </td>
