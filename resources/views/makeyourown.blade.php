@@ -201,7 +201,7 @@
         function selectCategory(category) {
             $('#listSize').removeAttr('disabled');
             $("#listSize").empty();
-            var appendOption = "";
+            var appendOption = "<option selected disabled>Select size</option>";
             for(var i = 36; i < 41; i++) {
                 appendOption += "<option value=" + i + ">" + i + "</option>";
             }
