@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Slider;
 use App\BestSeller;
@@ -120,8 +121,9 @@ class HomeController extends Controller
 
     public function checkout() {
         $cart = Merx::cart()->items;
+        $itemCount = Merx::cart()->itemsCount();
         $total = Merx::cart()->total();
-        return view('checkout', compact('cart', 'total'));
+        return view('checkout', compact('cart', 'total', 'itemCount'));
     }
 
     public function addtocart(Request $request) {
@@ -163,30 +165,56 @@ class HomeController extends Controller
         return back();
     }
 
-    public function getService($cour, $dest) {
-        $client = new Client();
-        $costRequest = $client->request('POST', 'http://api.rajaongkir.com/starter/cost', [
-            'headers' => [
-                'key' => ['63eca030a065eac7a31580c94ff5c07e']
-            ],
-            'form_params' => [
-                'origin' => "444",
-                'destination' => $dest,
-                'weight' => 1000,
-                'courier' => $cour,
+    public function getService($cour, $dest, $itemcount) {
+        if($itemcount) {
+            $client = new Client();
+            $costRequest = $client->request('POST', 'http://api.rajaongkir.com/starter/cost', [
+                'headers' => [
+                    'key' => ['63eca030a065eac7a31580c94ff5c07e']
+                ],
+                'form_params' => [
+                    'origin' => "455",
+                    'destination' => $dest,
+                    'weight' => 500*$itemcount,
+                    'courier' => $cour,
 
-            ]
-        ]);
-        $responseBody = json_decode($costRequest->getBody()->getContents(), true);
-        $costs = $responseBody['rajaongkir']['results'][0]['costs'];
-        return response()->json([
-            'success' => true,
-            'data' => $costs
-        ]);
+                ]
+            ]);
+            $responseBody = json_decode($costRequest->getBody()->getContents(), true);
+            $costs = $responseBody['rajaongkir']['results'][0]['costs'];
+            return response()->json([
+                'success' => true,
+                'data' => $costs
+            ]);
+        }
+        return response()->json(['error' => "Cart is empty"], 400);
     }
 
     public function finalizeOrder(Request $request) {
         if(Merx::cart()->itemsCount()) {
+            try {
+                DB::transaction(function() {
+                    $items = Merx::cart()->items;
+                    foreach($items as $item) {
+                        $base = Base::find($item->article_id);
+                        $baseStock = $base->stock;
+                        $strap = Strap::find($item->custom_attributes['strap_id']);
+                        $strapStock = $strap->stock;
+                        if($item->quantity > $baseStock || $item->quantity > $strapStock) {
+                            $baseName = Base::find($item->article_id)->name;
+                            $strapName = $item->custom_attributes['strap_name'];
+                            throw new \Exception("Not enough stock for item " . $baseName . " with " . $strapName);
+                        }
+                        $base->stock = $base->stock - $item->quantity;
+                        $base->save();
+                        $strap->stock = $strap->stock - $item->quantity;
+                        $strap->save();
+                    }
+                });
+            }
+            catch(\Exception $e) {
+                return response()->json(['error' => $e->getMessage()], 400);
+            }
             Merx::newOrderFromCart();
             Merx::order()->setMultipleCustomAttributes([
                     "address" => $request->address,
@@ -200,7 +228,7 @@ class HomeController extends Controller
                 ]);
         }
         else {
-            return response()->json(['error' => "Cart is empty"], 400);
+            return response()->json(['error' => "Pastikan anda sudah memesan."], 400);
         }
     }
 }

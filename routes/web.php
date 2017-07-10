@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::post('/editaddress/{id}', ['as' => 'editaddress', 'uses' => 'UserController@editaddress']);
 
-    Route::get('/getservice/{cour}/to/{dest}', ['as' => 'getservice', 'uses' => 'HomeController@getService']);
+    Route::get('/getservice/{cour}/to/{dest}/{itemcount}', ['as' => 'getservice', 'uses' => 'HomeController@getService']);
 
     Route::get('/getcity/{id}', ['as' => 'getcity', 'uses' => 'HomeController@getCity']);
 

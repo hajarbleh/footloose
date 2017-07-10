@@ -190,7 +190,6 @@
                 var address = document.getElementById('address').textContent;
                 var service = document.getElementById('selectService').value;
                 var deliveryCost = $('#selectService').find('option:selected').attr('data-value');
-                console.log(deliveryCost);
                 var $erroralert2 = $('#erroralert2');
                 $.ajax({
                     method: 'POST',
@@ -200,8 +199,7 @@
                         success();
                     },
                     error: function(message) {
-                        console.log(message.responseJSON.error);
-                        cartkosong();
+                        cartkosong(message.responseJSON.error);
                     }
                 });
                 function success() {
@@ -215,8 +213,9 @@
                         window.location.href = "/checkout";
                     }, 4000); 
                 }
-                function cartkosong() {
-                     var tableAppend = '<div id="bodyalert3" class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Pastikan Anda sudah memesan.</div>';
+                function cartkosong(message) {
+                    $('erroralert2').innerHTML = "";
+                    var tableAppend = '<div id="bodyalert3" class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> ' + message + '</div>';
                     $('#erroralert2').append(tableAppend);
                 }
             });
@@ -249,7 +248,7 @@
                 var destination = {!! json_encode(Auth::user()->city_id) !!};
                 $.ajax({
                     method: 'GET',
-                    url: '/getservice/' + courier + '/to/' + destination,
+                    url: '/getservice/' + courier + '/to/' + destination + '/' + {{$itemCount}},
                     dataType: 'JSON',
                     success: function(message){
                         document.getElementById('selectService').innerHTML = '';
@@ -257,13 +256,13 @@
                         for(var i = 0 ; i < message.data.length ; i++) {
                             if(message.data[i]['cost'][0]['etd']) {
                                 appendOption += "<option data-value=" + message.data[i]['cost'][0]['value'] + " value='" + message.data[i].service + "' title='Perkiraan sampai " + message.data[i]['cost'][0]['etd'] + " hari'>" + message.data[i].service + "- Rp. " + message.data[i]['cost'][0]['value'] + "</option>";
-                                console.log(message.data[i]['cost'][0]['value']);
                             }
-                            else console.log('lala');
                         }
-                        console.log(appendOption);
                         document.getElementById('selectService').removeAttribute('disabled');
                         $('#selectService').append(appendOption);
+                    },
+                    error: function(message){
+                        alert("Pastikan anda sudah membeli barang");
                     }
                 });
             }
