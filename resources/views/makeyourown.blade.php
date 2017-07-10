@@ -247,8 +247,6 @@
             basePreview.src= base.getAttribute('data-picture');
             var selectedName = base.getAttribute('data-name');
             var selectedID = base.id;
-            document.getElementsByName("basecol")[0].dataset.name = selectedName;
-            document.getElementsByName("basecol")[0].dataset.picture = base.getAttribute('data-picture');
             $.ajax({
                 type: 'GET',
                 url: '/strap/category/' + categoryID + '/size/' + size,
@@ -280,8 +278,6 @@
             var strapPreview = document.getElementById("strapPreview");
             strapPreview.src= strap.getAttribute('data-picture');
             var selectedName = strap.getAttribute('data-name');
-            document.getElementsByName("strapcol")[0].dataset.name = selectedName;
-            document.getElementsByName("strapcol")[0].dataset.picture = strap.getAttribute('data-picture');
             var nextStrap = document.getElementById("nextStrap");
             nextStrap.href="#carousel-example-generic";
         }
