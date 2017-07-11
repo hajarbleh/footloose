@@ -17,6 +17,11 @@
                                     </ul>
                                 </div>
                             @endif
+                            @if (Session::has('msg'))
+                                <div class="alert alert-warning">
+                                    {{ Session::get('msg') }}
+                                </div>
+                            @endif
                             <loginform>
                                 <h4 class="card-title" style="margin:0"><b><center>Login</center></b></h4>
                                 <div class="card-text">

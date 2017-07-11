@@ -46,6 +46,10 @@ class UserController extends Controller
     }
     
     public function login(Request $request) {
+//        $this->validate($request, [
+//            'email' => 'required|exists:users,email',
+//            'password' => 'required',
+//        ]);
         $userLogin = array(
             'email' => $request->email,
             'password' => $request->password
@@ -53,7 +57,7 @@ class UserController extends Controller
         if(Auth::attempt($userLogin)){
             return redirect()->route('myprofile');
         }
-        else return redirect('login');
+        else return redirect('login')->withErrors(['Mohon cek kembali email/password Anda']);;
     }
     
     public function edit(Request $request, $id) {
