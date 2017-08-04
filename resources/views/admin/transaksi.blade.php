@@ -1,4 +1,4 @@
-@if($transaction->count())
+@if($orders->count())
 <table id="transaksiTable" class="table table-striped table-bordered display" cellspacing="0" width="100%">
     <thead><tr><th>No.</th><th>Waktu</th><th>Order ID</th><th>Pembeli</th><th>Pesanan</th><th>Jumlah</th><th>Courier Service</th><th>Status</th><th style="min-width:11.5rem">Action</th></tr></thead>
     <tbody>
@@ -7,7 +7,7 @@
         <tr>
             <td>@php echo $count++ @endphp</td>
             <td>{{$order->created_at}}</td>
-            <td>#{{$order->id}}</td>
+            <td>MYO-#@php printf("%04d", $order->id); @endphp</td>
             <td>
                 {{$order->user_name}}<br>
                 ({{$order->user_email}})<br>

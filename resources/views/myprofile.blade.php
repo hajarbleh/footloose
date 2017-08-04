@@ -192,6 +192,13 @@
                 <div class="col-sm-12">
                     <div class="card" style="width:100%; margin-bottom:1.5rem; border:solid 1px #ddd">
                         <div class="card-block">
+                            <h4 class="card-title"><b>Catatan Pembayaran</b></h4>
+                            <div class="card-text">
+                                Mohon catat informasi ini. Pembayaran dapat dilakukan dengan melakukan transfer ke Rekening BCA dengan nomor 49711 79761 atas nama Sonia Felicia(FootLoose). Selanjutnya, konfirmasi pembayaran Anda ke Line@ kami di @hellofootloose (menggunakan @).
+                            </div>
+                        </div>
+                    </div><div class="card" style="width:100%; margin-bottom:1.5rem; border:solid 1px #ddd">
+                        <div class="card-block">
                             <h4 class="card-title"><b>Status Pesanan</b></h4>
                             <div class="card-text">                                
                                 <div class="table-responsive">
@@ -203,7 +210,7 @@
                                         <tr>
                                             <td>@php echo $count++ @endphp</td>
                                             <td>{{$order->created_at}}</td>
-                                            <td>#{{$order->id}}</td>
+                                            <td>MYO-#@php printf("%04d", $order->id);@endphp</td>
                                             <td id="transactionDetailCell">
                                                 <button class="btn btn-outline-primary btn-sm" id="{{$order->id}}" data-toggle="modal" onclick="seedetails(this)" data-target="#lihatPesanan">lihat pesanan</button>
                                             </td>
@@ -218,84 +225,84 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card" style="width:100%; border:solid 1px #ddd; min-height:13.5rem">
-                        <div class="card-block">
-                            <h4 class="card-title"><b>Data Diri</b></h4>
-                            <div class="card-text">
-                                <div class="row">
-                                    <div class="col-xs-3">Nama</div>
-                                    @if(!($user->name))
-                                        <div class="col-xs-9">-</div>
-                                    @else
-                                        <div class="col-xs-9">{{$user->name}}</div>
-                                    @endif
-                                    <div class="col-xs-3">Email</div>
-                                    @if(!($user->email))
-                                        <div class="col-xs-9">email@email.com</div>
-                                    @else
-                                        <div class="col-xs-9">{{$user->email}}</div>
-                                    @endif
-                                    <div class="col-xs-3">Password</div>
-                                    <div class="col-xs-9">******</div>
-                                    <div class="col-xs-3">Phone</div>
-                                    @if(!($user->phone))
-                                        <div class="col-xs-9">-</div>
-                                    @else
-                                        <div class="col-xs-9">{{$user->phone}}</div>
-                                    @endif
                                 </div>
                             </div>
-                            <br>
-                            <a href="#!" id="profiltrigger" class="btn btn-primary pull-right" style="margin-left:10px">EDIT PROFILE</a>
-                            <a href="#!" id="passwordtrigger" class="btn btn-primary pull-right">CHANGE PASSWORD</a>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card" style="width:100%; border:solid 1px #ddd; min-height:13.5rem">
-                        <div class="card-block">
-                            <h4 class="card-title"><b>Alamat Pengiriman</b></h4>
-                            <p class="card-text">
-                                    @if(!($user->address))
-                                        -
-                                    @else
-                                        {{$user->address}}
-                                    @endif
-                            </p>
-                            <p class="card-text">
-                                Kota: 
-                                    @if(!($user->city))
-                                        -
-                                    @else
-                                        {{$user->city}}
-                                    @endif
-                                , 
-                                Prov: 
-                                    @if(!($user->state))
-                                        -
-                                    @else
-                                        {{$user->state}}
-                                    @endif
-                                , 
-                                Kodepos: 
-                                    @if(!($user->postal_code))
-                                        -
-                                    @else
-                                        {{$user->postal_code}}
-                                    @endif
-                            </p>
-                            <a href="#!" id="alamattrigger" class="btn btn-primary pull-right">EDIT</a>
+                    <div class="col-sm-6">
+                        <div class="card" style="width:100%; border:solid 1px #ddd; min-height:13.5rem">
+                            <div class="card-block">
+                                <h4 class="card-title"><b>Data Diri</b></h4>
+                                <div class="card-text">
+                                    <div class="row">
+                                        <div class="col-xs-3">Nama</div>
+                                        @if(!($user->name))
+                                            <div class="col-xs-9">-</div>
+                                        @else
+                                            <div class="col-xs-9">{{$user->name}}</div>
+                                        @endif
+                                        <div class="col-xs-3">Email</div>
+                                        @if(!($user->email))
+                                            <div class="col-xs-9">email@email.com</div>
+                                        @else
+                                            <div class="col-xs-9">{{$user->email}}</div>
+                                        @endif
+                                        <div class="col-xs-3">Password</div>
+                                        <div class="col-xs-9">******</div>
+                                        <div class="col-xs-3">Phone</div>
+                                        @if(!($user->phone))
+                                            <div class="col-xs-9">-</div>
+                                        @else
+                                            <div class="col-xs-9">{{$user->phone}}</div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <br>
+                                <a href="#!" id="profiltrigger" class="btn btn-primary pull-right" style="margin-left:10px">EDIT PROFILE</a>
+                                <a href="#!" id="passwordtrigger" class="btn btn-primary pull-right">CHANGE PASSWORD</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card" style="width:100%; border:solid 1px #ddd; min-height:13.5rem">
+                            <div class="card-block">
+                                <h4 class="card-title"><b>Alamat Pengiriman</b></h4>
+                                <p class="card-text">
+                                        @if(!($user->address))
+                                            -
+                                        @else
+                                            {{$user->address}}
+                                        @endif
+                                </p>
+                                <p class="card-text">
+                                    Kota: 
+                                        @if(!($user->city))
+                                            -
+                                        @else
+                                            {{$user->city}}
+                                        @endif
+                                    , 
+                                    Prov: 
+                                        @if(!($user->state))
+                                            -
+                                        @else
+                                            {{$user->state}}
+                                        @endif
+                                    , 
+                                    Kodepos: 
+                                        @if(!($user->postal_code))
+                                            -
+                                        @else
+                                            {{$user->postal_code}}
+                                        @endif
+                                </p>
+                                <a href="#!" id="alamattrigger" class="btn btn-primary pull-right">EDIT</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 @endsection
 
 @section('pagescript')

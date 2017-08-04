@@ -16,7 +16,7 @@ use App\Strap;
 use App\Tattoo;
 use Dvlpp\Merx\Models\Order;
 use App\Slider;
-
+use App\User;
 class AdminController extends Controller
 {
     public function index()
@@ -44,7 +44,7 @@ class AdminController extends Controller
         $tattoo = Tattoo::leftJoin('categories', 'categories.id', '=', 'tattoos.category_id')
             ->select('tattoos.*', 'categories.name as category')
             ->get();
-
-        return view('admin',compact('webDetail','FAQ','category','transaction','slider','transactionDetail','coupon','ffotm','base','strap','tattoo', 'orders', 'price'));
+        $users = User::where('role', '=', 'User')->get();
+        return view('admin',compact('webDetail','FAQ','category','transaction','slider','transactionDetail','coupon','ffotm','base','strap','tattoo', 'orders', 'price', 'users'));
     }
 }
