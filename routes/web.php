@@ -25,6 +25,8 @@ Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 Route::get('/best', ['as' => 'best', 'uses' => 'BestSellerController@index']);
 
 Route::group(['middleware' => ['auth']], function() {
+    Route::post('/usecoupon', ['as' => 'usecoupon', 'uses' => 'HomeController@useCoupon']);
+
     Route::post('/logout', ['as' => 'logout', 'uses' => 'UserController@logout']);
 
     Route::get('/myprofile', ['as' => 'myprofile', 'uses' => 'UserController@show']);

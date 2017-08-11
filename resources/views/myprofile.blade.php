@@ -192,9 +192,9 @@
                 <div class="col-sm-12">
                     <div class="card" style="width:100%; margin-bottom:1.5rem; border:solid 1px #ddd">
                         <div class="card-block">
-                            <h4 class="card-title"><b>Catatan Pembayaran</b></h4>
+                            <h4 class="card-title"><b>Payment Information</b></h4>
                             <div class="card-text">
-                                Mohon catat informasi ini. Pembayaran dapat dilakukan dengan melakukan transfer ke Rekening BCA dengan nomor 49711 79761 atas nama Sonia Felicia(FootLoose). Selanjutnya, konfirmasi pembayaran Anda ke Line@ kami di @hellofootloose (menggunakan @).
+                                You are one step away to complete your order! Please send your payment within 3x24 hours to BCA / Sonia Felicia / 4971179761 and send your payment confirmation through out LINE@ (@hellofootloose). Thank you!
                             </div>
                         </div>
                     </div><div class="card" style="width:100%; margin-bottom:1.5rem; border:solid 1px #ddd">

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Slider;
 use App\BestSeller;
@@ -14,6 +16,8 @@ use GuzzleHttp\Client;
 use Dvlpp\Merx\Facade\Merx;
 use Dvlpp\Merx\Models\Order;
 use App\Price;
+use Carbon\Carbon;
+use App\Coupon;
 
 class HomeController extends Controller
 {
@@ -123,6 +127,9 @@ class HomeController extends Controller
         $cart = Merx::cart()->items;
         $itemCount = Merx::cart()->itemsCount();
         $total = Merx::cart()->total();
+        if(session()->has('coupon')) {
+            $total = $total*(100-session()->get('coupon')->discount)/100;
+        }
         return view('checkout', compact('cart', 'total', 'itemCount'));
     }
 
@@ -164,6 +171,8 @@ class HomeController extends Controller
         Merx::cart()->removeItem($id);
         return back();
     }
+
+
 
     public function getService($cour, $dest, $itemcount) {
         if($itemcount) {
@@ -216,12 +225,37 @@ class HomeController extends Controller
                 return response()->json(['error' => $e->getMessage()], 400);
             }
             Merx::newOrderFromCart();
-            Merx::order()->setMultipleCustomAttributes([
-                    "address" => $request->address,
-                    "service" => $request->service,
-                    "delivery_cost" => $request->deliveryCost,
-                    "total" => Merx::cart()->total()
-                ]);
+            if(session()->has('coupon')) {
+                $isCouponUsed = DB::table('merx_orders')
+                    ->where("client_id", "=", Auth::user()->id)
+                    ->where("custom_attributes", "like", "%\"coupon\":\"".session()->get('coupon')->code."\"%")
+                    ->count();
+                $timeNow = Carbon::now();
+                $selectedCoupon = Coupon::where('code', '=', session()->get('coupon')->code)
+                                ->where('start_date', '<', $timeNow)
+                                ->where('expired_date', '>', $timeNow)
+                                ->first();
+                if($isCouponUsed == 0 && $selectedCoupon) {
+                    Merx::order()->setMultipleCustomAttributes([
+                            "address" => $request->address,
+                            "service" => $request->service,
+                            "delivery_cost" => $request->deliveryCost,
+                            "total" => $request->total,
+                            "coupon" => session()->get('coupon')->code
+                        ]);
+                }
+                else {
+                    return response()->json(['error' => "Your coupon is not valid"], 400);
+                }
+            }
+            else {
+                Merx::order()->setMultipleCustomAttributes([
+                        "address" => $request->address,
+                        "service" => $request->service,
+                        "delivery_cost" => $request->deliveryCost,
+                        "total" => $request->total
+                    ]);
+            }
             Merx::completeOrder();
             return response()->json([
                     'success' => true
@@ -229,6 +263,27 @@ class HomeController extends Controller
         }
         else {
             return response()->json(['error' => "Pastikan anda sudah memesan."], 400);
+        }
+    }
+
+    public function useCoupon(Request $request) {
+        $isCouponUsed = DB::table('merx_orders')
+                    ->where("client_id", "=", Auth::user()->id)
+                    ->where("custom_attributes", "like", "%\"coupon\":\"".$request->coupon."\"%")
+                    ->count();
+        $timeNow = Carbon::now();
+        $selectedCoupon = Coupon::where('code', '=', $request->coupon)
+                        ->where('start_date', '<', $timeNow)
+                        ->where('expired_date', '>', $timeNow)
+                        ->first();
+        if($isCouponUsed == 0 && $selectedCoupon) {
+            session(['coupon' => $selectedCoupon]);
+            return back();
+        }
+        else {
+            session()->forget('coupon');
+            session()->flash('message', "Coupon is not valid");
+            return back();
         }
     }
 }

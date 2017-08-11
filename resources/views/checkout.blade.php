@@ -30,6 +30,10 @@
                         <div class="col-sm-12">
                             <p><b>Pastikan bahwa alamat pengiriman dibawah sudah benar.</b></p>
                             <p id="address">{{Auth::user()->address}}, Kode pos {{Auth::user()->postal_code}}, Kota {{Auth::user()->city}}, Provinsi {{Auth::user()->state}}</p>
+                            <p>
+                                <b>Payment Information</b><br/>
+                                You are one step away to complete your order! Please send your payment within 3x24 hours to BCA / Sonia Felicia / 4971179761 and send your payment confirmation through out LINE@ (@hellofootloose). Thank you! (This information can also be accessed from your profile page)
+                            </p>
                         </div>
                     </form>
                 </div>
@@ -56,7 +60,7 @@
                 <div class="modal-body">
                     <form class="row">
                         <div class="col-sm-12">
-                            <p>Terima kasih sudah memesan barang di Footlose. Silahkan cek email anda untuk melanjutkan pembayaran, atau cek status barang di halaman profilmu.</p>
+                            <p>Terima kasih sudah memesan barang di Footloose. Silahkan cek email anda untuk melanjutkan pembayaran, atau cek status barang di halaman profilmu.</p>
                         </div>
                     </form>
                 </div>
@@ -170,6 +174,36 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-xs-2 offset-xs-7">
+                Kupon
+            </div>
+            <form method="POST" action="/usecoupon/">
+                {{csrf_field()}}
+                @if(session()->has('coupon'))
+                    <div class="col-xs-2" style="padding-left:0px">
+                        <input type="text" name="coupon" class="form-control" value="{{session()->get('coupon')->code}}">
+                    </div>
+                    <div class="col-xs-1" style="padding-left:0px">
+                        <button class="btn btn-secondary" type="submit" style="width:100%">
+                            <i class="fa fa-check fa-lg" style="color:#66ff66"></i>
+                        </button>
+                    </div>
+                @else
+                    <div class="col-xs-2" style="padding-left:0px">
+                        <input type="text" name="coupon" class="form-control" placeholder="Coupon code">
+                    </div>
+                    <div class="col-xs-1" style="padding-left:0px">
+                        <button class="btn btn-secondary" type="submit" style="width:100%">
+                            Use
+                        </button>
+                    </div>
+                @endif
+            </form>
+            @if(session()->has('message'))
+                <div class="col-xs-3 offset-xs-9 alert alert-warning">{{session()->get('message')}}</div>
+            @endif
+        </div>
+        <div class="row">
             <div class="col-xs-3 offset-xs-9">
                 <btn id="alamattrigger" class="btn btn-secondary btn-hav-w" role="button" style="margin-top:1.3rem; background-color:#3a5bb8"><b style="color:#fff"><i class="fa fa-shopping-cart fa-lg"></i> CHECKOUT</b></btn>
             </div>
@@ -190,11 +224,13 @@
                 var address = document.getElementById('address').textContent;
                 var service = document.getElementById('selectService').value;
                 var deliveryCost = $('#selectService').find('option:selected').attr('data-value');
+                var total = {!! json_encode($total) !!};
+                console.log((+total + +deliveryCost));
                 var $erroralert2 = $('#erroralert2');
                 $.ajax({
                     method: 'POST',
                     url: '/finalizeorder',
-                    data: {address:address, service:service, deliveryCost:deliveryCost},
+                    data: {address:address, service:service, deliveryCost:deliveryCost, total: +total + +deliveryCost},
                     success: function(){
                         success();
                     },
@@ -214,7 +250,7 @@
                     }, 4000); 
                 }
                 function cartkosong(message) {
-                    $('erroralert2').innerHTML = "";
+                    $('#erroralert2').innerHTML = "";
                     var tableAppend = '<div id="bodyalert3" class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> ' + message + '</div>';
                     $('#erroralert2').append(tableAppend);
                 }

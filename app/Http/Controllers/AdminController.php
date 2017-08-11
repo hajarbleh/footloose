@@ -23,6 +23,8 @@ class AdminController extends Controller
     {
         $orders = Order::leftJoin('users', 'merx_orders.client_id', '=', 'users.id')
             ->select('merx_orders.*', 'users.name as user_name', 'users.phone as user_phone', 'users.email as user_email')
+            ->where('merx_orders.state', '<>', 'draft')
+            ->orderBy('merx_orders.created_at', 'desc')
             ->get();
         $webDetail = WebDetail::first();
         $FAQ = FAQ::first();

@@ -307,8 +307,8 @@
                         document.getElementById("strapModal").innerHTML = "Strap : " + document.getElementsByName('strapcol')[0].getAttribute('data-name');
                         document.getElementById("tattooModal").innerHTML = "Tattoo : -";
                         document.getElementById("quantityModal").innerHTML = "Quantity : " + document.getElementById('qty').value;
-                        $("#basepic").attr("src",document.getElementsByName('basecol')[0].getAttribute('data-picture'));
-                        $("#strappic").attr("src",document.getElementsByName('strapcol')[0].getAttribute('data-picture'));
+                        $("#basepic").attr("src",document.getElementById('basePreview').src);
+                        $("#strappic").attr("src",document.getElementById('strapPreview').src);
                         jQuery.noConflict();
                         $('#modal').modal('show');
                     }
