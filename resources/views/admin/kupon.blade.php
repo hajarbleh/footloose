@@ -36,7 +36,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="form-control-label">Kode Promo</label>
-                                        <input type="text" disabled name="code" class="form-control" value="WELC50" maxlength="10">
+                                        <input type="text" name="code" class="form-control" value="WELC50" maxlength="10" readonly="readonly">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">

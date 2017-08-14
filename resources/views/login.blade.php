@@ -22,6 +22,16 @@
                                     {{ Session::get('msg') }}
                                 </div>
                             @endif
+                            @if (Session::has('registrationStatus'))
+                                <div class="alert alert-info" role="alert">
+                                    {{ Session::get('registrationStatus') }}
+                                </div>
+                            @endif
+                            @if (Session::has('registrationSuccess'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('registrationSuccess') }}
+                                </div>
+                            @endif
                             <loginform>
                                 <h4 class="card-title" style="margin:0"><b><center>Login</center></b></h4>
                                 <div class="card-text">
@@ -46,13 +56,25 @@
                                     <form action="/register" method="POST">
                                         {{csrf_field()}}
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control" placeholder="Email*" required>
+                                            <input title="Email" type="email" name="email" class="form-control" placeholder="Email*" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password" class="form-control" placeholder="Password*" required>
+                                            <input title="Password" type="password" name="password" class="form-control" placeholder="Password*" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password_confirmation" class="form-control" placeholder="Re-enter password*" required>
+                                            <input title="Re-enter password" type="password" name="password_confirmation" class="form-control" placeholder="Re-enter password*" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input title="Name" type="text" name="name" class="form-control" placeholder="Name*" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input title="Birthday" name="birthday" class="form-control" placeholder="Birthday*" onfocus="(this.type='date')" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input title="Phone" type="text" name="phone" class="form-control" placeholder="Phone*" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input title="Line ID" type="text" name="line" class="form-control" placeholder="Line ID">
                                         </div>
                                         <button class="btn btn-secondary btn-hav-w" type="submit" style="width:100%">SIGN UP</button>
                                         <p style="text-align:center; margin-top:2rem; margin-bottom:0">Sudah punya akun? <a id="login" href="#!" style="color:white">Login</a></p>

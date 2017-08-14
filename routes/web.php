@@ -14,11 +14,9 @@
 Route::group(['middleware' => ['guest']], function() {
     Route::post('/login', ['as' => 'login', 'uses' => 'UserController@login']);
     Route::post('/register', ['as' => 'register', 'uses' => 'UserController@store']);
+    Route::get('/register/verify/{code}', ['as' => 'verifyaccount', 'uses' => 'UserController@verify']);
+    Route::get('/login', ['as' => 'getlogin', 'uses' => 'UserController@getLogin']);
 });
-
-Route::get('/login', function () {
-    return view('login');
-})->middleware('guest');
 
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 

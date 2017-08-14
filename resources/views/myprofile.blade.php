@@ -44,8 +44,16 @@
                                 <input name="name" type="text" class="form-control" id="name" value="{{$user->name}}" required>
                             </div>
                             <div class="form-group col-sm-12">
+                                <label for="birthday">Birthday*</label>
+                                <input name="birthday" type="date" class="form-control" id="birthday" value="{{$user->birthday}}" required>
+                            </div>
+                            <div class="form-group col-sm-12">
                                 <label for="phone">Phone*</label>
                                 <input name="phone" type="number" class="form-control" id="phone" value="{{$user->phone}}" required>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label for="line">Line ID</label>
+                                <input name="line" type="text" class="form-control" id="line" value="{{$user->line}}">
                             </div>
                         </div>
                     </div>

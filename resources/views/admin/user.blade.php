@@ -1,6 +1,6 @@
 @if($users->count())
 <table id="userTable" class="table table-striped table-bordered display" cellspacing="0" width="100%">
-    <thead><tr><th>No.</th><th>Email</th><th>Nama</th><th>Alamat</th><th>Kota</th><th>Provinsi</th><th>Kode pos</th><th>No. Telepon</th></tr></thead>
+    <thead><tr><th>No.</th><th>Email</th><th>Nama</th><th>Alamat</th><th>Kota</th><th>Provinsi</th><th>Kode pos</th><th>No. Telepon</th><th>Birthday</th><th>Line ID</th></tr></thead>
     <tbody>
         @php $count = 1; @endphp
         @foreach($users as $user)
@@ -38,6 +38,16 @@
             @endif
             @if($user->phone)
                 <td>{{$user->phone}}</td>
+            @else
+                <td>-</td>    
+            @endif
+            @if($user->birthday)
+                <td>{{$user->birthday}}</td>
+            @else
+                <td>-</td>    
+            @endif
+            @if($user->line)
+                <td>{{$user->line}}</td>
             @else
                 <td>-</td>    
             @endif

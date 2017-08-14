@@ -24,7 +24,11 @@ class CreateUsersTable extends Migration
             $table->string('state')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('phone')->nullable();
+            $table->date('birthday')->nullable();
+            $table->string('line')->nullable();
             $table->string('role')->default('User');
+            $table->boolean('confirmed')->default(0);
+            $table->string('confirmation_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

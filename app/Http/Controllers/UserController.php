@@ -8,6 +8,7 @@ use App\User;
 use Dvlpp\Merx\Models\Order;
 use GuzzleHttp\Client;
 use Hash;
+use App\Mail\Register;
 
 class UserController extends Controller
 {
@@ -32,17 +33,26 @@ class UserController extends Controller
         $this->validate($request, [
             'email' => 'required|unique:users,email',
             'password' => 'required|min:8|max:16|confirmed',
+            'name' => 'required',
+            'birthday' => 'required',
+            'phone' => 'required|regex:/(08)[0-9]/|min:10|max:12'
         ]);
         $user = new User();
         $user['email'] = $request->email;
         $user['password'] = bcrypt($request->password);
+        $user['name'] = $request->name;
+        $user['birthday'] = $request->birthday;
+        $user['phone'] = $request->phone;
+        $user['line'] = $request->line;
+        $confirmation_code = str_random(30);
+        $user['confirmation_code'] = $confirmation_code;
         $user->save();
-        $userLogin = array(
-           'email' => $request->email,
-           'password' => $request->password
-        );
-        Auth::attempt($userLogin);
-        return redirect()->route('myprofile');
+
+        \Mail::to($user)->queue(new Register($user));
+
+        session()->flash('registrationStatus', 'You have successfully registered. To continue, please verify your account from your email');
+
+        return back();
     }
     
     public function login(Request $request) {
@@ -52,7 +62,8 @@ class UserController extends Controller
 //        ]);
         $userLogin = array(
             'email' => $request->email,
-            'password' => $request->password
+            'password' => $request->password,
+            'confirmed' => 1
         );
         if(Auth::attempt($userLogin)){
             return redirect()->route('myprofile');
@@ -103,5 +114,26 @@ class UserController extends Controller
     public function logout() {
         Auth::logout();
         return redirect()->route('index');
+    }
+
+    public function verify($code) {
+        if(!$code) {
+            session()->flash('msg', 'Verification code cannot be empty');
+            return redirect('login');
+        }
+        $user = User::where('confirmation_code', '=', $code)->first();
+        if(!$user) {
+            session()->flash('msg', 'The verification code you requested is not valid');
+            return redirect('login');
+        }
+        $user->confirmed = 1;
+        $user->confirmation_code = null;
+        $user->save();
+        session()->flash('registrationSuccess', 'Your account have been successfully verified!');
+        return redirect('login');
+    }
+
+    public function getLogin() {
+        return view('login');
     }
 }
