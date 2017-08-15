@@ -13,28 +13,16 @@ class UsersTableSeeder extends Seeder
     {
         //
         $User1 = new User;
-        $User1->email = 'admin@footloose.com';
-        $User1->password = bcrypt('admin');
+        $User1->email = 'boss@hellofootloose.com';
+        $User1->password = bcrypt('Billtano1');
         $User1->name = 'admin';
         $User1->address = 'Jalan Teknik Kimia, Sukolilo, Surabaya';
         $User1->city = 'Surabaya';
         $User1->state = 'Jawa Timur';
         $User1->postal_code = '60293';
-		$User1->phone = '089630303905';
+		$User1->phone = '08123456789';
         $User1->role = 'Admin';
         $User1->confirmed = 1;
         $User1->save();
-
-        $User2 = new User;
-        $User2->email = 'user@footloose.com';
-        $User2->password = bcrypt('user');
-/*        $User2->name = 'John Peter';
-        $User2->address = 'Jalan Rungkut Mapan Barat I FC 18 Surabaya';
-        $User2->city = 'Surabaya';
-        $User2->state = 'Jawa Timur';
-        $User2->postal_code = '60293';
-		$User2->phone = '089630303906';
-        $User2->role = 'User';
-*/      $User2->save();
     }
 }
