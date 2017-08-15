@@ -74,6 +74,8 @@ class UserController extends Controller
     public function edit(Request $request, $id) {
         $user = User::findorfail($id);
         $user['name'] = $request->name;
+        $user['birthday'] = $request->birthday;
+        $user['line'] = $request->line;
         $user['phone'] = $request->phone;
         $user->save();
 

@@ -128,7 +128,6 @@
                         url: '/admin/product/base/' + this.id,
                         dataType: 'JSON',
                         success: function(message) {
-                            console.log(message.data);
                             $("#form-update-base").attr('action', "/admin/product/base/update/" + message.data.id);
                             $("input[name*='name']").val(message.data.name);
                             $("input[name*='color']").val(message.data.color);

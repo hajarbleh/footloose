@@ -338,7 +338,6 @@
                 url: '/user/transaction/detail/' + order.id,
                 dataType: 'JSON',
                 success: function(message) {
-                    console.log(message.data);
                     document.getElementById('transactionDetailBody').innerHTML = '';
                     var tableAppend = '';
                     for(var i = 0; i < message.data.length; i++) {
@@ -365,9 +364,15 @@
                     $("#kota").empty();
                     var optionAppend = '';
                     for(var i = 0; i < message.data.length; i++){
-                        optionAppend += '<option data-id=' + message.data[i].city_id + ' value=' + message.data[i].city_name +'>' + message.data[i].city_name + '</option>';
+                        if(i==0) {
+                            optionAppend += '<option data-id=' + message.data[i].city_id + ' value=' + message.data[i].city_name +' selected>' + message.data[i].city_name + '</option>';
+                        }
+                        else {
+                            optionAppend += '<option data-id=' + message.data[i].city_id + ' value=' + message.data[i].city_name +'>' + message.data[i].city_name + '</option>';
+                        }
                     }
                     $('#kota').append(optionAppend);
+                    document.getElementById('cityID').value = $('#kota').find(':selected').data('id');
                 }
             });
         }

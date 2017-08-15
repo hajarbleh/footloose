@@ -58,7 +58,7 @@
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-xs-6">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:100%; border:none; background-color:(0,0,0,0.075)"><i class="fa fa-arrow-circle-left fa-lg"></i> Continue shoping</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.location.reload()" style="width:100%; border:none; background-color:(0,0,0,0.075)"><i class="fa fa-arrow-circle-left fa-lg"></i> Continue shoping</button>
                         </div>
                         <div class="col-xs-6">
                             <a href="checkout" class="btn btn-primary" style="width:100%"><i class="fa fa-shopping-cart fa-lg"></i> Checkout</a>
@@ -186,8 +186,8 @@
     <script>
         function updqty(x){
             quantity = document.getElementById("qty");
-            var baseStock = document.getElementsByName("basecol")[0].getAttribute('data-stock');
-            var strapStock = document.getElementsByName("strapcol")[0].getAttribute('data-stock');
+            var baseStock = $("input[name='basecol']:checked").data('stock');
+            var strapStock = $("input[name='strapcol']:checked").data('stock');
             if (x == "+" && quantity.value < Math.min(baseStock, strapStock)) {
                 quantity.value ++;
                 document.getElementById("quantityPreview").innerHTML = "Quantity: " + quantity.value;
@@ -294,17 +294,16 @@
                 var baseID = $("input[name='basecol']:checked").val();
                 var strapID = $("input[name='strapcol']:checked").val();
                 var quantity = document.getElementById('qty').value;
-                console.log(size + " " + categoryID + " " + baseID + " " + strapID + " " + quantity);
                 $.ajax({
                     type: 'POST',
                     url: '/addtocart',
                     data : {size: size, categoryID: categoryID, baseID: baseID, strapID: strapID, quantity: quantity},
                     dataType: 'json',
                     success: function(message) {
-                        document.getElementById("flopname").innerHTML = document.getElementsByName('basecol')[0].getAttribute('data-name') + " with " + document.getElementsByName('strapcol')[0].getAttribute('data-name');
+                        document.getElementById("flopname").innerHTML = $("input[name='basecol']:checked").data('name') + " with " + $("input[name='strapcol']:checked").data('name');
                         document.getElementById("sizeModal").innerHTML = "Size : " + $('#listSize').val();
-                        document.getElementById("baseModal").innerHTML = "Base : " + document.getElementsByName('basecol')[0].getAttribute('data-name');
-                        document.getElementById("strapModal").innerHTML = "Strap : " + document.getElementsByName('strapcol')[0].getAttribute('data-name');
+                        document.getElementById("baseModal").innerHTML = "Base : " + $("input[name='basecol']:checked").data('name');
+                        document.getElementById("strapModal").innerHTML = "Strap : " + $("input[name='strapcol']:checked").data('name');
                         document.getElementById("tattooModal").innerHTML = "Tattoo : -";
                         document.getElementById("quantityModal").innerHTML = "Quantity : " + document.getElementById('qty').value;
                         $("#basepic").attr("src",document.getElementById('basePreview').src);

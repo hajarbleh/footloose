@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
         $User1->postal_code = '60293';
 		$User1->phone = '089630303905';
         $User1->role = 'Admin';
+        $User1->confirmed = 1;
         $User1->save();
 
         $User2 = new User;

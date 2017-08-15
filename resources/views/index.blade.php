@@ -280,8 +280,6 @@
                         document.getElementById("bodyalert").remove();
                     }
                     if(message.data == 0) {
-//                        console.log("Stok habis");
-//                        alert("HABIS WOI");
                         var tableAppend = '<div id="bodyalert" class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Mohon maaf, FreeFlop of the Month ukuran ' + selector.value + ' sedang habis</div>';
                         $('#outofstockalert').append(tableAppend);
                     }
@@ -295,7 +293,6 @@
         }
 
         function selectffotm(ffotm) {
-            console.log("lala");
             document.getElementById("categoryID").value = ffotm.getAttribute("data-categoryid");
             document.getElementById('baseID').dataset.name = ffotm.getAttribute("data-basename");
             document.getElementById('strapID').dataset.name = ffotm.getAttribute("data-strapname");
@@ -323,7 +320,6 @@
                     data : {size: size, categoryID: categoryID, baseID: baseID, strapID: strapID, quantity: quantity},
                     dataType: 'json',
                     success: function(message) {
-//                        console.log("Added ^^");
                         jQuery.noConflict();
                         $('.modal').modal('toggle');
                         $("#basepic").attr("src",document.getElementById('baseID').getAttribute('data-picture'));

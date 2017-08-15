@@ -225,7 +225,6 @@
                 var service = document.getElementById('selectService').value;
                 var deliveryCost = $('#selectService').find('option:selected').attr('data-value');
                 var total = {!! json_encode($total) !!};
-                console.log((+total + +deliveryCost));
                 var $erroralert2 = $('#erroralert2');
                 $.ajax({
                     method: 'POST',

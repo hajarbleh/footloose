@@ -9,47 +9,47 @@
             @if($user->email)
                 <td>{{$user->email}}</td>
             @else
-                <td>-</td>    
+                <td>-</td>
             @endif
             @if($user->name)
                 <td>{{$user->name}}</td>
             @else
-                <td>-</td>    
+                <td>-</td>
             @endif
             @if($user->address)
                 <td>{{$user->address}}</td>
             @else
-                <td>-</td>    
+                <td>-</td>
             @endif
             @if($user->city)
                 <td>{{$user->city}}</td>
             @else
-                <td>-</td>    
+                <td>-</td>
             @endif
             @if($user->state)
                 <td>{{$user->state}}</td>
             @else
-                <td>-</td>    
+                <td>-</td>
             @endif
             @if($user->postal_code)
                 <td>{{$user->postal_code}}</td>
             @else
-                <td>-</td>    
+                <td>-</td>
             @endif
             @if($user->phone)
                 <td>{{$user->phone}}</td>
             @else
-                <td>-</td>    
+                <td>-</td>
             @endif
             @if($user->birthday)
                 <td>{{$user->birthday}}</td>
             @else
-                <td>-</td>    
+                <td>-</td>
             @endif
             @if($user->line)
                 <td>{{$user->line}}</td>
             @else
-                <td>-</td>    
+                <td>-</td>
             @endif
             
         </tr>

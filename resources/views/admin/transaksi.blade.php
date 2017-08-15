@@ -20,7 +20,7 @@
             <td id="transactionDetailCell">
                 <button class="btn btn-outline-primary btn-sm" id="{{$order->id}}" data-toggle="modal" data-target="#lihatPesanan">lihat pesanan</button>
             </td>
-            <td>Rp. {{$order->custom_attributes['total'] + $order->custom_attributes['delivery_cost']}}</td>
+            <td>Rp. {{$order->custom_attributes['total']}}</td>
             <td>{{$order->custom_attributes['service']}}</td>
             @if($order->state == 'completed')
             <td class="text-info"><b>Menunggu konfirmasi admin</b><br></td>
