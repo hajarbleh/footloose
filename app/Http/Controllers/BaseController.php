@@ -36,6 +36,10 @@ class BaseController extends Controller
     public function store(Request $request)
     {
         $lastRow = Base::orderBy('id', 'desc')->first();
+        if(!$lastRow) {
+            $id = 0;
+        }
+        else $id = $lastRow->id;
         $base = new Base();
         $base['name'] = $request->name;
         $base['color'] = $request->color;
@@ -43,7 +47,7 @@ class BaseController extends Controller
         $base['category_id'] = $request->category;
         $base['stock'] = $request->stock;
         //handle picture
-        $dest = 'base/'.($lastRow->id+1);
+        $dest = 'base/'.($id+1);
         $file = $request->file('picture');
         $fileName = $file->getClientOriginalName();
         $path = $file->move($dest, $fileName);

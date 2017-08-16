@@ -36,13 +36,17 @@ class StrapController extends Controller
     public function store(Request $request)
     {
         $lastRow = Strap::orderBy('id', 'desc')->first();
+        if(!$lastRow) {
+            $id = 0;
+        }
+        else $id = $lastRow->id;
         $strap = new Strap();
         $strap['name'] = $request->name;
         $strap['color'] = $request->color;
         $strap['size'] = $request->size;
         $strap['category_id'] = $request->category;
         $strap['stock'] = $request->stock;
-        $dest = 'strap/'.($lastRow->id+1);
+        $dest = 'strap/'.($id+1);
         $file = $request->file('picture');
         $fileName = $file->getClientOriginalName();
         $path = $file->move($dest, $fileName);

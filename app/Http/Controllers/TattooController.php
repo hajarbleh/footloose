@@ -36,12 +36,16 @@ class TattooController extends Controller
     public function store(Request $request)
     {
         $lastRow = Tattoo::orderBy('id', 'desc')->first();
+        if(!$lastRow) {
+            $id = 0;
+        }
+        else $id = $lastRow->id;
         $tattoo = new Tattoo();
         $tattoo['name'] = $request->name;
         $tattoo['color'] = $request->color;
         $tattoo['category_id'] = $request->category;
         $tattoo['stock'] = $request->stock;
-        $dest = 'tattoo/'.($lastRow->id+1);
+        $dest = 'tattoo/'.($id+1);
         $file = $request->file('picture');
         $fileName = $file->getClientOriginalName();
         $path = $file->move($dest, $fileName);
