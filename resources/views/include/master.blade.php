@@ -16,6 +16,7 @@
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <link rel="shortcut icon" href="{{asset('assets/img/ui/favicon.png')}}"/>
         <title>FootLoose | @yield('title')</title>
     </head>
     <body>
