@@ -73,6 +73,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 offset-md-2">
+                    <div id="defaultPicture">
+                        
+                    </div>
                     <img id="basePreview" style="width:120%; position:absolute" />
                     <img id="strapPreview" style="width:130%; z-index: 10; position:relative" />
                 </div>
@@ -201,12 +204,31 @@
         function selectCategory(category) {
             $('#listSize').removeAttr('disabled');
             $("#listSize").empty();
+            var categoryID = $('#listCategory').val();
+            $("#defaultPicture").empty();
+            $("#basePreview").attr('src', '');
+            $("#strapPreview").attr('src', '');
+            if($("#defaultPicture").is(':empty')){
+                if (categoryID == 1){
+                    var pic="<img src='default/men.png' style='width:120%; position:absolute'>";
+                }
+                else if (categoryID == 2){
+                    var pic="<img src='default/women.png' style='width:120%; position:absolute'>";
+                }
+                else if (categoryID == 3){
+                    var pic="<img src='default/kids.png' style='width:120%; position:absolute'>";
+                }
+            }
+            
+            
+            $("#defaultPicture").append(pic);
+    
             var appendOption = "<option selected disabled>Select size</option>";
             for(var i = 36; i < 41; i++) {
                 appendOption += "<option value=" + i + ">" + i + "</option>";
             }
             $('#listSize').append(appendOption);
-
+            
             var nextCat = document.getElementById("nextCategory");
             nextCat.href="#carousel-example-generic";
             var nextSize = document.getElementById("nextSize");
@@ -252,6 +274,7 @@
                 url: '/strap/category/' + categoryID + '/size/' + size,
                 dataType: 'JSON',
                 success: function(message) {
+                    $('#defaultPicture').empty();
                     $('#strapColor').removeAttr('disabled');
                     $('#strapColor').empty();
                     var appendOption =  "";
