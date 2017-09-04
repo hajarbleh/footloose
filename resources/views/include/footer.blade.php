@@ -4,7 +4,7 @@
             <div class="col-sm-12 col-xs-12" style="text-align:center">
                 <h5><b>Where you can find us.</b></h5>
                 <div class="col-sm-12 col-xs-12">
-                    <p style="margin-bottom:2rem">check our faq or give us a shout, we're happy to help!</p>
+                    <p style="margin-bottom:2rem">Check our FAQ or give us a shout, we're happy to help!</p>
                 </div>
                 <div class="col-sm-3 col-xs-6">
                     @if(!($webDetail->email))

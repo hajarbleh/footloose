@@ -274,7 +274,7 @@
                     <div class="col-sm-6">
                         <div class="card" style="width:100%; border:solid 1px #ddd; min-height:13.5rem">
                             <div class="card-block">
-                                <h4 class="card-title"><b>Alamat Pengiriman</b></h4>
+                                <h4 class="card-title"><b>Delivery Address</b></h4>
                                 <p class="card-text">
                                         @if(!($user->address))
                                             -
@@ -283,21 +283,21 @@
                                         @endif
                                 </p>
                                 <p class="card-text">
-                                    Kota: 
+                                    City: 
                                         @if(!($user->city))
                                             -
                                         @else
                                             {{$user->city}}
                                         @endif
                                     , 
-                                    Prov: 
+                                    Province: 
                                         @if(!($user->state))
                                             -
                                         @else
                                             {{$user->state}}
                                         @endif
                                     , 
-                                    Kodepos: 
+                                    Postal Code: 
                                         @if(!($user->postal_code))
                                             -
                                         @else

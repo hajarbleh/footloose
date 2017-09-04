@@ -33,11 +33,11 @@
                         {{csrf_field()}}
                         <select class="btn btn-sm dropdown-toggle transaksi" name="status" id="dropdownMenuButton" onchange="this.form.submit()">
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <option class="dropdown-item" value="Pesanan Diterima">Pesanan Diterima</option>
-                                <option class="dropdown-item" value="Pembayaran Diterima">Pembayaran Diterima</option>
-                                <option class="dropdown-item" value="Barang Dikirim">Barang Dikirim</option>
-                                <option class="dropdown-item" value="Transaksi Dibatalkan">Transaksi Dibatalkan</option>
-                                <option class="dropdown-item" value="Transaksi Selesai">Transaksi Selesai</option>
+                                <option class="dropdown-item" value="Pesanan Diterima">Order accepted</option>
+                                <option class="dropdown-item" value="Pembayaran Diterima">Payment confirmed</option>
+                                <option class="dropdown-item" value="Barang Dikirim">Order delivered</option>
+                                <option class="dropdown-item" value="Transaksi Dibatalkan">Transaction cancelled</option>
+                                <option class="dropdown-item" value="Transaksi Selesai">Transaction done</option>
                             </div>
                         </select>
                     </form>

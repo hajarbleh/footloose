@@ -45,7 +45,7 @@
                                             <input name="password" type="password" class="form-control" placeholder="Password*" required>
                                         </div>
                                         <button class="btn btn-secondary btn-hav-w" type="submit" style="width:100%">LOGIN</button>
-                                        <p style="text-align:center; margin-top:2rem; margin-bottom:0">baru disini? <a id="signup" href="#!" style="color:white">Sign up</a></p>
+                                        <p style="text-align:center; margin-top:2rem; margin-bottom:0">First time here? Sign up now!<a id="signup" href="#!" style="color:white">Sign up</a></p>
                                     </form>
                                 </div>
                             </loginform>
