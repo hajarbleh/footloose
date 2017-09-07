@@ -207,11 +207,11 @@
                         </div>
                     </div><div class="card" style="width:100%; margin-bottom:1.5rem; border:solid 1px #ddd">
                         <div class="card-block">
-                            <h4 class="card-title"><b>Status Pesanan</b></h4>
+                            <h4 class="card-title"><b>Order Status</b></h4>
                             <div class="card-text">                                
                                 <div class="table-responsive">
                                 <table id="transaksiTable" class="table table-striped table-bordered display" cellspacing="0" width="100%">
-                                    <thead><tr><th>No.</th><th>Waktu</th><th>Order ID</th><th>Pesanan</th><th>Jumlah</th><th>Courier Service</th><th>Status</th></tr></thead>
+                                    <thead><tr><th>No.</th><th>Time</th><th>Order ID</th><th>Order</th><th>Total</th><th>Courier Service</th><th>Status</th></tr></thead>
                                     <tbody>
                                         @php $count = 1; @endphp
                                         @foreach($orders as $order)
@@ -240,10 +240,10 @@
                     <div class="col-sm-6">
                         <div class="card" style="width:100%; border:solid 1px #ddd; min-height:13.5rem">
                             <div class="card-block">
-                                <h4 class="card-title"><b>Data Diri</b></h4>
+                                <h4 class="card-title"><b>Profile</b></h4>
                                 <div class="card-text">
                                     <div class="row">
-                                        <div class="col-xs-3">Nama</div>
+                                        <div class="col-xs-3">Name</div>
                                         @if(!($user->name))
                                             <div class="col-xs-9">-</div>
                                         @else
